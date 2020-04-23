@@ -3,9 +3,10 @@ package com.thealiyev;
 import java.util.ArrayList;
 
 public class ObstacleAvoider {
+
     public static void main(String[] args) {
-        ArrayList<Double> p1 = new ArrayList<>();
-        ArrayList<Double> p2 = new ArrayList<>();
+        ArrayList<Double> ObstacleAvoidanceCurrentStation = new ArrayList<>();
+        ArrayList<Double> ObstacleAvoidanceNextStation = new ArrayList<>();
         Obstacles obstacles = new Obstacles();
         obstacles.setObstacle1();
         boolean isPointInsideOfObstacle = false;
@@ -13,23 +14,24 @@ public class ObstacleAvoider {
         ArrayList<Double> nearestCornerToP1;
         ArrayList<Double> newCornerForP2;
 
-        p1.add(21.0);
-        p1.add(21.0);
+        ObstacleAvoidanceCurrentStation.add(21.0);
+        ObstacleAvoidanceCurrentStation.add(21.0);
 
-        p2.add(9.0);
-        p2.add(9.0);
+        ObstacleAvoidanceNextStation.add(7.0);
+        ObstacleAvoidanceNextStation.add(5.0);
 
-        isPointInsideOfObstacle = isPointInsideOfObstacle(p2, obstacles, 0);
+        isPointInsideOfObstacle = isPointInsideOfObstacle(ObstacleAvoidanceNextStation, obstacles, 0);
         if (isPointInsideOfObstacle) {
             System.out.println("Point inside do something!");
-            p2 = findNearestPoint(p2, obstacles, 0);
-            System.out.println(p2);
+            ObstacleAvoidanceNextStation = findNearestPoint(ObstacleAvoidanceNextStation, obstacles, 0);
+            System.out.println(ObstacleAvoidanceNextStation);
         } else {
-            didPointCollideWithObstacle = didPointCollideWithObstacle(p1, p2, obstacles, 0);
+            didPointCollideWithObstacle = didPointCollideWithObstacle(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, obstacles, 0);
             if (didPointCollideWithObstacle) {
-                nearestCornerToP1 = findNearestPoint(p1, obstacles, 0);
-                newCornerForP2 = findPathToOppositeSide(p1, p2, obstacles, 0);
-                System.out.println(p1 + " " + nearestCornerToP1 + " to " + newCornerForP2 + " " + p2);
+                System.out.println("Point collided do something!");
+                nearestCornerToP1 = findNearestPoint(ObstacleAvoidanceCurrentStation, obstacles, 0);
+                newCornerForP2 = findPathToOppositeSide(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, obstacles, 0);
+                System.out.println(ObstacleAvoidanceCurrentStation + " " + nearestCornerToP1 + " to " + newCornerForP2 + " " + ObstacleAvoidanceNextStation);
             }
         }
     }
