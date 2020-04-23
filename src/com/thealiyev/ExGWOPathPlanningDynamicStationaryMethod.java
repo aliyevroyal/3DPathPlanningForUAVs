@@ -44,7 +44,7 @@ public class ExGWOPathPlanningDynamicStationaryMethod {
         ArrayList<Double> X;
         double x;
         ArrayList<Double> P;
-        int population = 100, dimension = 30;
+        int population = 10, dimension = 15;
         int iteration = 100;
         ArrayList<ArrayList<ArrayList<Double>>> positionsMatrix = createRandomPositionsMatrix(population, dimension, Xboundaries, Yboundaries, Zboundaries);
         ArrayList<ArrayList<Double>> optimizationMatrix = createOptimizationMatrix(positionsMatrix, sourceStation);
@@ -56,11 +56,11 @@ public class ExGWOPathPlanningDynamicStationaryMethod {
         double xDestination = destinationStation.get(0);
         double yDestination = destinationStation.get(1);
         double xNext, yNext;
-        double d, cosAlpha, alphaDegree;
+        double d, cosAlpha, sinAlpha, alphaDegree;
         //Gray Wolf Optimization iterations start here...
         System.out.println("Initialization, alpha's fitness value: " + sortedFitnessValues.get(0));
         for (int stCounter = 0; stCounter < iteration; stCounter = stCounter + 1) {
-            a = 2.0 - 2.0 * stCounter / iteration;
+            a = 2.0 - 2.0 * Math.pow(stCounter, 2) / Math.pow(iteration, 2);
             for (int ndCounter = 0; ndCounter < optimizationMatrix.size(); ndCounter = ndCounter + 1) {
                 for (int rdCounter = 0; rdCounter < optimizationMatrix.get(ndCounter).size(); rdCounter = rdCounter + 1) {
                     A = new ArrayList<>();
@@ -130,9 +130,12 @@ public class ExGWOPathPlanningDynamicStationaryMethod {
                         yCurrent = positionsMatrix.get(ndCounter).get(rdCounter - 1).get(1);
                         d = Math.sqrt(Math.pow((xDestination - xCurrent), 2) + Math.pow((yDestination - yCurrent), 2));
                         cosAlpha = (xDestination - xCurrent) / d;
+                        sinAlpha = (yDestination - yCurrent) / d;
                         alphaDegree = Math.toDegrees(Math.acos(cosAlpha));
                         alphaDegree = (alphaDegree - 15 * a) + ((alphaDegree + 15 * a) - (alphaDegree - 15 * a)) * random.nextDouble();
                         xNext = xCurrent + (x * Math.cos(Math.toRadians(alphaDegree)));
+                        alphaDegree = Math.toDegrees(Math.asin(sinAlpha));
+                        alphaDegree = (alphaDegree - 15 * a) + ((alphaDegree + 15 * a) - (alphaDegree - 15 * a)) * random.nextDouble();
                         yNext = yCurrent + (x * Math.sin(Math.toRadians(alphaDegree)));
                         positionsMatrix.get(ndCounter).get(rdCounter).set(0, xNext);
                         positionsMatrix.get(ndCounter).get(rdCounter).set(1, yNext);
@@ -142,8 +145,10 @@ public class ExGWOPathPlanningDynamicStationaryMethod {
                         yCurrent = sourceStation.get(1);
                         d = Math.sqrt(Math.pow((xDestination - xCurrent), 2) + Math.pow((yDestination - yCurrent), 2));
                         cosAlpha = (xDestination - xCurrent) / d;
+                        sinAlpha = (yDestination - yCurrent) / d;
                         alphaDegree = Math.toDegrees(Math.acos(cosAlpha));
                         xNext = xCurrent + (x * Math.cos(Math.toRadians(alphaDegree)));
+                        alphaDegree = Math.toDegrees(Math.asin(sinAlpha));
                         yNext = yCurrent + (x * Math.sin(Math.toRadians(alphaDegree)));
                         positionsMatrix.get(ndCounter).get(rdCounter).set(0, xNext);
                         positionsMatrix.get(ndCounter).get(rdCounter).set(1, yNext);

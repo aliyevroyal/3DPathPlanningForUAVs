@@ -28,12 +28,12 @@ public class IGWOPathPlanningDynamicStationaryMethod {
         //Source station coordinates
         ArrayList<Double> sourceStation = new ArrayList<>();
         sourceStation.add(0.1);
-        sourceStation.add(0.1);
+        sourceStation.add(99.9);
         sourceStation.add(0.1);
         //Destination station coordinates
         ArrayList<Double> destinationStation = new ArrayList<>();
         destinationStation.add(99.9);
-        destinationStation.add(99.9);
+        destinationStation.add(0.1);
         destinationStation.add(99.9);
         //Gray Wolf Optimization initialization starts here...
         double a;
@@ -56,7 +56,7 @@ public class IGWOPathPlanningDynamicStationaryMethod {
         double xDestination = destinationStation.get(0);
         double yDestination = destinationStation.get(1);
         double xNext, yNext;
-        double d, cosAlpha, alphaDegree;
+        double d, cosAlpha, sinAlpha, alphaDegree;
         //Gray Wolf Optimization iterations start here...
         System.out.println("Initialization, alpha's fitness value: " + sortedFitnessValues.get(0));
         for (int stCounter = 0; stCounter < iteration; stCounter = stCounter + 1) {
@@ -110,9 +110,12 @@ public class IGWOPathPlanningDynamicStationaryMethod {
                         yCurrent = positionsMatrix.get(ndCounter).get(rdCounter - 1).get(1);
                         d = Math.sqrt(Math.pow((xDestination - xCurrent), 2) + Math.pow((yDestination - yCurrent), 2));
                         cosAlpha = (xDestination - xCurrent) / d;
+                        sinAlpha = (yDestination - yCurrent) / d;
                         alphaDegree = Math.toDegrees(Math.acos(cosAlpha));
                         alphaDegree = (alphaDegree - 15 * a) + ((alphaDegree + 15 * a) - (alphaDegree - 15 * a)) * random.nextDouble();
                         xNext = xCurrent + (x * Math.cos(Math.toRadians(alphaDegree)));
+                        alphaDegree = Math.toDegrees(Math.asin(sinAlpha));
+                        alphaDegree = (alphaDegree - 15 * a) + ((alphaDegree + 15 * a) - (alphaDegree - 15 * a)) * random.nextDouble();
                         yNext = yCurrent + (x * Math.sin(Math.toRadians(alphaDegree)));
                         positionsMatrix.get(ndCounter).get(rdCounter).set(0, xNext);
                         positionsMatrix.get(ndCounter).get(rdCounter).set(1, yNext);
@@ -122,8 +125,10 @@ public class IGWOPathPlanningDynamicStationaryMethod {
                         yCurrent = sourceStation.get(1);
                         d = Math.sqrt(Math.pow((xDestination - xCurrent), 2) + Math.pow((yDestination - yCurrent), 2));
                         cosAlpha = (xDestination - xCurrent) / d;
+                        sinAlpha = (yDestination - yCurrent) / d;
                         alphaDegree = Math.toDegrees(Math.acos(cosAlpha));
                         xNext = xCurrent + (x * Math.cos(Math.toRadians(alphaDegree)));
+                        alphaDegree = Math.toDegrees(Math.asin(sinAlpha));
                         yNext = yCurrent + (x * Math.sin(Math.toRadians(alphaDegree)));
                         positionsMatrix.get(ndCounter).get(rdCounter).set(0, xNext);
                         positionsMatrix.get(ndCounter).get(rdCounter).set(1, yNext);

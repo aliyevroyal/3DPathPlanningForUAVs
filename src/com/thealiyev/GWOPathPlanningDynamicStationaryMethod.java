@@ -41,7 +41,7 @@ public class GWOPathPlanningDynamicStationaryMethod {
         double r1, r2;
         double A1, A2, A3;
         double C1, C2, C3;
-        double X, X1, X2, X3;
+        double x, X1, X2, X3;
         ArrayList<Double> P;
         double Dalpha, Dbeta, Ddelta;
         double Xalpha, Xbeta, Xdelta;
@@ -57,21 +57,21 @@ public class GWOPathPlanningDynamicStationaryMethod {
         double xDestination = destinationStation.get(0);
         double yDestination = destinationStation.get(1);
         double xNext, yNext;
-        double d, cosAlpha, alphaDegree;
+        double d, cosAlpha, sinAlpha, alphaDegree;
         //Gray Wolf Optimization iterations start here...
         System.out.println("Initialization, alpha's fitness value: " + sortedFitnessValues.get(0));
         for (int stCounter = 0; stCounter < iteration; stCounter = stCounter + 1) {
             a = 2.0 - 2.0 * stCounter / iteration;
             for (int ndCounter = 0; ndCounter < optimizationMatrix.size(); ndCounter = ndCounter + 1) {
                 for (int rdCounter = 0; rdCounter < optimizationMatrix.get(ndCounter).size(); rdCounter = rdCounter + 1) {
-                    X = optimizationMatrix.get(ndCounter).get(rdCounter);
+                    x = optimizationMatrix.get(ndCounter).get(rdCounter);
 
                     r1 = random.nextDouble();
                     r2 = random.nextDouble();
                     A1 = 2 * a * r1 - a;
                     C1 = 2 * r2;
                     Xalpha = optimizationMatrix.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).get(rdCounter);
-                    Dalpha = C1 * Xalpha - X;
+                    Dalpha = C1 * Xalpha - x;
                     if (Dalpha < 0) {
                         Dalpha = Dalpha * -1;
                     }
@@ -82,7 +82,7 @@ public class GWOPathPlanningDynamicStationaryMethod {
                     A2 = 2 * a * r1 - a;
                     C2 = 2 * r2;
                     Xbeta = optimizationMatrix.get(fitnessValues.indexOf(sortedFitnessValues.get(1))).get(rdCounter);
-                    Dbeta = C2 * Xbeta - X;
+                    Dbeta = C2 * Xbeta - x;
                     if (Dbeta < 0) {
                         Dbeta = Dbeta * -1;
                     }
@@ -93,17 +93,17 @@ public class GWOPathPlanningDynamicStationaryMethod {
                     A3 = 2 * a * r1 - a;
                     C3 = 2 * r2;
                     Xdelta = optimizationMatrix.get(fitnessValues.indexOf(sortedFitnessValues.get(2))).get(rdCounter);
-                    Ddelta = C3 * Xdelta - X;
+                    Ddelta = C3 * Xdelta - x;
                     if (Ddelta < 0) {
                         Ddelta = Ddelta * -1;
                     }
                     X3 = Xdelta - A3 * Ddelta;
 
-                    X = (X1 + X2 + X3) / 3;
-                    if (X > r) {
-                        X = r + (X - r) * random.nextDouble();
+                    x = (X1 + X2 + X3) / 3;
+                    if (x > r) {
+                        x = r + (x - r) * random.nextDouble();
                     } else {
-                        X = X + (r - X) * random.nextDouble();
+                        x = x + (r - x) * random.nextDouble();
                     }
 
                     //Update Position
@@ -112,10 +112,13 @@ public class GWOPathPlanningDynamicStationaryMethod {
                         yCurrent = positionsMatrix.get(ndCounter).get(rdCounter - 1).get(1);
                         d = Math.sqrt(Math.pow((xDestination - xCurrent), 2) + Math.pow((yDestination - yCurrent), 2));
                         cosAlpha = (xDestination - xCurrent) / d;
+                        sinAlpha = (yDestination - yCurrent) / d;
                         alphaDegree = Math.toDegrees(Math.acos(cosAlpha));
                         alphaDegree = (alphaDegree - 15 * a) + ((alphaDegree + 15 * a) - (alphaDegree - 15 * a)) * random.nextDouble();
-                        xNext = xCurrent + (X * Math.cos(Math.toRadians(alphaDegree)));
-                        yNext = yCurrent + (X * Math.sin(Math.toRadians(alphaDegree)));
+                        xNext = xCurrent + (x * Math.cos(Math.toRadians(alphaDegree)));
+                        alphaDegree = Math.toDegrees(Math.asin(sinAlpha));
+                        alphaDegree = (alphaDegree - 15 * a) + ((alphaDegree + 15 * a) - (alphaDegree - 15 * a)) * random.nextDouble();
+                        yNext = yCurrent + (x * Math.sin(Math.toRadians(alphaDegree)));
                         positionsMatrix.get(ndCounter).get(rdCounter).set(0, xNext);
                         positionsMatrix.get(ndCounter).get(rdCounter).set(1, yNext);
                         positionsMatrix.get(ndCounter).get(rdCounter).set(2, positionsMatrix.get(ndCounter).get(rdCounter - 1).get(2));
@@ -124,9 +127,11 @@ public class GWOPathPlanningDynamicStationaryMethod {
                         yCurrent = sourceStation.get(1);
                         d = Math.sqrt(Math.pow((xDestination - xCurrent), 2) + Math.pow((yDestination - yCurrent), 2));
                         cosAlpha = (xDestination - xCurrent) / d;
+                        sinAlpha = (yDestination - yCurrent) / d;
                         alphaDegree = Math.toDegrees(Math.acos(cosAlpha));
-                        xNext = xCurrent + (X * Math.cos(Math.toRadians(alphaDegree)));
-                        yNext = yCurrent + (X * Math.sin(Math.toRadians(alphaDegree)));
+                        xNext = xCurrent + (x * Math.cos(Math.toRadians(alphaDegree)));
+                        alphaDegree = Math.toDegrees(Math.asin(sinAlpha));
+                        yNext = yCurrent + (x * Math.sin(Math.toRadians(alphaDegree)));
                         positionsMatrix.get(ndCounter).get(rdCounter).set(0, xNext);
                         positionsMatrix.get(ndCounter).get(rdCounter).set(1, yNext);
                     }

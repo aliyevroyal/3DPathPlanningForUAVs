@@ -44,7 +44,7 @@ public class IGWOPathPlanningStaticStationaryMethod {
         ArrayList<Double> X;
         double x;
         int theNumberOfStations = 1000;
-        int population = 10, dimension = 15;
+        int population = 100, dimension = 30;
         int iteration = 100;
         ArrayList<ArrayList<Double>> stations = createRandomStations(theNumberOfStations, xBoundaries, yBoundaries, zBoundaries);
         ArrayList<ArrayList<Double>> visitingStations;

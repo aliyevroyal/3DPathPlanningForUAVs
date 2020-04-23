@@ -60,7 +60,7 @@ public class ExGWOPathPlanningStaticStationaryMethod {
         System.out.println("Initialization, alpha's fitness value: " + sortedFitnessValues.get(0));
         System.out.println("Initialization, alpha values: " + optimizationMatrix.get(fitnessValues.indexOf(sortedFitnessValues.get(0))));
         for (int stCounter = 0; stCounter < iteration; stCounter = stCounter + 1) {
-            a = 2.0 - 2.0 * stCounter / iteration;
+            a = 2.0 - 2.0 * Math.pow(stCounter, 2) / Math.pow(iteration, 2);
             for (int ndCounter = 0; ndCounter < optimizationMatrix.size(); ndCounter = ndCounter + 1) {
                 visitingStations = new ArrayList<>();
                 for (int rdCounter = 0; rdCounter < optimizationMatrix.get(ndCounter).size(); rdCounter = rdCounter + 1) {
