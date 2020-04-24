@@ -9,34 +9,36 @@ public class ObstacleAvoider {
         ArrayList<Double> ObstacleAvoidanceNextStation = new ArrayList<>();
         Obstacles obstacles = new Obstacles();
         obstacles.setObstacle1();
+        obstacles.setObstacle2();
         boolean isPointInsideOfObstacle = false;
         boolean didPointCollideWithObstacle = false;
-        ArrayList<Double> nearestCornerToP1;
-        ArrayList<Double> newCornerForP2;
+        ArrayList<Double> nearestCornerToCurrentStation;
+        ArrayList<Double> newCornerForNextStation;
 
-        ObstacleAvoidanceCurrentStation.add(21.0);
-        ObstacleAvoidanceCurrentStation.add(21.0);
+        ObstacleAvoidanceCurrentStation.add(40.0);
+        ObstacleAvoidanceCurrentStation.add(38.0);
 
-        ObstacleAvoidanceNextStation.add(7.0);
-        ObstacleAvoidanceNextStation.add(5.0);
+        ObstacleAvoidanceNextStation.add(60.0);
+        ObstacleAvoidanceNextStation.add(55.0);
 
-        isPointInsideOfObstacle = isPointInsideOfObstacle(ObstacleAvoidanceNextStation, obstacles, 0);
+
+        isPointInsideOfObstacle = isPointInsideOfObstacle(ObstacleAvoidanceNextStation, obstacles, 1);
         if (isPointInsideOfObstacle) {
             System.out.println("Point inside do something!");
-            ObstacleAvoidanceNextStation = findNearestPoint(ObstacleAvoidanceNextStation, obstacles, 0);
+            ObstacleAvoidanceNextStation = findNearestPoint(ObstacleAvoidanceNextStation, obstacles, 1);
             System.out.println(ObstacleAvoidanceNextStation);
         } else {
-            didPointCollideWithObstacle = didPointCollideWithObstacle(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, obstacles, 0);
+            didPointCollideWithObstacle = didPointCollideWithObstacle(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, obstacles, 1);
             if (didPointCollideWithObstacle) {
                 System.out.println("Point collided do something!");
-                nearestCornerToP1 = findNearestPoint(ObstacleAvoidanceCurrentStation, obstacles, 0);
-                newCornerForP2 = findPathToOppositeSide(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, obstacles, 0);
-                System.out.println(ObstacleAvoidanceCurrentStation + " " + nearestCornerToP1 + " to " + newCornerForP2 + " " + ObstacleAvoidanceNextStation);
+                nearestCornerToCurrentStation = findNearestPoint(ObstacleAvoidanceCurrentStation, obstacles, 1);
+                newCornerForNextStation = findPathToOppositeSide(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, obstacles, 1);
+                System.out.println(ObstacleAvoidanceCurrentStation + " " + nearestCornerToCurrentStation + " to " + newCornerForNextStation + " " + ObstacleAvoidanceNextStation);
             }
         }
     }
 
-    private static boolean isPointInsideOfObstacle(ArrayList<Double> p, Obstacles obstacles, int turn) {
+    public static boolean isPointInsideOfObstacle(ArrayList<Double> p, Obstacles obstacles, int turn) {
         boolean isPointInsideOfObstacle = false;
         double obstacleXMin, obstacleXMax, obstacleYMin, obstacleYMax;
         obstacleXMin = obstacles.create3DObstacle((obstacles.getObstacles().get(turn))).get(0).get(0);
@@ -53,10 +55,11 @@ public class ObstacleAvoider {
         return isPointInsideOfObstacle;
     }
 
-    private static boolean didPointCollideWithObstacle(ArrayList<Double> p1, ArrayList<Double> p2, Obstacles obstacles, int turn) {
+    public static boolean didPointCollideWithObstacle(ArrayList<Double> p1, ArrayList<Double> p2, Obstacles obstacles, int turn) {
         boolean didCollide = false;
         ArrayList<Double> O = new ArrayList<>();
         double A, h, R;
+        double cosAlpha, alphaDegree;
 
         O.add(obstacles.findCenterOfObstacle(obstacles.create3DObstacle(obstacles.getObstacles().get(turn))).get(0));
         O.add(obstacles.findCenterOfObstacle(obstacles.create3DObstacle(obstacles.getObstacles().get(turn))).get(1));
@@ -64,14 +67,40 @@ public class ObstacleAvoider {
         A = calculateTriangleArea(p1, p2, O);
         h = (2 * A) / findEuclidean2DDistance(p2, p1);
         R = obstacles.getR(obstacles.create3DObstacle(obstacles.getObstacles().get(turn)));
-        if (h <= R && h >= 0) {
-            didCollide = true;
+        cosAlpha = (Math.pow(findEuclidean2DDistance(O, p1), 2) + Math.pow(findEuclidean2DDistance(p1, p2), 2) - Math.pow(findEuclidean2DDistance(O, p2), 2)) / (2 * findEuclidean2DDistance(O, p1) * findEuclidean2DDistance(p1, p2));
+        alphaDegree = Math.toDegrees(Math.acos(cosAlpha));
+
+        double Xmin = obstacles.create3DObstacle(obstacles.getObstacles().get(1)).get(0).get(0), Ymin = obstacles.create3DObstacle(obstacles.getObstacles().get(1)).get(0).get(1);
+        double x, y;
+
+        x = p1.get(0);
+        y = p1.get(1);
+
+        if (x >= Xmin && y >= Ymin) {
+            x = p2.get(0);
+            y = p2.get(1);
+            if (x >= Xmin && y >= Ymin) {
+                didCollide = false;
+            }
+        } else {
+            if (h <= R) {
+                didCollide = true;
+            }
         }
+
+
+        /*if (alphaDegree > 90) {
+            didCollide = false;
+        } else {
+            if (h <= R) {
+                didCollide = true;
+            }
+        }*/
 
         return didCollide;
     }
 
-    private static double calculateTriangleArea(ArrayList<Double> p1, ArrayList<Double> p2, ArrayList<Double> obstacle) {
+    public static double calculateTriangleArea(ArrayList<Double> p1, ArrayList<Double> p2, ArrayList<Double> obstacle) {
         double a, b, c;
         double A, P;
 
@@ -85,7 +114,7 @@ public class ObstacleAvoider {
         return A;
     }
 
-    private static double findEuclidean2DDistance(ArrayList<Double> firstPoint, ArrayList<Double> secondPoint) {
+    public static double findEuclidean2DDistance(ArrayList<Double> firstPoint, ArrayList<Double> secondPoint) {
         double euclideanDistance = 0.0;
 
         for (int stCounter = 0; stCounter < 2; stCounter = stCounter + 1) {
@@ -97,7 +126,7 @@ public class ObstacleAvoider {
         return euclideanDistance;
     }
 
-    private static ArrayList<Double> findNearestPoint(ArrayList<Double> p, Obstacles obstacles, int turn) {
+    public static ArrayList<Double> findNearestPoint(ArrayList<Double> p, Obstacles obstacles, int turn) {
         ArrayList<Double> nearestPoint;
         double d = findEuclidean2DDistance(p, obstacles.create3DObstacle(obstacles.getObstacles().get(turn)).get(0));
         int index = 0;
@@ -113,7 +142,7 @@ public class ObstacleAvoider {
         return nearestPoint;
     }
 
-    private static ArrayList<Double> findPathToOppositeSide(ArrayList<Double> firstPoint, ArrayList<Double> secondPoint, Obstacles obstacles, int turn) {
+    public static ArrayList<Double> findPathToOppositeSide(ArrayList<Double> firstPoint, ArrayList<Double> secondPoint, Obstacles obstacles, int turn) {
         ArrayList<Double> nearestCornerToP1 = findNearestPoint(firstPoint, obstacles, turn);
         int nearestCornersIndexToP1 = obstacles.create3DObstacle(obstacles.getObstacles().get(turn)).indexOf(nearestCornerToP1);
         double d1, d2;

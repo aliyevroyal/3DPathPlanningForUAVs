@@ -5,14 +5,18 @@ import java.util.ArrayList;
 public class Obstacles {
     private ArrayList<ArrayList<ArrayList<Double>>> obstacles = new ArrayList<>();
     private ArrayList<ArrayList<Double>> obstacle1 = null;
+    private ArrayList<ArrayList<Double>> obstacle2 = null;
+
 
     public Obstacles() {
     }
 
     public double getR(ArrayList<ArrayList<Double>> obstacle) {
-        double R;
-        R = findEuclideanDistance(obstacle.get(0), obstacle.get(2));
-        R = R / 2;
+        double R = 5;
+        /*R = findEuclideanDistance(obstacle.get(0), obstacle.get(2));
+        R = R / 2;*/
+
+
         return R;
     }
 
@@ -22,7 +26,7 @@ public class Obstacles {
         ArrayList<Double> endCoordinate = new ArrayList<>();
         startCoordinate.add(10.0);
         startCoordinate.add(10.0);
-        startCoordinate.add(0.0);
+        startCoordinate.add(10.0);
         obstacle1.add(startCoordinate);
 
         endCoordinate.add(20.0);
@@ -32,6 +36,24 @@ public class Obstacles {
 
         obstacles.add(obstacle1);
     }
+
+    public void setObstacle2() {
+        this.obstacle2 = new ArrayList<>();
+        ArrayList<Double> startCoordinate = new ArrayList<>();
+        ArrayList<Double> endCoordinate = new ArrayList<>();
+        startCoordinate.add(40.0);
+        startCoordinate.add(40.0);
+        startCoordinate.add(10.0);
+        obstacle2.add(startCoordinate);
+
+        endCoordinate.add(50.0);
+        endCoordinate.add(50.0);
+        endCoordinate.add(1.5);
+        obstacle2.add(endCoordinate);
+
+        obstacles.add(obstacle2);
+    }
+
 
     public ArrayList<ArrayList<ArrayList<Double>>> getObstacles() {
         return obstacles;

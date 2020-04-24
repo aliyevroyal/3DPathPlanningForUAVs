@@ -1,5 +1,7 @@
 package com.thealiyev;
 
+import sun.jvm.hotspot.runtime.StubRoutines;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -27,14 +29,14 @@ public class GWOPathPlanningDynamicStationaryMethod {
         Zboundaries.add(100.0);
         //Source station coordinates
         ArrayList<Double> sourceStation = new ArrayList<>();
-        sourceStation.add(0.1);
-        sourceStation.add(0.1);
-        sourceStation.add(0.1);
+        sourceStation.add(100.0);
+        sourceStation.add(100.0);
+        sourceStation.add(100.0);
         //Destination station coordinates
         ArrayList<Double> destinationStation = new ArrayList<>();
-        destinationStation.add(99.9);
-        destinationStation.add(99.9);
-        destinationStation.add(99.9);
+        destinationStation.add(0.1);
+        destinationStation.add(0.1);
+        destinationStation.add(0.1);
 
         //Gray Wolf Optimization initialization starts here...
         double a;
@@ -45,7 +47,7 @@ public class GWOPathPlanningDynamicStationaryMethod {
         ArrayList<Double> P;
         double Dalpha, Dbeta, Ddelta;
         double Xalpha, Xbeta, Xdelta;
-        int population = 100, dimension = 30;
+        int population = 100, dimension = 5;
         int iteration = 100;
         ArrayList<ArrayList<ArrayList<Double>>> positionsMatrix = createRandomPositionsMatrix(population, dimension, Xboundaries, Yboundaries, Zboundaries);
         ArrayList<ArrayList<Double>> optimizationMatrix = createOptimizationMatrix(positionsMatrix, sourceStation);
@@ -58,6 +60,21 @@ public class GWOPathPlanningDynamicStationaryMethod {
         double yDestination = destinationStation.get(1);
         double xNext, yNext;
         double d, cosAlpha, sinAlpha, alphaDegree;
+
+
+        ObstacleAvoider obstacleAvoider = new ObstacleAvoider();
+        ArrayList<Double> ObstacleAvoidanceCurrentStation;
+        ArrayList<Double> ObstacleAvoidanceNextStation;
+        Obstacles obstacles = new Obstacles();
+        obstacles.setObstacle1();
+        obstacles.setObstacle2();
+        boolean isPointInsideOfObstacle;
+        boolean didPointCollideWithObstacle;
+        ArrayList<Double> nearestCornerToCurrentStation;
+        ArrayList<Double> newCornerForNextStation;
+        ArrayList<ArrayList<Double>> pathWithCollisiions = new ArrayList<>();
+
+
         //Gray Wolf Optimization iterations start here...
         System.out.println("Initialization, alpha's fitness value: " + sortedFitnessValues.get(0));
         for (int stCounter = 0; stCounter < iteration; stCounter = stCounter + 1) {
@@ -121,6 +138,33 @@ public class GWOPathPlanningDynamicStationaryMethod {
                         yNext = yCurrent + (x * Math.sin(Math.toRadians(alphaDegree)));
                         positionsMatrix.get(ndCounter).get(rdCounter).set(0, xNext);
                         positionsMatrix.get(ndCounter).get(rdCounter).set(1, yNext);
+
+
+                        
+
+
+                        ObstacleAvoidanceCurrentStation = positionsMatrix.get(ndCounter).get(rdCounter - 1);
+                        pathWithCollisiions.add(ObstacleAvoidanceCurrentStation);
+                        ObstacleAvoidanceNextStation = positionsMatrix.get(ndCounter).get(rdCounter);
+                        for (int fourthCounter = 0; fourthCounter < obstacles.getObstacles().size(); fourthCounter = fourthCounter + 1) {
+                            isPointInsideOfObstacle = obstacleAvoider.isPointInsideOfObstacle(ObstacleAvoidanceNextStation, obstacles, fourthCounter);
+                            if (isPointInsideOfObstacle) {
+                                ObstacleAvoidanceNextStation = obstacleAvoider.findNearestPoint(ObstacleAvoidanceNextStation, obstacles, fourthCounter);
+                                positionsMatrix.get(ndCounter).get(rdCounter).set(0, ObstacleAvoidanceNextStation.get(0));
+                                positionsMatrix.get(ndCounter).get(rdCounter).set(1, ObstacleAvoidanceNextStation.get(1));
+                            } else {
+                                didPointCollideWithObstacle = obstacleAvoider.didPointCollideWithObstacle(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, obstacles, fourthCounter);
+                                if (didPointCollideWithObstacle) {
+                                    nearestCornerToCurrentStation = obstacleAvoider.findNearestPoint(ObstacleAvoidanceCurrentStation, obstacles, fourthCounter);
+                                    newCornerForNextStation = obstacleAvoider.findPathToOppositeSide(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, obstacles, fourthCounter);
+                                    pathWithCollisiions.add(nearestCornerToCurrentStation);
+                                    pathWithCollisiions.add(newCornerForNextStation);
+                                }
+                            }
+                        }
+                        pathWithCollisiions.add(ObstacleAvoidanceNextStation);
+
+
                         positionsMatrix.get(ndCounter).get(rdCounter).set(2, positionsMatrix.get(ndCounter).get(rdCounter - 1).get(2));
                     } else if (rdCounter == 0) {
                         xCurrent = sourceStation.get(0);
@@ -134,6 +178,30 @@ public class GWOPathPlanningDynamicStationaryMethod {
                         yNext = yCurrent + (x * Math.sin(Math.toRadians(alphaDegree)));
                         positionsMatrix.get(ndCounter).get(rdCounter).set(0, xNext);
                         positionsMatrix.get(ndCounter).get(rdCounter).set(1, yNext);
+
+
+                        ObstacleAvoidanceCurrentStation = sourceStation;
+                        pathWithCollisiions.add(ObstacleAvoidanceCurrentStation);
+                        ObstacleAvoidanceNextStation = positionsMatrix.get(ndCounter).get(rdCounter);
+                        for (int fourthCounter = 0; fourthCounter < obstacles.getObstacles().size(); fourthCounter = fourthCounter + 1) {
+                            isPointInsideOfObstacle = obstacleAvoider.isPointInsideOfObstacle(ObstacleAvoidanceNextStation, obstacles, fourthCounter);
+                            if (isPointInsideOfObstacle) {
+                                ObstacleAvoidanceNextStation = obstacleAvoider.findNearestPoint(ObstacleAvoidanceNextStation, obstacles, fourthCounter);
+                                positionsMatrix.get(ndCounter).get(rdCounter).set(0, ObstacleAvoidanceNextStation.get(0));
+                                positionsMatrix.get(ndCounter).get(rdCounter).set(1, ObstacleAvoidanceNextStation.get(1));
+                            } else {
+                                didPointCollideWithObstacle = obstacleAvoider.didPointCollideWithObstacle(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, obstacles, fourthCounter);
+                                if (didPointCollideWithObstacle) {
+                                    nearestCornerToCurrentStation = obstacleAvoider.findNearestPoint(ObstacleAvoidanceCurrentStation, obstacles, fourthCounter);
+                                    newCornerForNextStation = obstacleAvoider.findPathToOppositeSide(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, obstacles, fourthCounter);
+                                    pathWithCollisiions.add(nearestCornerToCurrentStation);
+                                    pathWithCollisiions.add(newCornerForNextStation);
+                                }
+                            }
+                        }
+                        pathWithCollisiions.add(ObstacleAvoidanceNextStation);
+
+
                     }
 
                     P = positionsMatrix.get(ndCounter).get(rdCounter);
@@ -156,16 +224,26 @@ public class GWOPathPlanningDynamicStationaryMethod {
                     //Updates Boundaries
                     positionsMatrix.get(ndCounter).set(rdCounter, P);
                     optimizationMatrix = createOptimizationMatrix(positionsMatrix, sourceStation);
+
+
+                    if (stCounter == iteration - 1 && ndCounter == optimizationMatrix.size() - 1 && rdCounter == optimizationMatrix.get(ndCounter).size() - 1) {
+                        for (int fifthCounter = 0; fifthCounter < pathWithCollisiions.size(); fifthCounter = fifthCounter + 1) {
+                            System.out.println(fifthCounter + " " + pathWithCollisiions.get(fifthCounter));
+                        }
+                    }
+
+
                 }
+                pathWithCollisiions = new ArrayList<>();
                 optimizationMatrix = createOptimizationMatrix(positionsMatrix, sourceStation);
             }
             fitnessValues = calculateFitnessValues(positionsMatrix, sourceStation, destinationStation);
             sortedFitnessValues = sortFitnessValues(fitnessValues);
             System.out.println(stCounter + " iteration, alpha's fitness value: " + sortedFitnessValues.get(0));
         }
-        for (int ndCounter = 0; ndCounter < positionsMatrix.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).size(); ndCounter = ndCounter + 1) {
+        /*for (int ndCounter = 0; ndCounter < positionsMatrix.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).size(); ndCounter = ndCounter + 1) {
             System.out.println(ndCounter + " " + positionsMatrix.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).get(ndCounter));
-        }
+        }*/
     }
 
     private ArrayList<ArrayList<ArrayList<Double>>> createRandomPositionsMatrix(int population, int dimension,
