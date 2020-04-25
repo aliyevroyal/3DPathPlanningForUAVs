@@ -2,11 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6ce80e1a-4e66-4642-9a81-b99625a69087" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/com/thealiyev/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/3DPathPlanningForUAVs/com/thealiyev/GWOPathPlanningDynamicStationaryMethod.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/3DPathPlanningForUAVs/com/thealiyev/GWOPathPlanningDynamicStationaryMethod.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/3DPathPlanningForUAVs/com/thealiyev/ObstacleAvoider.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/3DPathPlanningForUAVs/com/thealiyev/ObstacleAvoider.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/3DPathPlanningForUAVs/com/thealiyev/Obstacles.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/3DPathPlanningForUAVs/com/thealiyev/Obstacles.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/thealiyev/ExGWOPathPlanningDynamicStationaryMethod.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/thealiyev/ExGWOPathPlanningDynamicStationaryMethod.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/thealiyev/GWOPathPlanningDynamicStationaryMethod.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/thealiyev/GWOPathPlanningDynamicStationaryMethod.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/thealiyev/IGWOPathPlanningDynamicStationaryMethod.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/thealiyev/IGWOPathPlanningDynamicStationaryMethod.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/thealiyev/ObstacleAvoider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/thealiyev/ObstacleAvoider.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/thealiyev/Obstacles.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/thealiyev/Obstacles.java" afterDir="false" />
     </list>
@@ -46,7 +49,7 @@
       <recent name="com.thealiyev" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.GWOPathPlanningDynamicStationaryMethod">
+  <component name="RunManager" selected="Application.ExGWOPathPlanningDynamicStationaryMethod">
     <configuration name="ExGWOPathPlanningDynamicStationaryMethod" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.thealiyev.ExGWOPathPlanningDynamicStationaryMethod" />
       <module name="3DPathPlanningForUAVs" />
@@ -86,6 +89,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.thealiyev.Main" />
+      <module name="3DPathPlanningForUAVs" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.thealiyev.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ObstacleAvoider" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.thealiyev.ObstacleAvoider" />
       <module name="3DPathPlanningForUAVs" />
@@ -104,13 +120,15 @@
       <item itemvalue="Application.IGWOPathPlanningDynamicStationaryMethod" />
       <item itemvalue="Application.GWOPathPlanningDynamicStationaryMethod" />
       <item itemvalue="Application.ObstacleAvoider" />
+      <item itemvalue="Application.Main" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.GWOPathPlanningDynamicStationaryMethod" />
-        <item itemvalue="Application.ObstacleAvoider" />
-        <item itemvalue="Application.IGWOPathPlanningDynamicStationaryMethod" />
         <item itemvalue="Application.ExGWOPathPlanningDynamicStationaryMethod" />
+        <item itemvalue="Application.IGWOPathPlanningDynamicStationaryMethod" />
+        <item itemvalue="Application.GWOPathPlanningDynamicStationaryMethod" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.ObstacleAvoider" />
       </list>
     </recent_temporary>
   </component>
@@ -130,7 +148,9 @@
       <workItem from="1587486462594" duration="23897000" />
       <workItem from="1587579759965" duration="7548000" />
       <workItem from="1587595075641" duration="29617000" />
-      <workItem from="1587677911218" duration="8325000" />
+      <workItem from="1587677911218" duration="17363000" />
+      <workItem from="1587708883665" duration="114000" />
+      <workItem from="1587759150583" duration="15853000" />
     </task>
     <servers />
   </component>
@@ -142,53 +162,57 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="533" y="158" key="#com.intellij.ide.util.MemberChooser/0.0.1440.900@0.0.1440.900" timestamp="1587670916463" />
-    <state width="1440" height="493" key="GridCell.Tab.0.bottom" timestamp="1587690475521">
+    <state width="1440" height="375" key="GridCell.Tab.0.bottom" timestamp="1587781073686">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1440" height="493" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1587690475521" />
-    <state width="1440" height="493" key="GridCell.Tab.0.center" timestamp="1587690475520">
+    <state width="1440" height="375" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1587781073686" />
+    <state width="1440" height="375" key="GridCell.Tab.0.center" timestamp="1587781073682">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1440" height="493" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1587690475520" />
-    <state width="1440" height="493" key="GridCell.Tab.0.left" timestamp="1587690475519">
+    <state width="1440" height="375" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1587781073682" />
+    <state width="1440" height="375" key="GridCell.Tab.0.left" timestamp="1587781073681">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1440" height="493" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1587690475519" />
-    <state width="1440" height="493" key="GridCell.Tab.0.right" timestamp="1587690475521">
+    <state width="1440" height="375" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1587781073681" />
+    <state width="1440" height="375" key="GridCell.Tab.0.right" timestamp="1587781073685">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1440" height="493" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1587690475521" />
-    <state width="1440" height="312" key="GridCell.Tab.1.bottom" timestamp="1587677638903">
+    <state width="1440" height="375" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1587781073685" />
+    <state width="1440" height="312" key="GridCell.Tab.1.bottom" timestamp="1587780010847">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1440" height="312" key="GridCell.Tab.1.bottom/0.0.1440.900@0.0.1440.900" timestamp="1587677638903" />
-    <state width="1440" height="312" key="GridCell.Tab.1.center" timestamp="1587677638902">
+    <state width="1440" height="312" key="GridCell.Tab.1.bottom/0.0.1440.900@0.0.1440.900" timestamp="1587780010847" />
+    <state width="1440" height="312" key="GridCell.Tab.1.center" timestamp="1587780010846">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1440" height="312" key="GridCell.Tab.1.center/0.0.1440.900@0.0.1440.900" timestamp="1587677638902" />
-    <state width="1440" height="312" key="GridCell.Tab.1.left" timestamp="1587677638901">
+    <state width="1440" height="312" key="GridCell.Tab.1.center/0.0.1440.900@0.0.1440.900" timestamp="1587780010846" />
+    <state width="1440" height="312" key="GridCell.Tab.1.left" timestamp="1587780010845">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1440" height="312" key="GridCell.Tab.1.left/0.0.1440.900@0.0.1440.900" timestamp="1587677638901" />
-    <state width="1440" height="312" key="GridCell.Tab.1.right" timestamp="1587677638903">
+    <state width="1440" height="312" key="GridCell.Tab.1.left/0.0.1440.900@0.0.1440.900" timestamp="1587780010845" />
+    <state width="1440" height="312" key="GridCell.Tab.1.right" timestamp="1587780010847">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1440" height="312" key="GridCell.Tab.1.right/0.0.1440.900@0.0.1440.900" timestamp="1587677638903" />
+    <state width="1440" height="312" key="GridCell.Tab.1.right/0.0.1440.900@0.0.1440.900" timestamp="1587780010847" />
     <state x="229" y="89" key="SettingsEditor" timestamp="1587633200926">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="229" y="89" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1587633200926" />
-    <state x="413" y="282" key="com.intellij.ide.util.TipDialog" timestamp="1587595166910">
+    <state x="413" y="282" key="com.intellij.ide.util.TipDialog" timestamp="1587759156026">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="413" y="282" key="com.intellij.ide.util.TipDialog/0.0.1440.900@0.0.1440.900" timestamp="1587595166910" />
+    <state x="413" y="282" key="com.intellij.ide.util.TipDialog/0.0.1440.900@0.0.1440.900" timestamp="1587759156026" />
+    <state x="375" y="72" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1587698244044">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="375" y="72" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1440.900@0.0.1440.900" timestamp="1587698244044" />
     <state x="525" y="374" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1587683457127">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="525" y="374" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1440.900@0.0.1440.900" timestamp="1587683457127" />
-    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup" timestamp="1587643342608">
+    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup" timestamp="1587772832190">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1587643342608" />
+    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1587772832190" />
   </component>
 </project>

@@ -44,11 +44,11 @@ public class ExGWOPathPlanningDynamicStationaryMethod {
         ArrayList<Double> X;
         double x;
         ArrayList<Double> P;
-        int population = 10, dimension = 15;
+        int population = 100, dimension = 5;
         int iteration = 100;
-        ArrayList<ArrayList<ArrayList<Double>>> positionsMatrix = createRandomPositionsMatrix(population, dimension, Xboundaries, Yboundaries, Zboundaries);
-        ArrayList<ArrayList<Double>> optimizationMatrix = createOptimizationMatrix(positionsMatrix, sourceStation);
-        ArrayList<Double> fitnessValues = calculateFitnessValues(positionsMatrix, sourceStation, destinationStation);
+        ArrayList<ArrayList<ArrayList<Double>>> positionsMatrixWithoutCollisions = createRandomPositionsMatrix(population, dimension, Xboundaries, Yboundaries, Zboundaries);
+        ArrayList<ArrayList<Double>> optimizationMatrix = createOptimizationMatrix(positionsMatrixWithoutCollisions, sourceStation);
+        ArrayList<Double> fitnessValues = calculateFitnessValues(positionsMatrixWithoutCollisions, sourceStation, destinationStation);
         ArrayList<Double> sortedFitnessValues = sortFitnessValues(fitnessValues);
         //Path Planning components initialization starts here...
         double r = (findEuclideanDistance(sourceStation, destinationStation)) / (dimension + 1);
@@ -57,9 +57,25 @@ public class ExGWOPathPlanningDynamicStationaryMethod {
         double yDestination = destinationStation.get(1);
         double xNext, yNext;
         double d, cosAlpha, sinAlpha, alphaDegree;
+        //Obstacle detection, checking and avoidance components initialization starts here...
+        ObstacleAvoider obstacleAvoider = new ObstacleAvoider();
+        ArrayList<Double> ObstacleAvoidanceCurrentStation;
+        ArrayList<Double> ObstacleAvoidanceNextStation;
+        Obstacles obstacles = new Obstacles();
+        obstacles.setObstacle1();
+        obstacles.setObstacle2();
+        obstacles.setObstacle3();
+        obstacles.setObstacle4();
+        boolean isPointInsideOfObstacle;
+        boolean didPointCollideWithObstacle;
+        ArrayList<Double> nearestCornerToCurrentStation;
+        ArrayList<Double> newCornerForNextStation;
+        ArrayList<ArrayList<ArrayList<Double>>> positionsMatrixWithCollisions = new ArrayList<>();
+        ArrayList<ArrayList<Double>> pathWithCollisiions = new ArrayList<>();
         //Gray Wolf Optimization iterations start here...
         System.out.println("Initialization, alpha's fitness value: " + sortedFitnessValues.get(0));
         for (int stCounter = 0; stCounter < iteration; stCounter = stCounter + 1) {
+            positionsMatrixWithCollisions = new ArrayList<>();
             a = 2.0 - 2.0 * Math.pow(stCounter, 2) / Math.pow(iteration, 2);
             for (int ndCounter = 0; ndCounter < optimizationMatrix.size(); ndCounter = ndCounter + 1) {
                 for (int rdCounter = 0; rdCounter < optimizationMatrix.get(ndCounter).size(); rdCounter = rdCounter + 1) {
@@ -126,8 +142,8 @@ public class ExGWOPathPlanningDynamicStationaryMethod {
 
                     //Update Position
                     if (rdCounter > 0) {
-                        xCurrent = positionsMatrix.get(ndCounter).get(rdCounter - 1).get(0);
-                        yCurrent = positionsMatrix.get(ndCounter).get(rdCounter - 1).get(1);
+                        xCurrent = positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter - 1).get(0);
+                        yCurrent = positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter - 1).get(1);
                         d = Math.sqrt(Math.pow((xDestination - xCurrent), 2) + Math.pow((yDestination - yCurrent), 2));
                         cosAlpha = (xDestination - xCurrent) / d;
                         sinAlpha = (yDestination - yCurrent) / d;
@@ -137,9 +153,39 @@ public class ExGWOPathPlanningDynamicStationaryMethod {
                         alphaDegree = Math.toDegrees(Math.asin(sinAlpha));
                         alphaDegree = (alphaDegree - 15 * a) + ((alphaDegree + 15 * a) - (alphaDegree - 15 * a)) * random.nextDouble();
                         yNext = yCurrent + (x * Math.sin(Math.toRadians(alphaDegree)));
-                        positionsMatrix.get(ndCounter).get(rdCounter).set(0, xNext);
-                        positionsMatrix.get(ndCounter).get(rdCounter).set(1, yNext);
-                        positionsMatrix.get(ndCounter).get(rdCounter).set(2, positionsMatrix.get(ndCounter).get(rdCounter - 1).get(2));
+                        positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter).set(0, xNext);
+                        positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter).set(1, yNext);
+                        //Obstacle avoidance
+                        ObstacleAvoidanceCurrentStation = positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter - 1);
+                        ObstacleAvoidanceNextStation = positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter);
+                        for (int fourthCounter = 0; fourthCounter < obstacles.getObstacles().size(); fourthCounter = fourthCounter + 1) {
+                            if (ObstacleAvoidanceNextStation.get(2) >= obstacles.getObstacles().get(fourthCounter).get(0).get(2) && ObstacleAvoidanceNextStation.get(2) <= obstacles.getObstacles().get(fourthCounter).get(1).get(2)) {
+                                isPointInsideOfObstacle = obstacleAvoider.isPointInsideOfObstacle(ObstacleAvoidanceNextStation, obstacles, fourthCounter);
+                                if (isPointInsideOfObstacle) {
+                                    if (fourthCounter == 0) {
+                                        ObstacleAvoidanceNextStation = obstacleAvoider.findNearestCorner(destinationStation, obstacles, fourthCounter);
+                                    } else {
+                                        ObstacleAvoidanceNextStation = obstacleAvoider.findNearestCorner(obstacles.getObstacles().get(fourthCounter - 1).get(1), obstacles, fourthCounter);
+                                    }
+                                    ObstacleAvoidanceNextStation.add(positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter).get(2));
+                                    positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter).set(0, ObstacleAvoidanceNextStation.get(0));
+                                    positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter).set(1, ObstacleAvoidanceNextStation.get(1));
+                                } else {
+                                    didPointCollideWithObstacle = obstacleAvoider.didPointCollideWithObstacle(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, obstacles, fourthCounter);
+                                    if (didPointCollideWithObstacle) {
+                                        nearestCornerToCurrentStation = obstacleAvoider.findNearestCorner(ObstacleAvoidanceCurrentStation, obstacles, fourthCounter);
+                                        nearestCornerToCurrentStation.add(positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter).get(2));
+                                        newCornerForNextStation = obstacleAvoider.findPathToOppositeSide(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, obstacles, fourthCounter);
+                                        newCornerForNextStation.add(positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter).get(2));
+                                        pathWithCollisiions.add(nearestCornerToCurrentStation);
+                                        positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter).set(0, newCornerForNextStation.get(0));
+                                        positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter).set(1, newCornerForNextStation.get(1));
+                                    }
+                                }
+                            }
+                        }
+                        pathWithCollisiions.add(ObstacleAvoidanceNextStation);
+                        positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter).set(2, positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter - 1).get(2));
                     } else if (rdCounter == 0) {
                         xCurrent = sourceStation.get(0);
                         yCurrent = sourceStation.get(1);
@@ -150,11 +196,37 @@ public class ExGWOPathPlanningDynamicStationaryMethod {
                         xNext = xCurrent + (x * Math.cos(Math.toRadians(alphaDegree)));
                         alphaDegree = Math.toDegrees(Math.asin(sinAlpha));
                         yNext = yCurrent + (x * Math.sin(Math.toRadians(alphaDegree)));
-                        positionsMatrix.get(ndCounter).get(rdCounter).set(0, xNext);
-                        positionsMatrix.get(ndCounter).get(rdCounter).set(1, yNext);
+                        positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter).set(0, xNext);
+                        positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter).set(1, yNext);
+                        //Obstacle avoidance
+                        ObstacleAvoidanceCurrentStation = sourceStation;
+                        ObstacleAvoidanceNextStation = positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter);
+                        for (int fourthCounter = 0; fourthCounter < obstacles.getObstacles().size(); fourthCounter = fourthCounter + 1) {
+                            if (ObstacleAvoidanceNextStation.get(2) >= obstacles.getObstacles().get(fourthCounter).get(0).get(2) && ObstacleAvoidanceNextStation.get(2) <= obstacles.getObstacles().get(fourthCounter).get(1).get(2)) {
+                                isPointInsideOfObstacle = obstacleAvoider.isPointInsideOfObstacle(ObstacleAvoidanceNextStation, obstacles, fourthCounter);
+                                if (isPointInsideOfObstacle) {
+                                    ObstacleAvoidanceNextStation = obstacleAvoider.findNearestCorner(destinationStation, obstacles, fourthCounter);
+                                    ObstacleAvoidanceNextStation.add(positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter).get(2));
+                                    positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter).set(0, ObstacleAvoidanceNextStation.get(0));
+                                    positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter).set(1, ObstacleAvoidanceNextStation.get(1));
+                                } else {
+                                    didPointCollideWithObstacle = obstacleAvoider.didPointCollideWithObstacle(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, obstacles, fourthCounter);
+                                    if (didPointCollideWithObstacle) {
+                                        nearestCornerToCurrentStation = obstacleAvoider.findNearestCorner(ObstacleAvoidanceCurrentStation, obstacles, fourthCounter);
+                                        nearestCornerToCurrentStation.add(positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter).get(2));
+                                        newCornerForNextStation = obstacleAvoider.findPathToOppositeSide(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, obstacles, fourthCounter);
+                                        newCornerForNextStation.add(positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter).get(2));
+                                        pathWithCollisiions.add(nearestCornerToCurrentStation);
+                                        positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter).set(0, newCornerForNextStation.get(0));
+                                        positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter).set(1, newCornerForNextStation.get(1));
+                                    }
+                                }
+                            }
+                        }
+                        pathWithCollisiions.add(ObstacleAvoidanceNextStation);
                     }
 
-                    P = positionsMatrix.get(ndCounter).get(rdCounter);
+                    P = positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter);
                     //Controls Boundaries
                     if (P.get(0) < Xboundaries.get(0)) {
                         P.set(0, Xboundaries.get(0));
@@ -172,17 +244,36 @@ public class ExGWOPathPlanningDynamicStationaryMethod {
                         P.set(2, Zboundaries.get(1));
                     }
                     //Updates Boundaries
-                    positionsMatrix.get(ndCounter).set(rdCounter, P);
-                    optimizationMatrix = createOptimizationMatrix(positionsMatrix, sourceStation);
+                    positionsMatrixWithoutCollisions.get(ndCounter).set(rdCounter, P);
+                    optimizationMatrix = createOptimizationMatrix(positionsMatrixWithoutCollisions, sourceStation);
                 }
-                optimizationMatrix = createOptimizationMatrix(positionsMatrix, sourceStation);
+                for (int counter = 0; counter < pathWithCollisiions.size(); counter = counter + 1) {
+                    if (counter > 0) {
+                        if (pathWithCollisiions.get(counter).get(0).equals(pathWithCollisiions.get(counter - 1).get(0))) {
+                            if (pathWithCollisiions.get(counter).get(1).equals(pathWithCollisiions.get(counter - 1).get(1))) {
+                                if (pathWithCollisiions.get(counter).get(2).equals(pathWithCollisiions.get(counter - 1).get(2))) {
+                                    pathWithCollisiions.remove(new ArrayList<>(pathWithCollisiions.get(counter)));
+                                }
+                            }
+                        }
+                    }
+                }
+                positionsMatrixWithCollisions.add(pathWithCollisiions);
+                pathWithCollisiions = new ArrayList<>();
+                optimizationMatrix = createOptimizationMatrix(positionsMatrixWithoutCollisions, sourceStation);
             }
-            fitnessValues = calculateFitnessValues(positionsMatrix, sourceStation, destinationStation);
+            fitnessValues = calculateFitnessValues(positionsMatrixWithCollisions, sourceStation, destinationStation);
             sortedFitnessValues = sortFitnessValues(fitnessValues);
             System.out.println(stCounter + " iteration, alpha's fitness value: " + sortedFitnessValues.get(0));
         }
-        for (int ndCounter = 0; ndCounter < positionsMatrix.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).size(); ndCounter = ndCounter + 1) {
-            System.out.println(ndCounter + " " + positionsMatrix.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).get(ndCounter));
+
+        System.out.println("Alpha path without collisions");
+        for (int ndCounter = 0; ndCounter < positionsMatrixWithoutCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).size(); ndCounter = ndCounter + 1) {
+            System.out.println(ndCounter + " " + positionsMatrixWithoutCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).get(ndCounter));
+        }
+        System.out.println("Alpha path with collisions");
+        for (int ndCounter = 0; ndCounter < positionsMatrixWithCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).size(); ndCounter = ndCounter + 1) {
+            System.out.println(ndCounter + " " + positionsMatrixWithCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).get(ndCounter));
         }
     }
 
@@ -229,20 +320,20 @@ public class ExGWOPathPlanningDynamicStationaryMethod {
         return positionsMatrix;
     }
 
-    private ArrayList<ArrayList<Double>> createOptimizationMatrix(ArrayList<ArrayList<ArrayList<Double>>> positionsMatrix, ArrayList<Double> sourceStation) {
+    private ArrayList<ArrayList<Double>> createOptimizationMatrix(ArrayList<ArrayList<ArrayList<Double>>> positionsMatrixWithCollisions, ArrayList<Double> sourceStation) {
         random = new Random();
 
         ArrayList<ArrayList<Double>> optimizationMatrix = new ArrayList<>();
         ArrayList<Double> optimizationVector = new ArrayList<>();
         double euclideanDistance;
 
-        for (int stCounter = 0; stCounter < positionsMatrix.size(); stCounter = stCounter + 1) {
-            for (int ndCounter = 0; ndCounter < positionsMatrix.get(stCounter).size(); ndCounter = ndCounter + 1) {
+        for (int stCounter = 0; stCounter < positionsMatrixWithCollisions.size(); stCounter = stCounter + 1) {
+            for (int ndCounter = 0; ndCounter < positionsMatrixWithCollisions.get(stCounter).size(); ndCounter = ndCounter + 1) {
                 if (ndCounter == 0) {
-                    euclideanDistance = findEuclideanDistance(sourceStation, positionsMatrix.get(stCounter).get(ndCounter));
+                    euclideanDistance = findEuclideanDistance(sourceStation, positionsMatrixWithCollisions.get(stCounter).get(ndCounter));
                     optimizationVector.add(euclideanDistance);
                 } else {
-                    euclideanDistance = findEuclideanDistance(positionsMatrix.get(stCounter).get(ndCounter - 1), positionsMatrix.get(stCounter).get(ndCounter));
+                    euclideanDistance = findEuclideanDistance(positionsMatrixWithCollisions.get(stCounter).get(ndCounter - 1), positionsMatrixWithCollisions.get(stCounter).get(ndCounter));
                     optimizationVector.add(euclideanDistance);
                 }
             }
