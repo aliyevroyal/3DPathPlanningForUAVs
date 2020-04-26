@@ -26,15 +26,14 @@ public class GWOPathPlanningStaticStationaryMethod {
         zBoundaries.add(100.0);
         //Source station coordinates
         ArrayList<Double> sourceStation = new ArrayList<>();
-        sourceStation.add(0.0);
-        sourceStation.add(0.0);
-        sourceStation.add(0.0);
+        sourceStation.add(1.0);
+        sourceStation.add(1.0);
+        sourceStation.add(1.0);
         //Destination station coordinates
-        ArrayList<Double> destinatioStation = new ArrayList<>();
-        destinatioStation.add(100.0);
-        destinatioStation.add(100.0);
-        destinatioStation.add(100.0);
-
+        ArrayList<Double> destinationStation = new ArrayList<>();
+        destinationStation.add(99.0);
+        destinationStation.add(99.0);
+        destinationStation.add(99.0);
         //Gray Wolf Optimization initialization starts here...
         double a;
         double r1, r2;
@@ -50,12 +49,38 @@ public class GWOPathPlanningStaticStationaryMethod {
         ArrayList<ArrayList<Double>> visitingStations;
         ArrayList<ArrayList<ArrayList<Double>>> visitedStationsMatrix = createRandomVisitedStations(population, dimension, stations);
         ArrayList<ArrayList<Double>> optimizationMatrix = createOptimizationMatrix(visitedStationsMatrix, sourceStation);
-        ArrayList<Double> fitnessValues = findFitnessValues(visitedStationsMatrix, sourceStation, destinatioStation);
+        ArrayList<Double> fitnessValues = findFitnessValues(visitedStationsMatrix, sourceStation, destinationStation);
         ArrayList<Double> sortedFitnessValues = sortFitnessValues(fitnessValues);
         ArrayList<Double> distances = new ArrayList<>();
         ArrayList<Integer> indexes = new ArrayList<>();
         double distance = 0;
-
+        //Path Planning components initialization starts here...
+        double r = (findEuclideanDistance(sourceStation, destinationStation)) / (dimension + 1);
+        double xCurrent, yCurrent;
+        double xDestination = destinationStation.get(0);
+        double yDestination = destinationStation.get(1);
+        double xNext, yNext;
+        double d, cosAlpha, sinAlpha, alphaDegree;
+        //Obstacle detection, checking and avoidance components initialization starts here...
+        ObstacleAvoider obstacleAvoider = new ObstacleAvoider();
+        ArrayList<Double> ObstacleAvoidanceCurrentStation;
+        ArrayList<Double> ObstacleAvoidanceNextStation;
+        Obstacles obstacles = new Obstacles();
+        obstacles.setObstacle1();
+        obstacles.setObstacle2();
+        obstacles.setObstacle3();
+        obstacles.setObstacle4();
+        obstacles.setObstacle5();
+        obstacles.setObstacle6();
+        obstacles.setObstacle7();
+        obstacles.setObstacle8();
+        boolean isPointInsideOfObstacle;
+        boolean didPointCollideWithObstacle;
+        ArrayList<Double> nearestCornerToCurrentStation;
+        ArrayList<Double> newCornerForNextStation;
+        ArrayList<ArrayList<ArrayList<Double>>> positionsMatrixWithCollisions = new ArrayList<>();
+        ArrayList<ArrayList<Double>> pathWithCollisiions = new ArrayList<>();
+        ArrayList<ArrayList<ArrayList<Double>>> sortedObstacles;
         //Gray Wolf Optimization iterations start here...
         System.out.println("Initialization, alpha's fitness value: " + sortedFitnessValues.get(0));
         System.out.println("Initialization, alpha values: " + optimizationMatrix.get(fitnessValues.indexOf(sortedFitnessValues.get(0))));
@@ -103,9 +128,9 @@ public class GWOPathPlanningStaticStationaryMethod {
                     for (int fourthCounter = 0; fourthCounter < stations.size(); fourthCounter = fourthCounter + 1) {
                         if (!visitingStations.contains(stations.get(fourthCounter))) {
                             if (rdCounter == 0) {
-                                distance = findEuclideanDistance(sourceStation, stations.get(fourthCounter));
+                                distance = findEuclideanDistance(sourceStation, stations.get(fourthCounter)) + findEuclideanDistance(destinationStation, stations.get(fourthCounter));
                             } else {
-                                distance = findEuclideanDistance(visitedStationsMatrix.get(ndCounter).get(rdCounter - 1), stations.get(fourthCounter));
+                                distance = findEuclideanDistance(visitedStationsMatrix.get(ndCounter).get(rdCounter - 1), stations.get(fourthCounter)) + findEuclideanDistance(destinationStation, stations.get(fourthCounter));
                             }
                             if (distance < X && distance > 0) {
                                 distances.add(distance);
@@ -123,7 +148,7 @@ public class GWOPathPlanningStaticStationaryMethod {
                     optimizationMatrix = createOptimizationMatrix(visitedStationsMatrix, sourceStation);
                 }
             }
-            fitnessValues = findFitnessValues(visitedStationsMatrix, sourceStation, destinatioStation);
+            fitnessValues = findFitnessValues(visitedStationsMatrix, sourceStation, destinationStation);
             sortedFitnessValues = sortFitnessValues(fitnessValues);
             System.out.println(stCounter + " iteration, alpha's fitness value: " + sortedFitnessValues.get(0));
             //System.out.println(stCounter + " iteration, alpha's values: " + optimizationMatrix.get(fitnessValues.indexOf(trio.get(0))));
