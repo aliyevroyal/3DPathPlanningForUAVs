@@ -43,13 +43,13 @@ public class IGWOPathPlanningStaticStationaryMethod {
         ArrayList<Double> X;
         double x;
         int theNumberOfStations = 1000;
-        int population = 100, dimension = 30;
+        int population = 100, dimension = 15;
         int iteration = 100;
         ArrayList<ArrayList<Double>> stations = createRandomStations(theNumberOfStations, xBoundaries, yBoundaries, zBoundaries);
         ArrayList<ArrayList<Double>> visitingStations;
-        ArrayList<ArrayList<ArrayList<Double>>> visitedStationsMatrix = createRandomVisitedStations(population, dimension, stations);
-        ArrayList<ArrayList<Double>> optimizationMatrix = createOptimizationMatrix(visitedStationsMatrix, sourceStation);
-        ArrayList<Double> fitnessValues = findFitnessValues(visitedStationsMatrix, sourceStation, destinationStation);
+        ArrayList<ArrayList<ArrayList<Double>>> positionsMatrixWithoutCollisions = createRandomVisitedStations(population, dimension, stations);
+        ArrayList<ArrayList<Double>> optimizationMatrix = createOptimizationMatrix(positionsMatrixWithoutCollisions, sourceStation);
+        ArrayList<Double> fitnessValues = findFitnessValues(positionsMatrixWithoutCollisions, sourceStation, destinationStation);
         ArrayList<Double> sortedFitnessValues = sortFitnessValues(fitnessValues);
         ArrayList<Double> distances = new ArrayList<>();
         ArrayList<Integer> indexes = new ArrayList<>();
@@ -78,6 +78,7 @@ public class IGWOPathPlanningStaticStationaryMethod {
         System.out.println("Initialization, alpha's fitness value: " + sortedFitnessValues.get(0));
         System.out.println("Initialization, alpha values: " + optimizationMatrix.get(fitnessValues.indexOf(sortedFitnessValues.get(0))));
         for (int stCounter = 0; stCounter < iteration; stCounter = stCounter + 1) {
+            positionsMatrixWithCollisions = new ArrayList<>();
             a = 2.0 - 2.0 * stCounter / iteration;
             for (int ndCounter = 0; ndCounter < optimizationMatrix.size(); ndCounter = ndCounter + 1) {
                 visitingStations = new ArrayList<>();
@@ -123,7 +124,7 @@ public class IGWOPathPlanningStaticStationaryMethod {
                             if (rdCounter == 0) {
                                 distance = findEuclideanDistance(sourceStation, stations.get(fourthCounter)) + findEuclideanDistance(destinationStation, stations.get(fourthCounter));
                             } else {
-                                distance = findEuclideanDistance(visitedStationsMatrix.get(ndCounter).get(rdCounter - 1), stations.get(fourthCounter)) + findEuclideanDistance(destinationStation, stations.get(fourthCounter));
+                                distance = findEuclideanDistance(positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter - 1), stations.get(fourthCounter)) + findEuclideanDistance(destinationStation, stations.get(fourthCounter));
                             }
                             if (distance < x && distance > 0) {
                                 distances.add(distance);
@@ -132,24 +133,136 @@ public class IGWOPathPlanningStaticStationaryMethod {
                         }
                     }
                     if (distances.size() > 0) {
-                        visitedStationsMatrix.get(ndCounter).set(rdCounter, stations.get(indexes.get(random.nextInt((indexes.size() - 1) + 1))));
+                        positionsMatrixWithoutCollisions.get(ndCounter).set(rdCounter, stations.get(indexes.get(random.nextInt((indexes.size() - 1) + 1))));
                     }
-
-                    visitingStations.add(visitedStationsMatrix.get(ndCounter).get(rdCounter));
+                    //Update Position
+                    if (rdCounter > 0) {
+                        //Obstacle avoidance
+                        ObstacleAvoidanceCurrentStation = positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter - 1);
+                        ObstacleAvoidanceNextStation = positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter);
+                        sortedObstacles = new ArrayList<>(obstacles.getSortedObstacles(ObstacleAvoidanceCurrentStation));
+                        for (int fourthCounter = 0; fourthCounter < sortedObstacles.size(); fourthCounter = fourthCounter + 1) {
+                            if (ObstacleAvoidanceNextStation.get(2) >= sortedObstacles.get(fourthCounter).get(0).get(2) && ObstacleAvoidanceNextStation.get(2) <= sortedObstacles.get(fourthCounter).get(1).get(2)) {
+                                isPointInsideOfObstacle = obstacleAvoider.isPointInsideOfObstacle(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
+                                if (isPointInsideOfObstacle) {
+                                    pathWithCollisiions.remove(pathWithCollisiions.size() - 1);
+                                    ObstacleAvoidanceCurrentStation = obstacleAvoider.findNearestCorner(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
+                                    didPointCollideWithObstacle = obstacleAvoider.didPointCollideWithObstacle(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, sortedObstacles.get(fourthCounter));
+                                    if (didPointCollideWithObstacle) {
+                                        nearestCornerToCurrentStation = obstacleAvoider.findNearestCorner(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
+                                        nearestCornerToCurrentStation.add(positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter - 1).get(2));
+                                        pathWithCollisiions.add(nearestCornerToCurrentStation);
+                                        newCornerForNextStation = obstacleAvoider.findPathToOppositeSide(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, sortedObstacles.get(fourthCounter));
+                                        newCornerForNextStation.add(positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter - 1).get(2));
+                                        pathWithCollisiions.add(newCornerForNextStation);
+                                        ObstacleAvoidanceCurrentStation = newCornerForNextStation;
+                                    }
+                                } else {
+                                    didPointCollideWithObstacle = obstacleAvoider.didPointCollideWithObstacle(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, sortedObstacles.get(fourthCounter));
+                                    if (didPointCollideWithObstacle) {
+                                        nearestCornerToCurrentStation = obstacleAvoider.findNearestCorner(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
+                                        nearestCornerToCurrentStation.add(positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter - 1).get(2));
+                                        pathWithCollisiions.add(nearestCornerToCurrentStation);
+                                        newCornerForNextStation = obstacleAvoider.findPathToOppositeSide(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, sortedObstacles.get(fourthCounter));
+                                        newCornerForNextStation.add(positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter - 1).get(2));
+                                        pathWithCollisiions.add(newCornerForNextStation);
+                                        ObstacleAvoidanceCurrentStation = newCornerForNextStation;
+                                    }
+                                }
+                            }
+                        }
+                        pathWithCollisiions.add(ObstacleAvoidanceNextStation);
+                        if (rdCounter == optimizationMatrix.get(ndCounter).size() - 1) {
+                            ObstacleAvoidanceCurrentStation = positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter);
+                            ObstacleAvoidanceNextStation = destinationStation;
+                            sortedObstacles = new ArrayList<>(obstacles.getSortedObstacles(ObstacleAvoidanceCurrentStation));
+                            for (int fourthCounter = 0; fourthCounter < sortedObstacles.size(); fourthCounter = fourthCounter + 1) {
+                                if (ObstacleAvoidanceNextStation.get(2) >= sortedObstacles.get(fourthCounter).get(0).get(2) && ObstacleAvoidanceNextStation.get(2) <= sortedObstacles.get(fourthCounter).get(1).get(2)) {
+                                    isPointInsideOfObstacle = obstacleAvoider.isPointInsideOfObstacle(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
+                                    if (isPointInsideOfObstacle) {
+                                        ObstacleAvoidanceCurrentStation = obstacleAvoider.findNearestCorner(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
+                                        didPointCollideWithObstacle = obstacleAvoider.didPointCollideWithObstacle(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, sortedObstacles.get(fourthCounter));
+                                        if (didPointCollideWithObstacle) {
+                                            nearestCornerToCurrentStation = obstacleAvoider.findNearestCorner(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
+                                            nearestCornerToCurrentStation.add(positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter - 1).get(2));
+                                            pathWithCollisiions.add(nearestCornerToCurrentStation);
+                                            newCornerForNextStation = obstacleAvoider.findPathToOppositeSide(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, sortedObstacles.get(fourthCounter));
+                                            newCornerForNextStation.add(positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter - 1).get(2));
+                                            pathWithCollisiions.add(newCornerForNextStation);
+                                            ObstacleAvoidanceCurrentStation = newCornerForNextStation;
+                                        }
+                                    } else {
+                                        didPointCollideWithObstacle = obstacleAvoider.didPointCollideWithObstacle(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, sortedObstacles.get(fourthCounter));
+                                        if (didPointCollideWithObstacle) {
+                                            nearestCornerToCurrentStation = obstacleAvoider.findNearestCorner(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
+                                            nearestCornerToCurrentStation.add(positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter - 1).get(2));
+                                            pathWithCollisiions.add(nearestCornerToCurrentStation);
+                                            newCornerForNextStation = obstacleAvoider.findPathToOppositeSide(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, sortedObstacles.get(fourthCounter));
+                                            newCornerForNextStation.add(positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter - 1).get(2));
+                                            pathWithCollisiions.add(newCornerForNextStation);
+                                            ObstacleAvoidanceCurrentStation = newCornerForNextStation;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    } else if (rdCounter == 0) {
+                        //Obstacle avoidance
+                        ObstacleAvoidanceCurrentStation = sourceStation;
+                        ObstacleAvoidanceNextStation = positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter);
+                        sortedObstacles = new ArrayList<>(obstacles.getSortedObstacles(ObstacleAvoidanceCurrentStation));
+                        for (int fourthCounter = 0; fourthCounter < sortedObstacles.size(); fourthCounter = fourthCounter + 1) {
+                            if (ObstacleAvoidanceNextStation.get(2) >= sortedObstacles.get(fourthCounter).get(0).get(2) && ObstacleAvoidanceNextStation.get(2) <= sortedObstacles.get(fourthCounter).get(1).get(2)) {
+                                isPointInsideOfObstacle = obstacleAvoider.isPointInsideOfObstacle(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
+                                if (isPointInsideOfObstacle) {
+                                    ObstacleAvoidanceCurrentStation = obstacleAvoider.findNearestCorner(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
+                                    didPointCollideWithObstacle = obstacleAvoider.didPointCollideWithObstacle(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, sortedObstacles.get(fourthCounter));
+                                    if (didPointCollideWithObstacle) {
+                                        nearestCornerToCurrentStation = obstacleAvoider.findNearestCorner(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
+                                        nearestCornerToCurrentStation.add(positionsMatrixWithoutCollisions.get(ndCounter).get(0).get(2));
+                                        pathWithCollisiions.add(nearestCornerToCurrentStation);
+                                        newCornerForNextStation = obstacleAvoider.findPathToOppositeSide(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, sortedObstacles.get(fourthCounter));
+                                        newCornerForNextStation.add(positionsMatrixWithoutCollisions.get(ndCounter).get(0).get(2));
+                                        pathWithCollisiions.add(newCornerForNextStation);
+                                        ObstacleAvoidanceCurrentStation = newCornerForNextStation;
+                                    }
+                                } else {
+                                    didPointCollideWithObstacle = obstacleAvoider.didPointCollideWithObstacle(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, sortedObstacles.get(fourthCounter));
+                                    if (didPointCollideWithObstacle) {
+                                        nearestCornerToCurrentStation = obstacleAvoider.findNearestCorner(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
+                                        nearestCornerToCurrentStation.add(positionsMatrixWithoutCollisions.get(ndCounter).get(0).get(2));
+                                        pathWithCollisiions.add(nearestCornerToCurrentStation);
+                                        newCornerForNextStation = obstacleAvoider.findPathToOppositeSide(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, sortedObstacles.get(fourthCounter));
+                                        newCornerForNextStation.add(positionsMatrixWithoutCollisions.get(ndCounter).get(0).get(2));
+                                        pathWithCollisiions.add(newCornerForNextStation);
+                                        ObstacleAvoidanceCurrentStation = newCornerForNextStation;
+                                    }
+                                }
+                            }
+                        }
+                        pathWithCollisiions.add(ObstacleAvoidanceNextStation);
+                    }
+                    visitingStations.add(positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter));
                     distances = new ArrayList<>();
                     indexes = new ArrayList<>();
-                    optimizationMatrix = createOptimizationMatrix(visitedStationsMatrix, sourceStation);
+                    optimizationMatrix = createOptimizationMatrix(positionsMatrixWithoutCollisions, sourceStation);
                 }
+                positionsMatrixWithCollisions.add(pathWithCollisiions);
+                pathWithCollisiions = new ArrayList<>();
             }
-            fitnessValues = findFitnessValues(visitedStationsMatrix, sourceStation, destinationStation);
+            fitnessValues = findFitnessValues(positionsMatrixWithCollisions, sourceStation, destinationStation);
             sortedFitnessValues = sortFitnessValues(fitnessValues);
             System.out.println(stCounter + " iteration, alpha's fitness value: " + sortedFitnessValues.get(0));
             //System.out.println(stCounter + " iteration, alpha's values: " + optimizationMatrix.get(fitnessValues.indexOf(trio.get(0))));
         }
         System.out.println("After iterations, alpha's fitness value:" + sortedFitnessValues.get(0));
-        System.out.println("After iterations, alpha's values: " + optimizationMatrix.get(fitnessValues.indexOf(sortedFitnessValues.get(0))));
-        for (int ndCounter = 0; ndCounter < visitedStationsMatrix.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).size(); ndCounter = ndCounter + 1) {
-            System.out.println(ndCounter + " " + visitedStationsMatrix.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).get(ndCounter));
+        System.out.println("Alpha path without collisions");
+        for (int ndCounter = 0; ndCounter < positionsMatrixWithoutCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).size(); ndCounter = ndCounter + 1) {
+            System.out.println(ndCounter + " " + positionsMatrixWithoutCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).get(ndCounter));
+        }
+        System.out.println("Alpha path with collisions");
+        for (int ndCounter = 0; ndCounter < positionsMatrixWithCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).size(); ndCounter = ndCounter + 1) {
+            System.out.println(ndCounter + " " + positionsMatrixWithCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).get(ndCounter));
         }
     }
 
@@ -216,20 +329,20 @@ public class IGWOPathPlanningStaticStationaryMethod {
         return optimizationMatrix;
     }
 
-    private ArrayList<Double> findFitnessValues(ArrayList<ArrayList<ArrayList<Double>>> optimizationMatrix, ArrayList<Double> sourceStation, ArrayList<Double> destinatioStation) {
+    private ArrayList<Double> findFitnessValues(ArrayList<ArrayList<ArrayList<Double>>> positionsMatrixWithCollisions, ArrayList<Double> sourceStation, ArrayList<Double> destinationStation) {
         ArrayList<Double> fitnessValues = new ArrayList<>();
         double sum = 0.0;
         double euclideanDistance;
 
-        for (int stCounter = 0; stCounter < optimizationMatrix.size(); stCounter = stCounter + 1) {
-            euclideanDistance = findEuclideanDistance(sourceStation, optimizationMatrix.get(stCounter).get(0));
+        for (int stCounter = 0; stCounter < positionsMatrixWithCollisions.size(); stCounter = stCounter + 1) {
+            euclideanDistance = findEuclideanDistance(sourceStation, positionsMatrixWithCollisions.get(stCounter).get(0));
             sum = sum + euclideanDistance;
 
-            euclideanDistance = findEuclideanDistance(optimizationMatrix.get(stCounter).get(optimizationMatrix.get(stCounter).size() - 1), destinatioStation);
+            euclideanDistance = findEuclideanDistance(positionsMatrixWithCollisions.get(stCounter).get(positionsMatrixWithCollisions.get(stCounter).size() - 1), destinationStation);
             sum = sum + euclideanDistance;
 
-            for (int ndCounter = 0; ndCounter < optimizationMatrix.get(stCounter).size() - 1; ndCounter = ndCounter + 1) {
-                euclideanDistance = findEuclideanDistance(optimizationMatrix.get(stCounter).get(ndCounter), optimizationMatrix.get(stCounter).get(ndCounter + 1));
+            for (int ndCounter = 0; ndCounter < positionsMatrixWithCollisions.get(stCounter).size() - 1; ndCounter = ndCounter + 1) {
+                euclideanDistance = findEuclideanDistance(positionsMatrixWithCollisions.get(stCounter).get(ndCounter), positionsMatrixWithCollisions.get(stCounter).get(ndCounter + 1));
                 sum = sum + euclideanDistance;
             }
             fitnessValues.add(sum);

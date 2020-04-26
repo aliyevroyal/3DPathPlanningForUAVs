@@ -44,7 +44,7 @@
       <recent name="com.thealiyev" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.GWOPathPlanningStaticStationaryMethod">
+  <component name="RunManager" selected="Application.ExGWOPathPlanningStaticStationaryMethod">
     <configuration name="ExGWOPathPlanningDynamicStationaryMethod" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.thealiyev.ExGWOPathPlanningDynamicStationaryMethod" />
       <module name="3DPathPlanningForUAVs" />
@@ -119,9 +119,9 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.GWOPathPlanningStaticStationaryMethod" />
-        <item itemvalue="Application.IGWOPathPlanningStaticStationaryMethod" />
         <item itemvalue="Application.ExGWOPathPlanningStaticStationaryMethod" />
+        <item itemvalue="Application.IGWOPathPlanningStaticStationaryMethod" />
+        <item itemvalue="Application.GWOPathPlanningStaticStationaryMethod" />
         <item itemvalue="Application.GWOPathPlanningDynamicStationaryMethod" />
         <item itemvalue="Application.ExGWOPathPlanningDynamicStationaryMethod" />
       </list>
@@ -150,7 +150,7 @@
       <workItem from="1587827068036" duration="199000" />
       <workItem from="1587827406524" duration="11124000" />
       <workItem from="1587869985250" duration="696000" />
-      <workItem from="1587887510865" duration="14327000" />
+      <workItem from="1587887510865" duration="15832000" />
     </task>
     <servers />
   </component>
@@ -166,22 +166,22 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="533" y="158" key="#com.intellij.ide.util.MemberChooser/0.0.1440.900@0.0.1440.900" timestamp="1587670916463" />
-    <state width="1440" height="374" key="GridCell.Tab.0.bottom" timestamp="1587908431669">
+    <state width="1440" height="374" key="GridCell.Tab.0.bottom" timestamp="1587910701414">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1440" height="374" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1587908431669" />
-    <state width="1440" height="374" key="GridCell.Tab.0.center" timestamp="1587908431667">
+    <state width="1440" height="374" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1587910701414" />
+    <state width="1440" height="374" key="GridCell.Tab.0.center" timestamp="1587910701412">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1440" height="374" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1587908431667" />
-    <state width="1440" height="374" key="GridCell.Tab.0.left" timestamp="1587908431666">
+    <state width="1440" height="374" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1587910701412" />
+    <state width="1440" height="374" key="GridCell.Tab.0.left" timestamp="1587910701411">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1440" height="374" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1587908431666" />
-    <state width="1440" height="374" key="GridCell.Tab.0.right" timestamp="1587908431668">
+    <state width="1440" height="374" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1587910701411" />
+    <state width="1440" height="374" key="GridCell.Tab.0.right" timestamp="1587910701413">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1440" height="374" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1587908431668" />
+    <state width="1440" height="374" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1587910701413" />
     <state width="1440" height="312" key="GridCell.Tab.1.bottom" timestamp="1587895669660">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
