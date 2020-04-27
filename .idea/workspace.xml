@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="6ce80e1a-4e66-4642-9a81-b99625a69087" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/thealiyev/ExGWOPathPlanningStaticStationaryMethod.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/thealiyev/ExGWOPathPlanningStaticStationaryMethod.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/thealiyev/GWOPathPlanningStaticStationaryMethod.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/thealiyev/GWOPathPlanningStaticStationaryMethod.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/thealiyev/IGWOPathPlanningStaticStationaryMethod.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/thealiyev/IGWOPathPlanningStaticStationaryMethod.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,20 +41,7 @@
       <recent name="com.thealiyev" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ExGWOPathPlanningStaticStationaryMethod">
-    <configuration name="ExGWOPathPlanningDynamicStationaryMethod" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.thealiyev.ExGWOPathPlanningDynamicStationaryMethod" />
-      <module name="3DPathPlanningForUAVs" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.thealiyev.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Application.GWOPathPlanningDynamicStationaryMethod">
     <configuration name="ExGWOPathPlanningStaticStationaryMethod" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.thealiyev.ExGWOPathPlanningStaticStationaryMethod" />
       <module name="3DPathPlanningForUAVs" />
@@ -97,6 +81,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="IGWOPathPlanningDynamicStationaryMethod" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.thealiyev.IGWOPathPlanningDynamicStationaryMethod" />
+      <module name="3DPathPlanningForUAVs" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.thealiyev.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="IGWOPathPlanningStaticStationaryMethod" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.thealiyev.IGWOPathPlanningStaticStationaryMethod" />
       <module name="3DPathPlanningForUAVs" />
@@ -111,19 +108,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.ExGWOPathPlanningDynamicStationaryMethod" />
       <item itemvalue="Application.GWOPathPlanningDynamicStationaryMethod" />
       <item itemvalue="Application.GWOPathPlanningStaticStationaryMethod" />
       <item itemvalue="Application.ExGWOPathPlanningStaticStationaryMethod" />
       <item itemvalue="Application.IGWOPathPlanningStaticStationaryMethod" />
+      <item itemvalue="Application.IGWOPathPlanningDynamicStationaryMethod" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ExGWOPathPlanningStaticStationaryMethod" />
+        <item itemvalue="Application.GWOPathPlanningDynamicStationaryMethod" />
+        <item itemvalue="Application.IGWOPathPlanningDynamicStationaryMethod" />
         <item itemvalue="Application.IGWOPathPlanningStaticStationaryMethod" />
         <item itemvalue="Application.GWOPathPlanningStaticStationaryMethod" />
-        <item itemvalue="Application.GWOPathPlanningDynamicStationaryMethod" />
-        <item itemvalue="Application.ExGWOPathPlanningDynamicStationaryMethod" />
+        <item itemvalue="Application.ExGWOPathPlanningStaticStationaryMethod" />
       </list>
     </recent_temporary>
   </component>
@@ -150,7 +147,10 @@
       <workItem from="1587827068036" duration="199000" />
       <workItem from="1587827406524" duration="11124000" />
       <workItem from="1587869985250" duration="696000" />
-      <workItem from="1587887510865" duration="15832000" />
+      <workItem from="1587887510865" duration="16003000" />
+      <workItem from="1587911027379" duration="1019000" />
+      <workItem from="1587916942067" duration="126000" />
+      <workItem from="1587925952132" duration="230000" />
     </task>
     <servers />
   </component>
@@ -166,46 +166,46 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="533" y="158" key="#com.intellij.ide.util.MemberChooser/0.0.1440.900@0.0.1440.900" timestamp="1587670916463" />
-    <state width="1440" height="374" key="GridCell.Tab.0.bottom" timestamp="1587910701414">
+    <state width="1440" height="374" key="GridCell.Tab.0.bottom" timestamp="1587926182587">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1440" height="374" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1587910701414" />
-    <state width="1440" height="374" key="GridCell.Tab.0.center" timestamp="1587910701412">
+    <state width="1440" height="374" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1587926182587" />
+    <state width="1440" height="374" key="GridCell.Tab.0.center" timestamp="1587926182584">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1440" height="374" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1587910701412" />
-    <state width="1440" height="374" key="GridCell.Tab.0.left" timestamp="1587910701411">
+    <state width="1440" height="374" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1587926182584" />
+    <state width="1440" height="374" key="GridCell.Tab.0.left" timestamp="1587926182583">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1440" height="374" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1587910701411" />
-    <state width="1440" height="374" key="GridCell.Tab.0.right" timestamp="1587910701413">
+    <state width="1440" height="374" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1587926182583" />
+    <state width="1440" height="374" key="GridCell.Tab.0.right" timestamp="1587926182585">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1440" height="374" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1587910701413" />
-    <state width="1440" height="312" key="GridCell.Tab.1.bottom" timestamp="1587895669660">
+    <state width="1440" height="374" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1587926182585" />
+    <state width="1440" height="312" key="GridCell.Tab.1.bottom" timestamp="1587910751886">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1440" height="312" key="GridCell.Tab.1.bottom/0.0.1440.900@0.0.1440.900" timestamp="1587895669660" />
-    <state width="1440" height="312" key="GridCell.Tab.1.center" timestamp="1587895669658">
+    <state width="1440" height="312" key="GridCell.Tab.1.bottom/0.0.1440.900@0.0.1440.900" timestamp="1587910751886" />
+    <state width="1440" height="312" key="GridCell.Tab.1.center" timestamp="1587910751885">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1440" height="312" key="GridCell.Tab.1.center/0.0.1440.900@0.0.1440.900" timestamp="1587895669658" />
-    <state width="1440" height="312" key="GridCell.Tab.1.left" timestamp="1587895669658">
+    <state width="1440" height="312" key="GridCell.Tab.1.center/0.0.1440.900@0.0.1440.900" timestamp="1587910751885" />
+    <state width="1440" height="312" key="GridCell.Tab.1.left" timestamp="1587910751884">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1440" height="312" key="GridCell.Tab.1.left/0.0.1440.900@0.0.1440.900" timestamp="1587895669658" />
-    <state width="1440" height="312" key="GridCell.Tab.1.right" timestamp="1587895669659">
+    <state width="1440" height="312" key="GridCell.Tab.1.left/0.0.1440.900@0.0.1440.900" timestamp="1587910751884" />
+    <state width="1440" height="312" key="GridCell.Tab.1.right" timestamp="1587910751885">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1440" height="312" key="GridCell.Tab.1.right/0.0.1440.900@0.0.1440.900" timestamp="1587895669659" />
+    <state width="1440" height="312" key="GridCell.Tab.1.right/0.0.1440.900@0.0.1440.900" timestamp="1587910751885" />
     <state x="229" y="89" key="SettingsEditor" timestamp="1587633200926">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="229" y="89" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1587633200926" />
-    <state x="413" y="282" key="com.intellij.ide.util.TipDialog" timestamp="1587869984567">
+    <state x="413" y="282" key="com.intellij.ide.util.TipDialog" timestamp="1587925953353">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="413" y="282" key="com.intellij.ide.util.TipDialog/0.0.1440.900@0.0.1440.900" timestamp="1587869984567" />
+    <state x="413" y="282" key="com.intellij.ide.util.TipDialog/0.0.1440.900@0.0.1440.900" timestamp="1587925953353" />
     <state x="375" y="72" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1587698244044">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
