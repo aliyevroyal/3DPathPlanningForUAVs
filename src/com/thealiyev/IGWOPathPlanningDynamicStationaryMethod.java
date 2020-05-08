@@ -276,7 +276,6 @@ public class IGWOPathPlanningDynamicStationaryMethod {
                     }
                     //Updates Boundaries
                     positionsMatrixWithoutCollisions.get(ndCounter).set(rdCounter, P);
-                    optimizationMatrix = createOptimizationMatrix(positionsMatrixWithoutCollisions, sourceStation);
                 }
                 positionsMatrixWithCollisions.add(pathWithCollisiions);
                 pathWithCollisiions = new ArrayList<>();
