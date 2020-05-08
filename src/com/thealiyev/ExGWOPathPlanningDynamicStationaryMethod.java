@@ -241,6 +241,7 @@ public class ExGWOPathPlanningDynamicStationaryMethod {
                         yNext = yCurrent + (x * Math.sin(Math.toRadians(alphaDegree)));
                         positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter).set(0, xNext);
                         positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter).set(1, yNext);
+                        positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter).set(2, positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter - 1).get(2));
                         //Obstacle avoidance
                         ObstacleAvoidanceCurrentStation = sourceStation;
                         ObstacleAvoidanceNextStation = positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter);

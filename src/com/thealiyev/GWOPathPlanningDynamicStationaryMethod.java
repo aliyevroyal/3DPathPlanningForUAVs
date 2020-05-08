@@ -20,13 +20,13 @@ public class GWOPathPlanningDynamicStationaryMethod {
         ArrayList<Double> Xboundaries = new ArrayList<>(), Yboundaries = new ArrayList<>(), Zboundaries = new ArrayList<>();
         //X boundaries
         Xboundaries.add(0.0);
-        Xboundaries.add(100.0);
+        Xboundaries.add(50.0);
         //Y boundaries
         Yboundaries.add(0.0);
-        Yboundaries.add(100.0);
+        Yboundaries.add(50.0);
         //Z boundaries
         Zboundaries.add(0.0);
-        Zboundaries.add(100.0);
+        Zboundaries.add(50.0);
         //Source station coordinates
         ArrayList<Double> sourceStation = new ArrayList<>();
         sourceStation.add(1.0);
@@ -34,9 +34,9 @@ public class GWOPathPlanningDynamicStationaryMethod {
         sourceStation.add(1.0);
         //Destination station coordinates
         ArrayList<Double> destinationStation = new ArrayList<>();
-        destinationStation.add(99.0);
-        destinationStation.add(99.0);
-        destinationStation.add(99.0);
+        destinationStation.add(49.0);
+        destinationStation.add(49.0);
+        destinationStation.add(49.0);
         //Gray Wolf Optimization initialization starts here...
         double a;
         double r1, r2;
@@ -68,10 +68,6 @@ public class GWOPathPlanningDynamicStationaryMethod {
         obstacles.setObstacle2();
         obstacles.setObstacle3();
         obstacles.setObstacle4();
-        obstacles.setObstacle5();
-        obstacles.setObstacle6();
-        obstacles.setObstacle7();
-        obstacles.setObstacle8();
         boolean isPointInsideOfObstacle;
         boolean didPointCollideWithObstacle;
         ArrayList<Double> nearestCornerToCurrentStation;
