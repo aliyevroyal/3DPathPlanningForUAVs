@@ -146,13 +146,13 @@ public class Obstacles {
         this.obstacle8 = new ArrayList<>();
         ArrayList<Double> startCoordinate = new ArrayList<>();
         ArrayList<Double> endCoordinate = new ArrayList<>();
-        startCoordinate.add(70.0);
-        startCoordinate.add(80.0);
+        startCoordinate.add(10.0);
+        startCoordinate.add(10.0);
         startCoordinate.add(0.0);
         obstacle8.add(startCoordinate);
 
-        endCoordinate.add(80.0);
-        endCoordinate.add(90.0);
+        endCoordinate.add(20.0);
+        endCoordinate.add(20.0);
         endCoordinate.add(100.0);
         obstacle8.add(endCoordinate);
 

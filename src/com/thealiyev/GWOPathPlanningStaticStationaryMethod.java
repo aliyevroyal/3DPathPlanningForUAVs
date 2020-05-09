@@ -17,13 +17,13 @@ public class GWOPathPlanningStaticStationaryMethod {
         ArrayList<Double> xBoundaries = new ArrayList<>(), yBoundaries = new ArrayList<>(), zBoundaries = new ArrayList<>();
         //X boundaries
         xBoundaries.add(0.0);
-        xBoundaries.add(100.0);
+        xBoundaries.add(50.0);
         //Y boundaries
         yBoundaries.add(0.0);
-        yBoundaries.add(100.0);
+        yBoundaries.add(50.0);
         //Z boundaries
         zBoundaries.add(0.0);
-        zBoundaries.add(100.0);
+        zBoundaries.add(50.0);
         //Source station coordinates
         ArrayList<Double> sourceStation = new ArrayList<>();
         sourceStation.add(1.0);
@@ -31,9 +31,9 @@ public class GWOPathPlanningStaticStationaryMethod {
         sourceStation.add(1.0);
         //Destination station coordinates
         ArrayList<Double> destinationStation = new ArrayList<>();
-        destinationStation.add(99.0);
-        destinationStation.add(99.0);
-        destinationStation.add(99.0);
+        destinationStation.add(49.0);
+        destinationStation.add(49.0);
+        destinationStation.add(49.0);
         //Gray Wolf Optimization initialization starts here...
         double a;
         double r1, r2;
@@ -43,7 +43,7 @@ public class GWOPathPlanningStaticStationaryMethod {
         double Dalpha, Dbeta, Ddelta;
         double Xalpha, Xbeta, Xdelta;
         int theNumberOfStations = 1000;
-        int population = 100, dimension = 15;
+        int population = 100, dimension = 5;
         int iteration = 100;
         ArrayList<ArrayList<Double>> stations = createRandomStations(theNumberOfStations, xBoundaries, yBoundaries, zBoundaries);
         ArrayList<ArrayList<Double>> visitingStations;
@@ -63,10 +63,6 @@ public class GWOPathPlanningStaticStationaryMethod {
         obstacles.setObstacle2();
         obstacles.setObstacle3();
         obstacles.setObstacle4();
-        obstacles.setObstacle5();
-        obstacles.setObstacle6();
-        obstacles.setObstacle7();
-        obstacles.setObstacle8();
         boolean isPointInsideOfObstacle;
         boolean didPointCollideWithObstacle;
         ArrayList<Double> nearestCornerToCurrentStation;

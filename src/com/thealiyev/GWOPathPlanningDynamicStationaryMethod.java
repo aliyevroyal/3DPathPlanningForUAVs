@@ -13,7 +13,7 @@ public class GWOPathPlanningDynamicStationaryMethod {
         gwoPathPlanningDynamicStationaryMethod.GWO();
     }
 
-    private void GWO() {
+    public void GWO() {
         random = new Random();
         //Gray Wolf Optimization and Path Planning start here...
         //Boundaries of map

@@ -20,24 +20,15 @@ public class ObstacleAvoider {
         obstacles.setObstacle2();
         obstacles.setObstacle3();
         obstacles.setObstacle4();
-        obstacles.setObstacle5();
-        obstacles.setObstacle6();
-        obstacles.setObstacle7();
-        obstacles.setObstacle8();
         ArrayList<ArrayList<ArrayList<Double>>> sortedObstacles;
 
-        position.add(45.968439064027976);
-        position.add(46.82734025683803);
+        position.add(1.0);
+        position.add(1.0);
         path.add(position);
         position = new ArrayList<>();
 
         position.add(50.0);
         position.add(50.0);
-        path.add(position);
-        position = new ArrayList<>();
-
-        position.add(1.0);
-        position.add(1.0);
         path.add(position);
 
         for (int stCounter = 0; stCounter < path.size() - 1; stCounter = stCounter + 1) {
@@ -48,6 +39,7 @@ public class ObstacleAvoider {
             for (int fourthCounter = 0; fourthCounter < sortedObstacles.size(); fourthCounter = fourthCounter + 1) {
                 isPointInsideOfObstacle = obstacleAvoider.isPointInsideOfObstacle(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
                 if (isPointInsideOfObstacle) {
+                    positionsMatrixWithCollisions.remove(positionsMatrixWithCollisions.size() - 1);
                     ObstacleAvoidanceCurrentStation = obstacleAvoider.findNearestCorner(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
                     didPointCollideWithObstacle = obstacleAvoider.didPointCollideWithObstacle(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, sortedObstacles.get(fourthCounter));
                     if (didPointCollideWithObstacle) {

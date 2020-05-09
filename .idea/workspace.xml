@@ -2,14 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6ce80e1a-4e66-4642-9a81-b99625a69087" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/com/thealiyev/AdaptedRRTResults.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/thealiyev/StationaryResults.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/3DPathPlanningForUAVs/com/thealiyev/ExGWOPathPlanningDynamicStationaryMethod.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/3DPathPlanningForUAVs/com/thealiyev/ExGWOPathPlanningDynamicStationaryMethod.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/3DPathPlanningForUAVs/com/thealiyev/GWOPathPlanningDynamicStationaryMethod.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/3DPathPlanningForUAVs/com/thealiyev/GWOPathPlanningDynamicStationaryMethod.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/3DPathPlanningForUAVs/com/thealiyev/GWOPathPlanningStaticStationaryMethod.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/3DPathPlanningForUAVs/com/thealiyev/GWOPathPlanningStaticStationaryMethod.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/3DPathPlanningForUAVs/com/thealiyev/IGWOPathPlanningDynamicStationaryMethod.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/3DPathPlanningForUAVs/com/thealiyev/IGWOPathPlanningDynamicStationaryMethod.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/3DPathPlanningForUAVs/com/thealiyev/ObstacleAvoider.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/3DPathPlanningForUAVs/com/thealiyev/ObstacleAvoider.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/3DPathPlanningForUAVs/com/thealiyev/Obstacles.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/3DPathPlanningForUAVs/com/thealiyev/Obstacles.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/thealiyev/ExGWOPathPlanningDynamicStationaryMethod.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/thealiyev/ExGWOPathPlanningDynamicStationaryMethod.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/thealiyev/GWOPathPlanningDynamicStationaryMethod.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/thealiyev/GWOPathPlanningDynamicStationaryMethod.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/thealiyev/GWOPathPlanningStaticStationaryMethod.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/thealiyev/GWOPathPlanningStaticStationaryMethod.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/thealiyev/IGWOPathPlanningDynamicStationaryMethod.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/thealiyev/IGWOPathPlanningDynamicStationaryMethod.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/thealiyev/ObstacleAvoider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/thealiyev/ObstacleAvoider.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/thealiyev/Obstacles.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/thealiyev/Obstacles.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -50,19 +55,6 @@
     </key>
   </component>
   <component name="RunManager" selected="Application.GWOPathPlanningDynamicStationaryMethod">
-    <configuration name="ExGWOPathPlanningStaticStationaryMethod" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.thealiyev.ExGWOPathPlanningStaticStationaryMethod" />
-      <module name="3DPathPlanningForUAVs" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.thealiyev.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="GWOPathPlanningDynamicStationaryMethod" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.thealiyev.GWOPathPlanningDynamicStationaryMethod" />
       <module name="3DPathPlanningForUAVs" />
@@ -115,20 +107,33 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ObstacleAvoider" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.thealiyev.ObstacleAvoider" />
+      <module name="3DPathPlanningForUAVs" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.thealiyev.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.GWOPathPlanningDynamicStationaryMethod" />
       <item itemvalue="Application.GWOPathPlanningStaticStationaryMethod" />
-      <item itemvalue="Application.ExGWOPathPlanningStaticStationaryMethod" />
       <item itemvalue="Application.IGWOPathPlanningStaticStationaryMethod" />
       <item itemvalue="Application.IGWOPathPlanningDynamicStationaryMethod" />
+      <item itemvalue="Application.ObstacleAvoider" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.GWOPathPlanningDynamicStationaryMethod" />
+        <item itemvalue="Application.ObstacleAvoider" />
         <item itemvalue="Application.IGWOPathPlanningDynamicStationaryMethod" />
-        <item itemvalue="Application.IGWOPathPlanningStaticStationaryMethod" />
         <item itemvalue="Application.GWOPathPlanningStaticStationaryMethod" />
-        <item itemvalue="Application.ExGWOPathPlanningStaticStationaryMethod" />
+        <item itemvalue="Application.IGWOPathPlanningStaticStationaryMethod" />
       </list>
     </recent_temporary>
   </component>
@@ -161,7 +166,10 @@
       <workItem from="1587925952132" duration="230000" />
       <workItem from="1588945646386" duration="85000" />
       <workItem from="1588945882611" duration="10000" />
-      <workItem from="1588947316777" duration="1508000" />
+      <workItem from="1588947316777" duration="12761000" />
+      <workItem from="1588967148491" duration="38000" />
+      <workItem from="1588996178198" duration="168000" />
+      <workItem from="1589032648367" duration="307000" />
     </task>
     <servers />
   </component>
@@ -177,22 +185,22 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="533" y="158" key="#com.intellij.ide.util.MemberChooser/0.0.1440.900@0.0.1440.900" timestamp="1587670916463" />
-    <state width="1440" height="355" key="GridCell.Tab.0.bottom" timestamp="1588949205506">
+    <state width="1440" height="355" key="GridCell.Tab.0.bottom" timestamp="1588996347256">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1440" height="355" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1588949205506" />
-    <state width="1440" height="355" key="GridCell.Tab.0.center" timestamp="1588949205504">
+    <state width="1440" height="355" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1588996347256" />
+    <state width="1440" height="355" key="GridCell.Tab.0.center" timestamp="1588996347254">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1440" height="355" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1588949205504" />
-    <state width="1440" height="355" key="GridCell.Tab.0.left" timestamp="1588949205504">
+    <state width="1440" height="355" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1588996347254" />
+    <state width="1440" height="355" key="GridCell.Tab.0.left" timestamp="1588996347253">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1440" height="355" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1588949205503" />
-    <state width="1440" height="355" key="GridCell.Tab.0.right" timestamp="1588949205505">
+    <state width="1440" height="355" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1588996347253" />
+    <state width="1440" height="355" key="GridCell.Tab.0.right" timestamp="1588996347255">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1440" height="355" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1588949205505" />
+    <state width="1440" height="355" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1588996347255" />
     <state width="1440" height="312" key="GridCell.Tab.1.bottom" timestamp="1587910751886">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
@@ -213,10 +221,10 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="229" y="89" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1587633200926" />
-    <state x="413" y="282" key="com.intellij.ide.util.TipDialog" timestamp="1587925953353">
+    <state x="413" y="282" key="com.intellij.ide.util.TipDialog" timestamp="1589032649200">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="413" y="282" key="com.intellij.ide.util.TipDialog/0.0.1440.900@0.0.1440.900" timestamp="1587925953353" />
+    <state x="413" y="282" key="com.intellij.ide.util.TipDialog/0.0.1440.900@0.0.1440.900" timestamp="1589032649200" />
     <state x="375" y="72" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1587698244044">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
