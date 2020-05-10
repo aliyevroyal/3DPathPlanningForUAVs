@@ -8,10 +8,10 @@ public class ExGWOPathPlanningDynamicStationaryMethod {
 
     public static void main(String[] args) {
         ExGWOPathPlanningDynamicStationaryMethod exgwoPathPlanningDynamicStationaryMethod = new ExGWOPathPlanningDynamicStationaryMethod();
-        exgwoPathPlanningDynamicStationaryMethod.GWO();
+        exgwoPathPlanningDynamicStationaryMethod.ExGWO();
     }
 
-    public void GWO() {
+    private void ExGWO() {
         random = new Random();
         //Gray Wolf Optimization and Path Planning start here...
         //Boundaries of map
@@ -237,7 +237,6 @@ public class ExGWOPathPlanningDynamicStationaryMethod {
                         yNext = yCurrent + (x * Math.sin(Math.toRadians(alphaDegree)));
                         positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter).set(0, xNext);
                         positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter).set(1, yNext);
-                        positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter).set(2, positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter - 1).get(2));
                         //Obstacle avoidance
                         ObstacleAvoidanceCurrentStation = sourceStation;
                         ObstacleAvoidanceNextStation = positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter);
@@ -323,21 +322,9 @@ public class ExGWOPathPlanningDynamicStationaryMethod {
         ArrayList<ArrayList<Double>> positionsVector = new ArrayList<>();
         ArrayList<Double> position = new ArrayList<>();
         double X, Y, Z;
-        //double Xmin, Ymin, Zmin;
-        //double Xmax, Ymax, Zmax;
 
         for (int stCounter = 0; stCounter < population; stCounter = stCounter + 1) {
             for (int ndCounter = 0; ndCounter < dimension; ndCounter = ndCounter + 1) {
-                //More deterministic way
-                /*Xmin = ((Xboundaries.get(1) - Xboundaries.get(0)) / dimension) * ndCounter;
-                Xmax = ((Xboundaries.get(1) - Xboundaries.get(0)) / dimension) * (ndCounter + 1);
-                Ymin = ((Yboundaries.get(1) - Yboundaries.get(0)) / dimension) * ndCounter;
-                Ymax = ((Yboundaries.get(1) - Yboundaries.get(0)) / dimension) * (ndCounter + 1);
-                Zmin = ((Zboundaries.get(1) - Zboundaries.get(0)) / dimension) * ndCounter;
-                Zmax = ((Zboundaries.get(1) - Zboundaries.get(0)) / dimension) * (ndCounter + 1);
-                X = Xmin + (Xmax - Xmin) * random.nextDouble();
-                Y = Ymin + (Ymax - Ymin) * random.nextDouble();
-                Z = Zmin + (Zmax - Zmin) * random.nextDouble();*/
                 X = Xboundaries.get(0) + (Xboundaries.get(1) - Xboundaries.get(0)) * random.nextDouble();
                 Y = Yboundaries.get(0) + (Yboundaries.get(1) - Yboundaries.get(0)) * random.nextDouble();
                 Z = Zboundaries.get(0) + (Zboundaries.get(1) - Zboundaries.get(0)) * random.nextDouble();
