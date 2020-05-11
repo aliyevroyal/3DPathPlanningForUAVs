@@ -12,6 +12,7 @@ public class Obstacles {
     private ArrayList<ArrayList<Double>> obstacle6 = null;
     private ArrayList<ArrayList<Double>> obstacle7 = null;
     private ArrayList<ArrayList<Double>> obstacle8 = null;
+    private ArrayList<ArrayList<Double>> obstacle9 = null;
 
     public Obstacles() {
     }
@@ -157,6 +158,23 @@ public class Obstacles {
         obstacle8.add(endCoordinate);
 
         obstacles.add(obstacle8);
+    }
+
+    public void setObstacle9() {
+        this.obstacle9 = new ArrayList<>();
+        ArrayList<Double> startCoordinate = new ArrayList<>();
+        ArrayList<Double> endCoordinate = new ArrayList<>();
+        startCoordinate.add(20.0);
+        startCoordinate.add(20.0);
+        startCoordinate.add(0.0);
+        obstacle9.add(startCoordinate);
+
+        endCoordinate.add(30.0);
+        endCoordinate.add(30.0);
+        endCoordinate.add(100.0);
+        obstacle9.add(endCoordinate);
+
+        obstacles.add(obstacle9);
     }
 
     public ArrayList<ArrayList<ArrayList<Double>>> getObstacles() {

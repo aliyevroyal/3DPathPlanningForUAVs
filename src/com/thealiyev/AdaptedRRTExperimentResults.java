@@ -74,12 +74,13 @@ public class AdaptedRRTExperimentResults {
             matrix = new ArrayList<>();
         }
 
+        System.out.println("GWO");
         AdaptedRRTGWOExperimentResults gwoExperimentResults = new AdaptedRRTGWOExperimentResults();
         gwoExperimentResults.GWO(GWOPositionsMatrixWithoutCollisions);
-
+        System.out.println("IGWO");
         AdaptedRRTIGWOExperimentResults igwoExperimentResults = new AdaptedRRTIGWOExperimentResults();
         igwoExperimentResults.IGWO(IGWOPositionsMatrixWithoutCollisions);
-
+        System.out.println("ExGWO");
         AdaptedRRTExGWOExperimentResults exGWOExperimentResults = new AdaptedRRTExGWOExperimentResults();
         exGWOExperimentResults.ExGWO(ExGWOPositionsMatrixWithoutCollisions);
     }
@@ -194,7 +195,6 @@ public class AdaptedRRTExperimentResults {
         return sortedFitnessValues;
     }
 }
-
 
 class AdaptedRRTGWOExperimentResults {
     private Random random = null;
@@ -327,72 +327,14 @@ class AdaptedRRTGWOExperimentResults {
                         positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter).set(1, yNext);
                         positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter).set(2, positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter - 1).get(2));
                         //Obstacle avoidance
-                        ObstacleAvoidanceCurrentStation = positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter - 1);
-                        ObstacleAvoidanceNextStation = positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter);
+                        ObstacleAvoidanceCurrentStation = positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter);
                         sortedObstacles = new ArrayList<>(obstacles.getSortedObstacles(ObstacleAvoidanceCurrentStation));
                         for (int fourthCounter = 0; fourthCounter < sortedObstacles.size(); fourthCounter = fourthCounter + 1) {
-                            if (ObstacleAvoidanceNextStation.get(2) >= sortedObstacles.get(fourthCounter).get(0).get(2) && ObstacleAvoidanceNextStation.get(2) <= sortedObstacles.get(fourthCounter).get(1).get(2)) {
-                                isPointInsideOfObstacle = obstacleAvoider.isPointInsideOfObstacle(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
-                                if (isPointInsideOfObstacle) {
-                                    pathWithCollisiions.remove(pathWithCollisiions.size() - 1);
-                                    ObstacleAvoidanceCurrentStation = obstacleAvoider.findNearestCorner(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
-                                    didPointCollideWithObstacle = obstacleAvoider.didPointCollideWithObstacle(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, sortedObstacles.get(fourthCounter));
-                                    if (didPointCollideWithObstacle) {
-                                        nearestCornerToCurrentStation = obstacleAvoider.findNearestCorner(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
-                                        nearestCornerToCurrentStation.add(positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter - 1).get(2));
-                                        pathWithCollisiions.add(nearestCornerToCurrentStation);
-                                        newCornerForNextStation = obstacleAvoider.findPathToOppositeSide(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, sortedObstacles.get(fourthCounter));
-                                        newCornerForNextStation.add(positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter - 1).get(2));
-                                        pathWithCollisiions.add(newCornerForNextStation);
-                                        ObstacleAvoidanceCurrentStation = newCornerForNextStation;
-                                    }
-                                } else {
-                                    didPointCollideWithObstacle = obstacleAvoider.didPointCollideWithObstacle(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, sortedObstacles.get(fourthCounter));
-                                    if (didPointCollideWithObstacle) {
-                                        nearestCornerToCurrentStation = obstacleAvoider.findNearestCorner(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
-                                        nearestCornerToCurrentStation.add(positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter - 1).get(2));
-                                        pathWithCollisiions.add(nearestCornerToCurrentStation);
-                                        newCornerForNextStation = obstacleAvoider.findPathToOppositeSide(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, sortedObstacles.get(fourthCounter));
-                                        newCornerForNextStation.add(positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter - 1).get(2));
-                                        pathWithCollisiions.add(newCornerForNextStation);
-                                        ObstacleAvoidanceCurrentStation = newCornerForNextStation;
-                                    }
-                                }
-                            }
-                        }
-                        pathWithCollisiions.add(ObstacleAvoidanceNextStation);
-                        if (rdCounter == optimizationMatrix.get(ndCounter).size() - 1) {
-                            ObstacleAvoidanceCurrentStation = positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter);
-                            ObstacleAvoidanceNextStation = destinationStation;
-                            sortedObstacles = new ArrayList<>(obstacles.getSortedObstacles(ObstacleAvoidanceCurrentStation));
-                            for (int fourthCounter = 0; fourthCounter < sortedObstacles.size(); fourthCounter = fourthCounter + 1) {
-                                if (ObstacleAvoidanceNextStation.get(2) >= sortedObstacles.get(fourthCounter).get(0).get(2) && ObstacleAvoidanceNextStation.get(2) <= sortedObstacles.get(fourthCounter).get(1).get(2)) {
-                                    isPointInsideOfObstacle = obstacleAvoider.isPointInsideOfObstacle(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
-                                    if (isPointInsideOfObstacle) {
-                                        ObstacleAvoidanceCurrentStation = obstacleAvoider.findNearestCorner(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
-                                        didPointCollideWithObstacle = obstacleAvoider.didPointCollideWithObstacle(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, sortedObstacles.get(fourthCounter));
-                                        if (didPointCollideWithObstacle) {
-                                            nearestCornerToCurrentStation = obstacleAvoider.findNearestCorner(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
-                                            nearestCornerToCurrentStation.add(positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter - 1).get(2));
-                                            pathWithCollisiions.add(nearestCornerToCurrentStation);
-                                            newCornerForNextStation = obstacleAvoider.findPathToOppositeSide(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, sortedObstacles.get(fourthCounter));
-                                            newCornerForNextStation.add(positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter - 1).get(2));
-                                            pathWithCollisiions.add(newCornerForNextStation);
-                                            ObstacleAvoidanceCurrentStation = newCornerForNextStation;
-                                        }
-                                    } else {
-                                        didPointCollideWithObstacle = obstacleAvoider.didPointCollideWithObstacle(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, sortedObstacles.get(fourthCounter));
-                                        if (didPointCollideWithObstacle) {
-                                            nearestCornerToCurrentStation = obstacleAvoider.findNearestCorner(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
-                                            nearestCornerToCurrentStation.add(positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter - 1).get(2));
-                                            pathWithCollisiions.add(nearestCornerToCurrentStation);
-                                            newCornerForNextStation = obstacleAvoider.findPathToOppositeSide(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, sortedObstacles.get(fourthCounter));
-                                            newCornerForNextStation.add(positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter - 1).get(2));
-                                            pathWithCollisiions.add(newCornerForNextStation);
-                                            ObstacleAvoidanceCurrentStation = newCornerForNextStation;
-                                        }
-                                    }
-                                }
+                            isPointInsideOfObstacle = obstacleAvoider.isPointInsideOfObstacle(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
+                            if (isPointInsideOfObstacle) {
+                                ObstacleAvoidanceCurrentStation = obstacleAvoider.findNearestCorner(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
+                                positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter).set(0, ObstacleAvoidanceCurrentStation.get(0));
+                                positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter).set(1, ObstacleAvoidanceCurrentStation.get(1));
                             }
                         }
                     } else if (rdCounter == 0) {
@@ -408,39 +350,16 @@ class AdaptedRRTGWOExperimentResults {
                         positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter).set(0, xNext);
                         positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter).set(1, yNext);
                         //Obstacle avoidance
-                        ObstacleAvoidanceCurrentStation = sourceStation;
-                        ObstacleAvoidanceNextStation = positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter);
+                        ObstacleAvoidanceCurrentStation = positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter);
                         sortedObstacles = new ArrayList<>(obstacles.getSortedObstacles(ObstacleAvoidanceCurrentStation));
                         for (int fourthCounter = 0; fourthCounter < sortedObstacles.size(); fourthCounter = fourthCounter + 1) {
-                            if (ObstacleAvoidanceNextStation.get(2) >= sortedObstacles.get(fourthCounter).get(0).get(2) && ObstacleAvoidanceNextStation.get(2) <= sortedObstacles.get(fourthCounter).get(1).get(2)) {
-                                isPointInsideOfObstacle = obstacleAvoider.isPointInsideOfObstacle(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
-                                if (isPointInsideOfObstacle) {
-                                    ObstacleAvoidanceCurrentStation = obstacleAvoider.findNearestCorner(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
-                                    didPointCollideWithObstacle = obstacleAvoider.didPointCollideWithObstacle(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, sortedObstacles.get(fourthCounter));
-                                    if (didPointCollideWithObstacle) {
-                                        nearestCornerToCurrentStation = obstacleAvoider.findNearestCorner(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
-                                        nearestCornerToCurrentStation.add(positionsMatrixWithoutCollisions.get(ndCounter).get(0).get(2));
-                                        pathWithCollisiions.add(nearestCornerToCurrentStation);
-                                        newCornerForNextStation = obstacleAvoider.findPathToOppositeSide(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, sortedObstacles.get(fourthCounter));
-                                        newCornerForNextStation.add(positionsMatrixWithoutCollisions.get(ndCounter).get(0).get(2));
-                                        pathWithCollisiions.add(newCornerForNextStation);
-                                        ObstacleAvoidanceCurrentStation = newCornerForNextStation;
-                                    }
-                                } else {
-                                    didPointCollideWithObstacle = obstacleAvoider.didPointCollideWithObstacle(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, sortedObstacles.get(fourthCounter));
-                                    if (didPointCollideWithObstacle) {
-                                        nearestCornerToCurrentStation = obstacleAvoider.findNearestCorner(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
-                                        nearestCornerToCurrentStation.add(positionsMatrixWithoutCollisions.get(ndCounter).get(0).get(2));
-                                        pathWithCollisiions.add(nearestCornerToCurrentStation);
-                                        newCornerForNextStation = obstacleAvoider.findPathToOppositeSide(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, sortedObstacles.get(fourthCounter));
-                                        newCornerForNextStation.add(positionsMatrixWithoutCollisions.get(ndCounter).get(0).get(2));
-                                        pathWithCollisiions.add(newCornerForNextStation);
-                                        ObstacleAvoidanceCurrentStation = newCornerForNextStation;
-                                    }
-                                }
+                            isPointInsideOfObstacle = obstacleAvoider.isPointInsideOfObstacle(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
+                            if (isPointInsideOfObstacle) {
+                                ObstacleAvoidanceCurrentStation = obstacleAvoider.findNearestCorner(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
+                                positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter).set(0, ObstacleAvoidanceCurrentStation.get(0));
+                                positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter).set(1, ObstacleAvoidanceCurrentStation.get(1));
                             }
                         }
-                        pathWithCollisiions.add(ObstacleAvoidanceNextStation);
                     }
                     P = positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter);
                     //Controls Boundaries
@@ -462,6 +381,62 @@ class AdaptedRRTGWOExperimentResults {
                     //Updates Boundaries
                     positionsMatrixWithoutCollisions.get(ndCounter).set(rdCounter, P);
                 }
+                for (int rdCounter = 0; rdCounter < optimizationMatrix.get(ndCounter).size(); rdCounter = rdCounter + 1) {
+                    if (rdCounter > 0) {
+                        //Obstacle avoidance
+                        ObstacleAvoidanceCurrentStation = positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter - 1);
+                        ObstacleAvoidanceNextStation = positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter);
+                        sortedObstacles = new ArrayList<>(obstacles.getSortedObstacles(ObstacleAvoidanceCurrentStation));
+                        for (int fourthCounter = 0; fourthCounter < sortedObstacles.size(); fourthCounter = fourthCounter + 1) {
+                            didPointCollideWithObstacle = obstacleAvoider.didPointCollideWithObstacle(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, sortedObstacles.get(fourthCounter));
+                            if (didPointCollideWithObstacle) {
+                                nearestCornerToCurrentStation = obstacleAvoider.findNearestCorner(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
+                                nearestCornerToCurrentStation.add(positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter - 1).get(2));
+                                pathWithCollisiions.add(nearestCornerToCurrentStation);
+                                newCornerForNextStation = obstacleAvoider.findPathToOppositeSide(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, sortedObstacles.get(fourthCounter));
+                                newCornerForNextStation.add(positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter - 1).get(2));
+                                pathWithCollisiions.add(newCornerForNextStation);
+                                ObstacleAvoidanceCurrentStation = newCornerForNextStation;
+                            }
+                        }
+                        pathWithCollisiions.add(ObstacleAvoidanceNextStation);
+                        if (rdCounter == optimizationMatrix.get(ndCounter).size() - 1) {
+                            ObstacleAvoidanceCurrentStation = positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter);
+                            ObstacleAvoidanceNextStation = destinationStation;
+                            sortedObstacles = new ArrayList<>(obstacles.getSortedObstacles(ObstacleAvoidanceCurrentStation));
+                            for (int fourthCounter = 0; fourthCounter < sortedObstacles.size(); fourthCounter = fourthCounter + 1) {
+                                didPointCollideWithObstacle = obstacleAvoider.didPointCollideWithObstacle(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, sortedObstacles.get(fourthCounter));
+                                if (didPointCollideWithObstacle) {
+                                    nearestCornerToCurrentStation = obstacleAvoider.findNearestCorner(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
+                                    nearestCornerToCurrentStation.add(positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter - 1).get(2));
+                                    pathWithCollisiions.add(nearestCornerToCurrentStation);
+                                    newCornerForNextStation = obstacleAvoider.findPathToOppositeSide(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, sortedObstacles.get(fourthCounter));
+                                    newCornerForNextStation.add(positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter - 1).get(2));
+                                    pathWithCollisiions.add(newCornerForNextStation);
+                                    ObstacleAvoidanceCurrentStation = newCornerForNextStation;
+                                }
+                            }
+                        }
+                    } else if (rdCounter == 0) {
+                        //Obstacle avoidance
+                        ObstacleAvoidanceCurrentStation = sourceStation;
+                        ObstacleAvoidanceNextStation = positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter);
+                        sortedObstacles = new ArrayList<>(obstacles.getSortedObstacles(ObstacleAvoidanceCurrentStation));
+                        for (int fourthCounter = 0; fourthCounter < sortedObstacles.size(); fourthCounter = fourthCounter + 1) {
+                            didPointCollideWithObstacle = obstacleAvoider.didPointCollideWithObstacle(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, sortedObstacles.get(fourthCounter));
+                            if (didPointCollideWithObstacle) {
+                                nearestCornerToCurrentStation = obstacleAvoider.findNearestCorner(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
+                                nearestCornerToCurrentStation.add(positionsMatrixWithoutCollisions.get(ndCounter).get(0).get(2));
+                                pathWithCollisiions.add(nearestCornerToCurrentStation);
+                                newCornerForNextStation = obstacleAvoider.findPathToOppositeSide(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, sortedObstacles.get(fourthCounter));
+                                newCornerForNextStation.add(positionsMatrixWithoutCollisions.get(ndCounter).get(0).get(2));
+                                pathWithCollisiions.add(newCornerForNextStation);
+                                ObstacleAvoidanceCurrentStation = newCornerForNextStation;
+                            }
+                        }
+                        pathWithCollisiions.add(ObstacleAvoidanceNextStation);
+                    }
+                }
                 positionsMatrixWithCollisions.add(pathWithCollisiions);
                 pathWithCollisiions = new ArrayList<>();
                 optimizationMatrix = adaptedRRTExperimentResults.createOptimizationMatrix(positionsMatrixWithoutCollisions, sourceStation);
@@ -469,12 +444,16 @@ class AdaptedRRTGWOExperimentResults {
             fitnessValues = adaptedRRTExperimentResults.calculateFitnessValues(positionsMatrixWithCollisions, sourceStation, destinationStation);
             sortedFitnessValues = adaptedRRTExperimentResults.sortFitnessValues(fitnessValues);
         }
-
-        System.out.println("GWO Experiment Results: ");
-        System.out.println("Alpha's fitness value: " + sortedFitnessValues.get(0));
+        System.out.println("Alpha's fitness value after iterations: " + sortedFitnessValues.get(0));
         System.out.println("Alpha path without collisions");
         for (int ndCounter = 0; ndCounter < positionsMatrixWithoutCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).size(); ndCounter = ndCounter + 1) {
             System.out.println(ndCounter + " " + positionsMatrixWithoutCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).get(ndCounter));
+        }
+        for (int counter = 0; counter < positionsMatrixWithCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).size() - 1; counter = counter + 1) {
+            if (positionsMatrixWithCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).get(counter).equals(positionsMatrixWithCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).get(counter + 1))) {
+                positionsMatrixWithCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).remove(counter + 1);
+                counter = counter - 1;
+            }
         }
         System.out.println("Alpha path with collisions");
         for (int ndCounter = 0; ndCounter < positionsMatrixWithCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).size(); ndCounter = ndCounter + 1) {
@@ -596,7 +575,6 @@ class AdaptedRRTIGWOExperimentResults {
                     } else {
                         x = x + (r - x) * random.nextDouble();
                     }
-
                     //Update Position
                     if (rdCounter > 0) {
                         xCurrent = positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter - 1).get(0);
@@ -614,72 +592,14 @@ class AdaptedRRTIGWOExperimentResults {
                         positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter).set(1, yNext);
                         positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter).set(2, positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter - 1).get(2));
                         //Obstacle avoidance
-                        ObstacleAvoidanceCurrentStation = positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter - 1);
-                        ObstacleAvoidanceNextStation = positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter);
+                        ObstacleAvoidanceCurrentStation = positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter);
                         sortedObstacles = new ArrayList<>(obstacles.getSortedObstacles(ObstacleAvoidanceCurrentStation));
                         for (int fourthCounter = 0; fourthCounter < sortedObstacles.size(); fourthCounter = fourthCounter + 1) {
-                            if (ObstacleAvoidanceNextStation.get(2) >= sortedObstacles.get(fourthCounter).get(0).get(2) && ObstacleAvoidanceNextStation.get(2) <= sortedObstacles.get(fourthCounter).get(1).get(2)) {
-                                isPointInsideOfObstacle = obstacleAvoider.isPointInsideOfObstacle(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
-                                if (isPointInsideOfObstacle) {
-                                    pathWithCollisiions.remove(pathWithCollisiions.size() - 1);
-                                    ObstacleAvoidanceCurrentStation = obstacleAvoider.findNearestCorner(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
-                                    didPointCollideWithObstacle = obstacleAvoider.didPointCollideWithObstacle(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, sortedObstacles.get(fourthCounter));
-                                    if (didPointCollideWithObstacle) {
-                                        nearestCornerToCurrentStation = obstacleAvoider.findNearestCorner(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
-                                        nearestCornerToCurrentStation.add(positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter - 1).get(2));
-                                        pathWithCollisiions.add(nearestCornerToCurrentStation);
-                                        newCornerForNextStation = obstacleAvoider.findPathToOppositeSide(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, sortedObstacles.get(fourthCounter));
-                                        newCornerForNextStation.add(positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter - 1).get(2));
-                                        pathWithCollisiions.add(newCornerForNextStation);
-                                        ObstacleAvoidanceCurrentStation = newCornerForNextStation;
-                                    }
-                                } else {
-                                    didPointCollideWithObstacle = obstacleAvoider.didPointCollideWithObstacle(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, sortedObstacles.get(fourthCounter));
-                                    if (didPointCollideWithObstacle) {
-                                        nearestCornerToCurrentStation = obstacleAvoider.findNearestCorner(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
-                                        nearestCornerToCurrentStation.add(positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter - 1).get(2));
-                                        pathWithCollisiions.add(nearestCornerToCurrentStation);
-                                        newCornerForNextStation = obstacleAvoider.findPathToOppositeSide(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, sortedObstacles.get(fourthCounter));
-                                        newCornerForNextStation.add(positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter - 1).get(2));
-                                        pathWithCollisiions.add(newCornerForNextStation);
-                                        ObstacleAvoidanceCurrentStation = newCornerForNextStation;
-                                    }
-                                }
-                            }
-                        }
-                        pathWithCollisiions.add(ObstacleAvoidanceNextStation);
-                        if (rdCounter == optimizationMatrix.get(ndCounter).size() - 1) {
-                            ObstacleAvoidanceCurrentStation = positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter);
-                            ObstacleAvoidanceNextStation = destinationStation;
-                            sortedObstacles = new ArrayList<>(obstacles.getSortedObstacles(ObstacleAvoidanceCurrentStation));
-                            for (int fourthCounter = 0; fourthCounter < sortedObstacles.size(); fourthCounter = fourthCounter + 1) {
-                                if (ObstacleAvoidanceNextStation.get(2) >= sortedObstacles.get(fourthCounter).get(0).get(2) && ObstacleAvoidanceNextStation.get(2) <= sortedObstacles.get(fourthCounter).get(1).get(2)) {
-                                    isPointInsideOfObstacle = obstacleAvoider.isPointInsideOfObstacle(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
-                                    if (isPointInsideOfObstacle) {
-                                        ObstacleAvoidanceCurrentStation = obstacleAvoider.findNearestCorner(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
-                                        didPointCollideWithObstacle = obstacleAvoider.didPointCollideWithObstacle(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, sortedObstacles.get(fourthCounter));
-                                        if (didPointCollideWithObstacle) {
-                                            nearestCornerToCurrentStation = obstacleAvoider.findNearestCorner(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
-                                            nearestCornerToCurrentStation.add(positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter - 1).get(2));
-                                            pathWithCollisiions.add(nearestCornerToCurrentStation);
-                                            newCornerForNextStation = obstacleAvoider.findPathToOppositeSide(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, sortedObstacles.get(fourthCounter));
-                                            newCornerForNextStation.add(positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter - 1).get(2));
-                                            pathWithCollisiions.add(newCornerForNextStation);
-                                            ObstacleAvoidanceCurrentStation = newCornerForNextStation;
-                                        }
-                                    } else {
-                                        didPointCollideWithObstacle = obstacleAvoider.didPointCollideWithObstacle(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, sortedObstacles.get(fourthCounter));
-                                        if (didPointCollideWithObstacle) {
-                                            nearestCornerToCurrentStation = obstacleAvoider.findNearestCorner(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
-                                            nearestCornerToCurrentStation.add(positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter - 1).get(2));
-                                            pathWithCollisiions.add(nearestCornerToCurrentStation);
-                                            newCornerForNextStation = obstacleAvoider.findPathToOppositeSide(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, sortedObstacles.get(fourthCounter));
-                                            newCornerForNextStation.add(positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter - 1).get(2));
-                                            pathWithCollisiions.add(newCornerForNextStation);
-                                            ObstacleAvoidanceCurrentStation = newCornerForNextStation;
-                                        }
-                                    }
-                                }
+                            isPointInsideOfObstacle = obstacleAvoider.isPointInsideOfObstacle(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
+                            if (isPointInsideOfObstacle) {
+                                ObstacleAvoidanceCurrentStation = obstacleAvoider.findNearestCorner(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
+                                positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter).set(0, ObstacleAvoidanceCurrentStation.get(0));
+                                positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter).set(1, ObstacleAvoidanceCurrentStation.get(1));
                             }
                         }
                     } else if (rdCounter == 0) {
@@ -695,41 +615,17 @@ class AdaptedRRTIGWOExperimentResults {
                         positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter).set(0, xNext);
                         positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter).set(1, yNext);
                         //Obstacle avoidance
-                        ObstacleAvoidanceCurrentStation = sourceStation;
-                        ObstacleAvoidanceNextStation = positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter);
+                        ObstacleAvoidanceCurrentStation = positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter);
                         sortedObstacles = new ArrayList<>(obstacles.getSortedObstacles(ObstacleAvoidanceCurrentStation));
                         for (int fourthCounter = 0; fourthCounter < sortedObstacles.size(); fourthCounter = fourthCounter + 1) {
-                            if (ObstacleAvoidanceNextStation.get(2) >= sortedObstacles.get(fourthCounter).get(0).get(2) && ObstacleAvoidanceNextStation.get(2) <= sortedObstacles.get(fourthCounter).get(1).get(2)) {
-                                isPointInsideOfObstacle = obstacleAvoider.isPointInsideOfObstacle(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
-                                if (isPointInsideOfObstacle) {
-                                    ObstacleAvoidanceCurrentStation = obstacleAvoider.findNearestCorner(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
-                                    didPointCollideWithObstacle = obstacleAvoider.didPointCollideWithObstacle(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, sortedObstacles.get(fourthCounter));
-                                    if (didPointCollideWithObstacle) {
-                                        nearestCornerToCurrentStation = obstacleAvoider.findNearestCorner(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
-                                        nearestCornerToCurrentStation.add(positionsMatrixWithoutCollisions.get(ndCounter).get(0).get(2));
-                                        pathWithCollisiions.add(nearestCornerToCurrentStation);
-                                        newCornerForNextStation = obstacleAvoider.findPathToOppositeSide(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, sortedObstacles.get(fourthCounter));
-                                        newCornerForNextStation.add(positionsMatrixWithoutCollisions.get(ndCounter).get(0).get(2));
-                                        pathWithCollisiions.add(newCornerForNextStation);
-                                        ObstacleAvoidanceCurrentStation = newCornerForNextStation;
-                                    }
-                                } else {
-                                    didPointCollideWithObstacle = obstacleAvoider.didPointCollideWithObstacle(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, sortedObstacles.get(fourthCounter));
-                                    if (didPointCollideWithObstacle) {
-                                        nearestCornerToCurrentStation = obstacleAvoider.findNearestCorner(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
-                                        nearestCornerToCurrentStation.add(positionsMatrixWithoutCollisions.get(ndCounter).get(0).get(2));
-                                        pathWithCollisiions.add(nearestCornerToCurrentStation);
-                                        newCornerForNextStation = obstacleAvoider.findPathToOppositeSide(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, sortedObstacles.get(fourthCounter));
-                                        newCornerForNextStation.add(positionsMatrixWithoutCollisions.get(ndCounter).get(0).get(2));
-                                        pathWithCollisiions.add(newCornerForNextStation);
-                                        ObstacleAvoidanceCurrentStation = newCornerForNextStation;
-                                    }
-                                }
+                            isPointInsideOfObstacle = obstacleAvoider.isPointInsideOfObstacle(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
+                            if (isPointInsideOfObstacle) {
+                                ObstacleAvoidanceCurrentStation = obstacleAvoider.findNearestCorner(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
+                                positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter).set(0, ObstacleAvoidanceCurrentStation.get(0));
+                                positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter).set(1, ObstacleAvoidanceCurrentStation.get(1));
                             }
                         }
-                        pathWithCollisiions.add(ObstacleAvoidanceNextStation);
                     }
-
                     P = positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter);
                     //Controls Boundaries
                     if (P.get(0) < Xboundaries.get(0)) {
@@ -750,6 +646,62 @@ class AdaptedRRTIGWOExperimentResults {
                     //Updates Boundaries
                     positionsMatrixWithoutCollisions.get(ndCounter).set(rdCounter, P);
                 }
+                for (int rdCounter = 0; rdCounter < optimizationMatrix.get(ndCounter).size(); rdCounter = rdCounter + 1) {
+                    if (rdCounter > 0) {
+                        //Obstacle avoidance
+                        ObstacleAvoidanceCurrentStation = positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter - 1);
+                        ObstacleAvoidanceNextStation = positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter);
+                        sortedObstacles = new ArrayList<>(obstacles.getSortedObstacles(ObstacleAvoidanceCurrentStation));
+                        for (int fourthCounter = 0; fourthCounter < sortedObstacles.size(); fourthCounter = fourthCounter + 1) {
+                            didPointCollideWithObstacle = obstacleAvoider.didPointCollideWithObstacle(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, sortedObstacles.get(fourthCounter));
+                            if (didPointCollideWithObstacle) {
+                                nearestCornerToCurrentStation = obstacleAvoider.findNearestCorner(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
+                                nearestCornerToCurrentStation.add(positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter - 1).get(2));
+                                pathWithCollisiions.add(nearestCornerToCurrentStation);
+                                newCornerForNextStation = obstacleAvoider.findPathToOppositeSide(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, sortedObstacles.get(fourthCounter));
+                                newCornerForNextStation.add(positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter - 1).get(2));
+                                pathWithCollisiions.add(newCornerForNextStation);
+                                ObstacleAvoidanceCurrentStation = newCornerForNextStation;
+                            }
+                        }
+                        pathWithCollisiions.add(ObstacleAvoidanceNextStation);
+                        if (rdCounter == optimizationMatrix.get(ndCounter).size() - 1) {
+                            ObstacleAvoidanceCurrentStation = positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter);
+                            ObstacleAvoidanceNextStation = destinationStation;
+                            sortedObstacles = new ArrayList<>(obstacles.getSortedObstacles(ObstacleAvoidanceCurrentStation));
+                            for (int fourthCounter = 0; fourthCounter < sortedObstacles.size(); fourthCounter = fourthCounter + 1) {
+                                didPointCollideWithObstacle = obstacleAvoider.didPointCollideWithObstacle(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, sortedObstacles.get(fourthCounter));
+                                if (didPointCollideWithObstacle) {
+                                    nearestCornerToCurrentStation = obstacleAvoider.findNearestCorner(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
+                                    nearestCornerToCurrentStation.add(positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter - 1).get(2));
+                                    pathWithCollisiions.add(nearestCornerToCurrentStation);
+                                    newCornerForNextStation = obstacleAvoider.findPathToOppositeSide(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, sortedObstacles.get(fourthCounter));
+                                    newCornerForNextStation.add(positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter - 1).get(2));
+                                    pathWithCollisiions.add(newCornerForNextStation);
+                                    ObstacleAvoidanceCurrentStation = newCornerForNextStation;
+                                }
+                            }
+                        }
+                    } else if (rdCounter == 0) {
+                        //Obstacle avoidance
+                        ObstacleAvoidanceCurrentStation = sourceStation;
+                        ObstacleAvoidanceNextStation = positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter);
+                        sortedObstacles = new ArrayList<>(obstacles.getSortedObstacles(ObstacleAvoidanceCurrentStation));
+                        for (int fourthCounter = 0; fourthCounter < sortedObstacles.size(); fourthCounter = fourthCounter + 1) {
+                            didPointCollideWithObstacle = obstacleAvoider.didPointCollideWithObstacle(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, sortedObstacles.get(fourthCounter));
+                            if (didPointCollideWithObstacle) {
+                                nearestCornerToCurrentStation = obstacleAvoider.findNearestCorner(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
+                                nearestCornerToCurrentStation.add(positionsMatrixWithoutCollisions.get(ndCounter).get(0).get(2));
+                                pathWithCollisiions.add(nearestCornerToCurrentStation);
+                                newCornerForNextStation = obstacleAvoider.findPathToOppositeSide(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, sortedObstacles.get(fourthCounter));
+                                newCornerForNextStation.add(positionsMatrixWithoutCollisions.get(ndCounter).get(0).get(2));
+                                pathWithCollisiions.add(newCornerForNextStation);
+                                ObstacleAvoidanceCurrentStation = newCornerForNextStation;
+                            }
+                        }
+                        pathWithCollisiions.add(ObstacleAvoidanceNextStation);
+                    }
+                }
                 positionsMatrixWithCollisions.add(pathWithCollisiions);
                 pathWithCollisiions = new ArrayList<>();
                 optimizationMatrix = adaptedRRTExperimentResults.createOptimizationMatrix(positionsMatrixWithoutCollisions, sourceStation);
@@ -757,12 +709,16 @@ class AdaptedRRTIGWOExperimentResults {
             fitnessValues = adaptedRRTExperimentResults.calculateFitnessValues(positionsMatrixWithCollisions, sourceStation, destinationStation);
             sortedFitnessValues = adaptedRRTExperimentResults.sortFitnessValues(fitnessValues);
         }
-
-        System.out.println("IGWO Experiment Results: ");
-        System.out.println("Alpha's fitness value: " + sortedFitnessValues.get(0));
+        System.out.println("Alpha's fitness value after iterations: " + sortedFitnessValues.get(0));
         System.out.println("Alpha path without collisions");
         for (int ndCounter = 0; ndCounter < positionsMatrixWithoutCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).size(); ndCounter = ndCounter + 1) {
             System.out.println(ndCounter + " " + positionsMatrixWithoutCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).get(ndCounter));
+        }
+        for (int counter = 0; counter < positionsMatrixWithCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).size() - 1; counter = counter + 1) {
+            if (positionsMatrixWithCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).get(counter).equals(positionsMatrixWithCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).get(counter + 1))) {
+                positionsMatrixWithCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).remove(counter + 1);
+                counter = counter - 1;
+            }
         }
         System.out.println("Alpha path with collisions");
         for (int ndCounter = 0; ndCounter < positionsMatrixWithCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).size(); ndCounter = ndCounter + 1) {
@@ -778,8 +734,6 @@ class AdaptedRRTExGWOExperimentResults {
     public void ExGWO(ArrayList<ArrayList<ArrayList<Double>>> positionsMatrixWithoutCollisions) {
         random = new Random();
         adaptedRRTExperimentResults = new AdaptedRRTExperimentResults();
-
-        random = new Random();
         //Gray Wolf Optimization and Path Planning start here...
         //Boundaries of map
         ArrayList<Double> Xboundaries = new ArrayList<>(), Yboundaries = new ArrayList<>(), Zboundaries = new ArrayList<>();
@@ -843,7 +797,7 @@ class AdaptedRRTExGWOExperimentResults {
         System.out.println("Initialization, alpha's fitness value: " + sortedFitnessValues.get(0));
         for (int stCounter = 0; stCounter < iteration; stCounter = stCounter + 1) {
             positionsMatrixWithCollisions = new ArrayList<>();
-            a = 2.0 - 2.0 * Math.pow(stCounter, 5) / Math.pow(iteration, 5);
+            a = 2.0 - 2.0 * Math.pow(stCounter, 2) / Math.pow(iteration, 2);
             for (int ndCounter = 0; ndCounter < optimizationMatrix.size(); ndCounter = ndCounter + 1) {
                 for (int rdCounter = 0; rdCounter < optimizationMatrix.get(ndCounter).size(); rdCounter = rdCounter + 1) {
                     A = new ArrayList<>();
@@ -901,13 +855,11 @@ class AdaptedRRTExGWOExperimentResults {
                         x = x + X.get(fifthCounter);
                     }
                     x = x / X.size();
-
                     if (x > r) {
                         x = r + (x - r) * random.nextDouble();
                     } else {
                         x = x + (r - x) * random.nextDouble();
                     }
-
                     //Update Position
                     if (rdCounter > 0) {
                         xCurrent = positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter - 1).get(0);
@@ -925,72 +877,14 @@ class AdaptedRRTExGWOExperimentResults {
                         positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter).set(1, yNext);
                         positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter).set(2, positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter - 1).get(2));
                         //Obstacle avoidance
-                        ObstacleAvoidanceCurrentStation = positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter - 1);
-                        ObstacleAvoidanceNextStation = positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter);
+                        ObstacleAvoidanceCurrentStation = positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter);
                         sortedObstacles = new ArrayList<>(obstacles.getSortedObstacles(ObstacleAvoidanceCurrentStation));
                         for (int fourthCounter = 0; fourthCounter < sortedObstacles.size(); fourthCounter = fourthCounter + 1) {
-                            if (ObstacleAvoidanceNextStation.get(2) >= sortedObstacles.get(fourthCounter).get(0).get(2) && ObstacleAvoidanceNextStation.get(2) <= sortedObstacles.get(fourthCounter).get(1).get(2)) {
-                                isPointInsideOfObstacle = obstacleAvoider.isPointInsideOfObstacle(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
-                                if (isPointInsideOfObstacle) {
-                                    pathWithCollisiions.remove(pathWithCollisiions.size() - 1);
-                                    ObstacleAvoidanceCurrentStation = obstacleAvoider.findNearestCorner(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
-                                    didPointCollideWithObstacle = obstacleAvoider.didPointCollideWithObstacle(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, sortedObstacles.get(fourthCounter));
-                                    if (didPointCollideWithObstacle) {
-                                        nearestCornerToCurrentStation = obstacleAvoider.findNearestCorner(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
-                                        nearestCornerToCurrentStation.add(positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter - 1).get(2));
-                                        pathWithCollisiions.add(nearestCornerToCurrentStation);
-                                        newCornerForNextStation = obstacleAvoider.findPathToOppositeSide(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, sortedObstacles.get(fourthCounter));
-                                        newCornerForNextStation.add(positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter - 1).get(2));
-                                        pathWithCollisiions.add(newCornerForNextStation);
-                                        ObstacleAvoidanceCurrentStation = newCornerForNextStation;
-                                    }
-                                } else {
-                                    didPointCollideWithObstacle = obstacleAvoider.didPointCollideWithObstacle(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, sortedObstacles.get(fourthCounter));
-                                    if (didPointCollideWithObstacle) {
-                                        nearestCornerToCurrentStation = obstacleAvoider.findNearestCorner(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
-                                        nearestCornerToCurrentStation.add(positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter - 1).get(2));
-                                        pathWithCollisiions.add(nearestCornerToCurrentStation);
-                                        newCornerForNextStation = obstacleAvoider.findPathToOppositeSide(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, sortedObstacles.get(fourthCounter));
-                                        newCornerForNextStation.add(positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter - 1).get(2));
-                                        pathWithCollisiions.add(newCornerForNextStation);
-                                        ObstacleAvoidanceCurrentStation = newCornerForNextStation;
-                                    }
-                                }
-                            }
-                        }
-                        pathWithCollisiions.add(ObstacleAvoidanceNextStation);
-                        if (rdCounter == optimizationMatrix.get(ndCounter).size() - 1) {
-                            ObstacleAvoidanceCurrentStation = positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter);
-                            ObstacleAvoidanceNextStation = destinationStation;
-                            sortedObstacles = new ArrayList<>(obstacles.getSortedObstacles(ObstacleAvoidanceCurrentStation));
-                            for (int fourthCounter = 0; fourthCounter < sortedObstacles.size(); fourthCounter = fourthCounter + 1) {
-                                if (ObstacleAvoidanceNextStation.get(2) >= sortedObstacles.get(fourthCounter).get(0).get(2) && ObstacleAvoidanceNextStation.get(2) <= sortedObstacles.get(fourthCounter).get(1).get(2)) {
-                                    isPointInsideOfObstacle = obstacleAvoider.isPointInsideOfObstacle(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
-                                    if (isPointInsideOfObstacle) {
-                                        ObstacleAvoidanceCurrentStation = obstacleAvoider.findNearestCorner(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
-                                        didPointCollideWithObstacle = obstacleAvoider.didPointCollideWithObstacle(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, sortedObstacles.get(fourthCounter));
-                                        if (didPointCollideWithObstacle) {
-                                            nearestCornerToCurrentStation = obstacleAvoider.findNearestCorner(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
-                                            nearestCornerToCurrentStation.add(positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter - 1).get(2));
-                                            pathWithCollisiions.add(nearestCornerToCurrentStation);
-                                            newCornerForNextStation = obstacleAvoider.findPathToOppositeSide(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, sortedObstacles.get(fourthCounter));
-                                            newCornerForNextStation.add(positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter - 1).get(2));
-                                            pathWithCollisiions.add(newCornerForNextStation);
-                                            ObstacleAvoidanceCurrentStation = newCornerForNextStation;
-                                        }
-                                    } else {
-                                        didPointCollideWithObstacle = obstacleAvoider.didPointCollideWithObstacle(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, sortedObstacles.get(fourthCounter));
-                                        if (didPointCollideWithObstacle) {
-                                            nearestCornerToCurrentStation = obstacleAvoider.findNearestCorner(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
-                                            nearestCornerToCurrentStation.add(positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter - 1).get(2));
-                                            pathWithCollisiions.add(nearestCornerToCurrentStation);
-                                            newCornerForNextStation = obstacleAvoider.findPathToOppositeSide(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, sortedObstacles.get(fourthCounter));
-                                            newCornerForNextStation.add(positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter - 1).get(2));
-                                            pathWithCollisiions.add(newCornerForNextStation);
-                                            ObstacleAvoidanceCurrentStation = newCornerForNextStation;
-                                        }
-                                    }
-                                }
+                            isPointInsideOfObstacle = obstacleAvoider.isPointInsideOfObstacle(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
+                            if (isPointInsideOfObstacle) {
+                                ObstacleAvoidanceCurrentStation = obstacleAvoider.findNearestCorner(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
+                                positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter).set(0, ObstacleAvoidanceCurrentStation.get(0));
+                                positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter).set(1, ObstacleAvoidanceCurrentStation.get(1));
                             }
                         }
                     } else if (rdCounter == 0) {
@@ -1006,41 +900,17 @@ class AdaptedRRTExGWOExperimentResults {
                         positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter).set(0, xNext);
                         positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter).set(1, yNext);
                         //Obstacle avoidance
-                        ObstacleAvoidanceCurrentStation = sourceStation;
-                        ObstacleAvoidanceNextStation = positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter);
+                        ObstacleAvoidanceCurrentStation = positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter);
                         sortedObstacles = new ArrayList<>(obstacles.getSortedObstacles(ObstacleAvoidanceCurrentStation));
                         for (int fourthCounter = 0; fourthCounter < sortedObstacles.size(); fourthCounter = fourthCounter + 1) {
-                            if (ObstacleAvoidanceNextStation.get(2) >= sortedObstacles.get(fourthCounter).get(0).get(2) && ObstacleAvoidanceNextStation.get(2) <= sortedObstacles.get(fourthCounter).get(1).get(2)) {
-                                isPointInsideOfObstacle = obstacleAvoider.isPointInsideOfObstacle(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
-                                if (isPointInsideOfObstacle) {
-                                    ObstacleAvoidanceCurrentStation = obstacleAvoider.findNearestCorner(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
-                                    didPointCollideWithObstacle = obstacleAvoider.didPointCollideWithObstacle(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, sortedObstacles.get(fourthCounter));
-                                    if (didPointCollideWithObstacle) {
-                                        nearestCornerToCurrentStation = obstacleAvoider.findNearestCorner(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
-                                        nearestCornerToCurrentStation.add(positionsMatrixWithoutCollisions.get(ndCounter).get(0).get(2));
-                                        pathWithCollisiions.add(nearestCornerToCurrentStation);
-                                        newCornerForNextStation = obstacleAvoider.findPathToOppositeSide(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, sortedObstacles.get(fourthCounter));
-                                        newCornerForNextStation.add(positionsMatrixWithoutCollisions.get(ndCounter).get(0).get(2));
-                                        pathWithCollisiions.add(newCornerForNextStation);
-                                        ObstacleAvoidanceCurrentStation = newCornerForNextStation;
-                                    }
-                                } else {
-                                    didPointCollideWithObstacle = obstacleAvoider.didPointCollideWithObstacle(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, sortedObstacles.get(fourthCounter));
-                                    if (didPointCollideWithObstacle) {
-                                        nearestCornerToCurrentStation = obstacleAvoider.findNearestCorner(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
-                                        nearestCornerToCurrentStation.add(positionsMatrixWithoutCollisions.get(ndCounter).get(0).get(2));
-                                        pathWithCollisiions.add(nearestCornerToCurrentStation);
-                                        newCornerForNextStation = obstacleAvoider.findPathToOppositeSide(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, sortedObstacles.get(fourthCounter));
-                                        newCornerForNextStation.add(positionsMatrixWithoutCollisions.get(ndCounter).get(0).get(2));
-                                        pathWithCollisiions.add(newCornerForNextStation);
-                                        ObstacleAvoidanceCurrentStation = newCornerForNextStation;
-                                    }
-                                }
+                            isPointInsideOfObstacle = obstacleAvoider.isPointInsideOfObstacle(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
+                            if (isPointInsideOfObstacle) {
+                                ObstacleAvoidanceCurrentStation = obstacleAvoider.findNearestCorner(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
+                                positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter).set(0, ObstacleAvoidanceCurrentStation.get(0));
+                                positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter).set(1, ObstacleAvoidanceCurrentStation.get(1));
                             }
                         }
-                        pathWithCollisiions.add(ObstacleAvoidanceNextStation);
                     }
-
                     P = positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter);
                     //Controls Boundaries
                     if (P.get(0) < Xboundaries.get(0)) {
@@ -1061,6 +931,62 @@ class AdaptedRRTExGWOExperimentResults {
                     //Updates Boundaries
                     positionsMatrixWithoutCollisions.get(ndCounter).set(rdCounter, P);
                 }
+                for (int rdCounter = 0; rdCounter < optimizationMatrix.get(ndCounter).size(); rdCounter = rdCounter + 1) {
+                    if (rdCounter > 0) {
+                        //Obstacle avoidance
+                        ObstacleAvoidanceCurrentStation = positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter - 1);
+                        ObstacleAvoidanceNextStation = positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter);
+                        sortedObstacles = new ArrayList<>(obstacles.getSortedObstacles(ObstacleAvoidanceCurrentStation));
+                        for (int fourthCounter = 0; fourthCounter < sortedObstacles.size(); fourthCounter = fourthCounter + 1) {
+                            didPointCollideWithObstacle = obstacleAvoider.didPointCollideWithObstacle(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, sortedObstacles.get(fourthCounter));
+                            if (didPointCollideWithObstacle) {
+                                nearestCornerToCurrentStation = obstacleAvoider.findNearestCorner(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
+                                nearestCornerToCurrentStation.add(positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter - 1).get(2));
+                                pathWithCollisiions.add(nearestCornerToCurrentStation);
+                                newCornerForNextStation = obstacleAvoider.findPathToOppositeSide(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, sortedObstacles.get(fourthCounter));
+                                newCornerForNextStation.add(positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter - 1).get(2));
+                                pathWithCollisiions.add(newCornerForNextStation);
+                                ObstacleAvoidanceCurrentStation = newCornerForNextStation;
+                            }
+                        }
+                        pathWithCollisiions.add(ObstacleAvoidanceNextStation);
+                        if (rdCounter == optimizationMatrix.get(ndCounter).size() - 1) {
+                            ObstacleAvoidanceCurrentStation = positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter);
+                            ObstacleAvoidanceNextStation = destinationStation;
+                            sortedObstacles = new ArrayList<>(obstacles.getSortedObstacles(ObstacleAvoidanceCurrentStation));
+                            for (int fourthCounter = 0; fourthCounter < sortedObstacles.size(); fourthCounter = fourthCounter + 1) {
+                                didPointCollideWithObstacle = obstacleAvoider.didPointCollideWithObstacle(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, sortedObstacles.get(fourthCounter));
+                                if (didPointCollideWithObstacle) {
+                                    nearestCornerToCurrentStation = obstacleAvoider.findNearestCorner(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
+                                    nearestCornerToCurrentStation.add(positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter - 1).get(2));
+                                    pathWithCollisiions.add(nearestCornerToCurrentStation);
+                                    newCornerForNextStation = obstacleAvoider.findPathToOppositeSide(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, sortedObstacles.get(fourthCounter));
+                                    newCornerForNextStation.add(positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter - 1).get(2));
+                                    pathWithCollisiions.add(newCornerForNextStation);
+                                    ObstacleAvoidanceCurrentStation = newCornerForNextStation;
+                                }
+                            }
+                        }
+                    } else if (rdCounter == 0) {
+                        //Obstacle avoidance
+                        ObstacleAvoidanceCurrentStation = sourceStation;
+                        ObstacleAvoidanceNextStation = positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter);
+                        sortedObstacles = new ArrayList<>(obstacles.getSortedObstacles(ObstacleAvoidanceCurrentStation));
+                        for (int fourthCounter = 0; fourthCounter < sortedObstacles.size(); fourthCounter = fourthCounter + 1) {
+                            didPointCollideWithObstacle = obstacleAvoider.didPointCollideWithObstacle(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, sortedObstacles.get(fourthCounter));
+                            if (didPointCollideWithObstacle) {
+                                nearestCornerToCurrentStation = obstacleAvoider.findNearestCorner(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
+                                nearestCornerToCurrentStation.add(positionsMatrixWithoutCollisions.get(ndCounter).get(0).get(2));
+                                pathWithCollisiions.add(nearestCornerToCurrentStation);
+                                newCornerForNextStation = obstacleAvoider.findPathToOppositeSide(ObstacleAvoidanceCurrentStation, ObstacleAvoidanceNextStation, sortedObstacles.get(fourthCounter));
+                                newCornerForNextStation.add(positionsMatrixWithoutCollisions.get(ndCounter).get(0).get(2));
+                                pathWithCollisiions.add(newCornerForNextStation);
+                                ObstacleAvoidanceCurrentStation = newCornerForNextStation;
+                            }
+                        }
+                        pathWithCollisiions.add(ObstacleAvoidanceNextStation);
+                    }
+                }
                 positionsMatrixWithCollisions.add(pathWithCollisiions);
                 pathWithCollisiions = new ArrayList<>();
                 optimizationMatrix = adaptedRRTExperimentResults.createOptimizationMatrix(positionsMatrixWithoutCollisions, sourceStation);
@@ -1068,12 +994,16 @@ class AdaptedRRTExGWOExperimentResults {
             fitnessValues = adaptedRRTExperimentResults.calculateFitnessValues(positionsMatrixWithCollisions, sourceStation, destinationStation);
             sortedFitnessValues = adaptedRRTExperimentResults.sortFitnessValues(fitnessValues);
         }
-
-        System.out.println("ExGWO Experiment Results: ");
-        System.out.println("Alpha's fitness value: " + sortedFitnessValues.get(0));
+        System.out.println("Alpha's fitness value after iterations: " + sortedFitnessValues.get(0));
         System.out.println("Alpha path without collisions");
         for (int ndCounter = 0; ndCounter < positionsMatrixWithoutCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).size(); ndCounter = ndCounter + 1) {
             System.out.println(ndCounter + " " + positionsMatrixWithoutCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).get(ndCounter));
+        }
+        for (int counter = 0; counter < positionsMatrixWithCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).size() - 1; counter = counter + 1) {
+            if (positionsMatrixWithCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).get(counter).equals(positionsMatrixWithCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).get(counter + 1))) {
+                positionsMatrixWithCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).remove(counter + 1);
+                counter = counter - 1;
+            }
         }
         System.out.println("Alpha path with collisions");
         for (int ndCounter = 0; ndCounter < positionsMatrixWithCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).size(); ndCounter = ndCounter + 1) {

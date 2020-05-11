@@ -3,7 +3,6 @@ package com.thealiyev;
 import java.util.ArrayList;
 
 public class ObstacleAvoider {
-
     public static void main(String[] args) {
         ObstacleAvoider obstacleAvoider = new ObstacleAvoider();
         ArrayList<ArrayList<Double>> path = new ArrayList<>();

@@ -3,15 +3,15 @@ package com.thealiyev;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class ExGWOPathPlanningDynamicStationaryMethod {
+public class JustAAdoptedRRTTest {
     private static Random random = null;
 
     public static void main(String[] args) {
-        ExGWOPathPlanningDynamicStationaryMethod exgwoPathPlanningDynamicStationaryMethod = new ExGWOPathPlanningDynamicStationaryMethod();
-        exgwoPathPlanningDynamicStationaryMethod.ExGWO();
+        JustAAdoptedRRTTest justAAdoptedRRTTest = new JustAAdoptedRRTTest();
+        justAAdoptedRRTTest.GWO();
     }
 
-    private void ExGWO() {
+    private void GWO() {
         random = new Random();
         //Gray Wolf Optimization and Path Planning start here...
         //Boundaries of map
@@ -38,12 +38,12 @@ public class ExGWOPathPlanningDynamicStationaryMethod {
         //Gray Wolf Optimization initialization starts here...
         double a;
         double r1, r2;
-        ArrayList<Double> A;
-        ArrayList<Double> C;
-        ArrayList<Double> D;
-        ArrayList<Double> X;
-        double x;
+        double A1, A2, A3;
+        double C1, C2, C3;
+        double x, X1, X2, X3;
         ArrayList<Double> P;
+        double Dalpha, Dbeta, Ddelta;
+        double Xalpha, Xbeta, Xdelta;
         int population = 100, dimension = 5;
         int iteration = 100;
         ArrayList<ArrayList<ArrayList<Double>>> positionsMatrixWithoutCollisions = createRandomPositionsMatrix(population, dimension, Xboundaries, Yboundaries, Zboundaries);
@@ -77,64 +77,45 @@ public class ExGWOPathPlanningDynamicStationaryMethod {
         System.out.println("Initialization, alpha's fitness value: " + sortedFitnessValues.get(0));
         for (int stCounter = 0; stCounter < iteration; stCounter = stCounter + 1) {
             positionsMatrixWithCollisions = new ArrayList<>();
-            a = 2.0 - 2.0 * Math.pow(stCounter, 2) / Math.pow(iteration, 2);
+            a = 2.0 - 2.0 * stCounter / iteration;
             for (int ndCounter = 0; ndCounter < optimizationMatrix.size(); ndCounter = ndCounter + 1) {
                 for (int rdCounter = 0; rdCounter < optimizationMatrix.get(ndCounter).size(); rdCounter = rdCounter + 1) {
-                    A = new ArrayList<>();
-                    C = new ArrayList<>();
-                    D = new ArrayList<>();
-                    X = new ArrayList<>();
                     x = optimizationMatrix.get(ndCounter).get(rdCounter);
 
                     r1 = random.nextDouble();
                     r2 = random.nextDouble();
-                    A.add(2 * a * r1 - a);
-                    C.add(2 * r2);
-                    D.add(C.get(0) * optimizationMatrix.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).get(rdCounter) - x);
-                    if (D.get(0) < 0) {
-                        D.set(0, -1 * D.get(0));
+                    A1 = 2 * a * r1 - a;
+                    C1 = 2 * r2;
+                    Xalpha = optimizationMatrix.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).get(rdCounter);
+                    Dalpha = C1 * Xalpha - x;
+                    if (Dalpha < 0) {
+                        Dalpha = Dalpha * -1;
                     }
-                    X.add(optimizationMatrix.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).get(rdCounter) - A.get(0) * D.get(0));
+                    X1 = Xalpha - A1 * Dalpha;
 
                     r1 = random.nextDouble();
                     r2 = random.nextDouble();
-                    A.add(2 * a * r1 - a);
-                    C.add(2 * r2);
-                    D.add(C.get(1) * optimizationMatrix.get(fitnessValues.indexOf(sortedFitnessValues.get(1))).get(rdCounter) - x);
-                    if (D.get(1) < 0) {
-                        D.set(1, -1 * D.get(1));
+                    A2 = 2 * a * r1 - a;
+                    C2 = 2 * r2;
+                    Xbeta = optimizationMatrix.get(fitnessValues.indexOf(sortedFitnessValues.get(1))).get(rdCounter);
+                    Dbeta = C2 * Xbeta - x;
+                    if (Dbeta < 0) {
+                        Dbeta = Dbeta * -1;
                     }
-                    X.add(optimizationMatrix.get(fitnessValues.indexOf(sortedFitnessValues.get(1))).get(rdCounter) - A.get(1) * D.get(1));
+                    X2 = Xbeta - A2 * Dbeta;
 
                     r1 = random.nextDouble();
                     r2 = random.nextDouble();
-                    A.add(2 * a * r1 - a);
-                    C.add(2 * r2);
-                    D.add(C.get(2) * optimizationMatrix.get(fitnessValues.indexOf(sortedFitnessValues.get(2))).get(rdCounter) - x);
-                    if (D.get(2) < 0) {
-                        D.set(2, -1 * D.get(2));
+                    A3 = 2 * a * r1 - a;
+                    C3 = 2 * r2;
+                    Xdelta = optimizationMatrix.get(fitnessValues.indexOf(sortedFitnessValues.get(2))).get(rdCounter);
+                    Ddelta = C3 * Xdelta - x;
+                    if (Ddelta < 0) {
+                        Ddelta = Ddelta * -1;
                     }
-                    X.add(optimizationMatrix.get(fitnessValues.indexOf(sortedFitnessValues.get(2))).get(rdCounter) - A.get(2) * D.get(2));
+                    X3 = Xdelta - A3 * Ddelta;
 
-                    if (ndCounter > 2) {
-                        for (int fourthCounter = 0; fourthCounter < ndCounter; fourthCounter = fourthCounter + 1) {
-                            r1 = random.nextDouble();
-                            r2 = random.nextDouble();
-                            A.add(2 * a * r1 - a);
-                            C.add(2 * r2);
-                            D.add(C.get(fourthCounter) * optimizationMatrix.get(ndCounter - 1).get(rdCounter) - x);
-                            if (D.get(fourthCounter) < 0) {
-                                D.set(fourthCounter, -1 * D.get(fourthCounter));
-                            }
-                            X.add(optimizationMatrix.get(ndCounter - 1).get(rdCounter) - A.get(fourthCounter) * D.get(fourthCounter));
-                        }
-                    }
-
-                    x = 0;
-                    for (int fifthCounter = 0; fifthCounter < X.size(); fifthCounter = fifthCounter + 1) {
-                        x = x + X.get(fifthCounter);
-                    }
-                    x = x / X.size();
+                    x = (X1 + X2 + X3) / 3;
                     if (x > r) {
                         x = r + (x - r) * random.nextDouble();
                     } else {
@@ -322,20 +303,21 @@ public class ExGWOPathPlanningDynamicStationaryMethod {
         return positionsMatrix;
     }
 
-    private ArrayList<ArrayList<Double>> createOptimizationMatrix(ArrayList<ArrayList<ArrayList<Double>>> positionsMatrixWithCollisions, ArrayList<Double> sourceStation) {
+    private ArrayList<ArrayList<Double>> createOptimizationMatrix
+            (ArrayList<ArrayList<ArrayList<Double>>> positionsMatrixWithoutCollisions, ArrayList<Double> sourceStation) {
         random = new Random();
 
         ArrayList<ArrayList<Double>> optimizationMatrix = new ArrayList<>();
         ArrayList<Double> optimizationVector = new ArrayList<>();
         double euclideanDistance;
 
-        for (int stCounter = 0; stCounter < positionsMatrixWithCollisions.size(); stCounter = stCounter + 1) {
-            for (int ndCounter = 0; ndCounter < positionsMatrixWithCollisions.get(stCounter).size(); ndCounter = ndCounter + 1) {
+        for (int stCounter = 0; stCounter < positionsMatrixWithoutCollisions.size(); stCounter = stCounter + 1) {
+            for (int ndCounter = 0; ndCounter < positionsMatrixWithoutCollisions.get(stCounter).size(); ndCounter = ndCounter + 1) {
                 if (ndCounter == 0) {
-                    euclideanDistance = findEuclideanDistance(sourceStation, positionsMatrixWithCollisions.get(stCounter).get(ndCounter));
+                    euclideanDistance = findEuclideanDistance(sourceStation, positionsMatrixWithoutCollisions.get(stCounter).get(ndCounter));
                     optimizationVector.add(euclideanDistance);
                 } else {
-                    euclideanDistance = findEuclideanDistance(positionsMatrixWithCollisions.get(stCounter).get(ndCounter - 1), positionsMatrixWithCollisions.get(stCounter).get(ndCounter));
+                    euclideanDistance = findEuclideanDistance(positionsMatrixWithoutCollisions.get(stCounter).get(ndCounter - 1), positionsMatrixWithoutCollisions.get(stCounter).get(ndCounter));
                     optimizationVector.add(euclideanDistance);
                 }
             }
@@ -346,7 +328,8 @@ public class ExGWOPathPlanningDynamicStationaryMethod {
         return optimizationMatrix;
     }
 
-    private ArrayList<Double> calculateFitnessValues(ArrayList<ArrayList<ArrayList<Double>>> positionsMatrix, ArrayList<Double> sourceStation, ArrayList<Double> destinatioStation) {
+    private ArrayList<Double> calculateFitnessValues
+            (ArrayList<ArrayList<ArrayList<Double>>> positionsMatrix, ArrayList<Double> sourceStation, ArrayList<Double> destinatioStation) {
         ArrayList<Double> fitnessValues = new ArrayList<>();
         double sum = 0.0;
         double euclideanDistance;

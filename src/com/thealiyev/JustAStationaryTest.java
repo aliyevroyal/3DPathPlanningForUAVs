@@ -3,15 +3,15 @@ package com.thealiyev;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class IGWOPathPlanningStaticStationaryMethod {
+public class JustAStationaryTest {
     private static Random random = null;
 
     public static void main(String[] args) {
-        IGWOPathPlanningStaticStationaryMethod igwoPathPlanningStaticStationaryMethod = new IGWOPathPlanningStaticStationaryMethod();
-        igwoPathPlanningStaticStationaryMethod.IGWO();
+        JustAStationaryTest justAStationaryTest = new JustAStationaryTest();
+        justAStationaryTest.GWO();
     }
 
-    private void IGWO() {
+    private void GWO() {
         random = new Random();
         //Boundaries of map
         ArrayList<Double> xBoundaries = new ArrayList<>(), yBoundaries = new ArrayList<>(), zBoundaries = new ArrayList<>();
@@ -37,11 +37,11 @@ public class IGWOPathPlanningStaticStationaryMethod {
         //Gray Wolf Optimization initialization starts here...
         double a;
         double r1, r2;
-        ArrayList<Double> A;
-        ArrayList<Double> C;
-        ArrayList<Double> D;
-        ArrayList<Double> X;
-        double x;
+        double A1, A2, A3;
+        double C1, C2, C3;
+        double X, X1, X2, X3;
+        double Dalpha, Dbeta, Ddelta;
+        double Xalpha, Xbeta, Xdelta;
         int theNumberOfStations = 1000;
         int population = 100, dimension = 5;
         int iteration = 100;
@@ -78,42 +78,42 @@ public class IGWOPathPlanningStaticStationaryMethod {
             for (int ndCounter = 0; ndCounter < optimizationMatrix.size(); ndCounter = ndCounter + 1) {
                 visitingStations = new ArrayList<>();
                 for (int rdCounter = 0; rdCounter < optimizationMatrix.get(ndCounter).size(); rdCounter = rdCounter + 1) {
-                    A = new ArrayList<>();
-                    C = new ArrayList<>();
-                    D = new ArrayList<>();
-                    X = new ArrayList<>();
-                    x = optimizationMatrix.get(ndCounter).get(rdCounter);
+                    X = optimizationMatrix.get(ndCounter).get(rdCounter);
 
                     r1 = random.nextDouble();
                     r2 = random.nextDouble();
-                    A.add(2 * a * r1 - a);
-                    C.add(2 * r2);
-                    D.add(C.get(0) * optimizationMatrix.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).get(rdCounter) - x);
-                    if (D.get(0) < 0) {
-                        D.set(0, -1 * D.get(0));
+                    A1 = 2 * a * r1 - a;
+                    C1 = 2 * r2;
+                    Xalpha = optimizationMatrix.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).get(rdCounter);
+                    Dalpha = C1 * Xalpha - X;
+                    if (Dalpha < 0) {
+                        Dalpha = Dalpha * -1;
                     }
-                    X.add(optimizationMatrix.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).get(rdCounter) - A.get(0) * D.get(0));
+                    X1 = Xalpha - A1 * Dalpha;
 
-                    if (ndCounter > 0) {
-                        for (int fourthCounter = 0; fourthCounter < ndCounter; fourthCounter = fourthCounter + 1) {
-                            r1 = random.nextDouble();
-                            r2 = random.nextDouble();
-                            A.add(2 * a * r1 - a);
-                            C.add(2 * r2);
-                            D.add(C.get(fourthCounter) * optimizationMatrix.get(ndCounter - 1).get(rdCounter) - x);
-                            if (D.get(fourthCounter) < 0) {
-                                D.set(fourthCounter, -1 * D.get(fourthCounter));
-                            }
-                            X.add(optimizationMatrix.get(ndCounter - 1).get(rdCounter) - A.get(fourthCounter) * D.get(fourthCounter));
-                        }
+                    r1 = random.nextDouble();
+                    r2 = random.nextDouble();
+                    A2 = 2 * a * r1 - a;
+                    C2 = 2 * r2;
+                    Xbeta = optimizationMatrix.get(fitnessValues.indexOf(sortedFitnessValues.get(1))).get(rdCounter);
+                    Dbeta = C2 * Xbeta - X;
+                    if (Dbeta < 0) {
+                        Dbeta = Dbeta * -1;
                     }
+                    X2 = Xbeta - A2 * Dbeta;
 
-                    x = 0;
-                    for (int fifthCounter = 0; fifthCounter < X.size(); fifthCounter = fifthCounter + 1) {
-                        x = x + X.get(fifthCounter);
+                    r1 = random.nextDouble();
+                    r2 = random.nextDouble();
+                    A3 = 2 * a * r1 - a;
+                    C3 = 2 * r2;
+                    Xdelta = optimizationMatrix.get(fitnessValues.indexOf(sortedFitnessValues.get(2))).get(rdCounter);
+                    Ddelta = C3 * Xdelta - X;
+                    if (Ddelta < 0) {
+                        Ddelta = Ddelta * -1;
                     }
-                    x = x / X.size();
+                    X3 = Xdelta - A3 * Ddelta;
 
+                    X = (X1 + X2 + X3) / 3;
                     for (int fourthCounter = 0; fourthCounter < stations.size(); fourthCounter = fourthCounter + 1) {
                         if (!visitingStations.contains(stations.get(fourthCounter))) {
                             if (rdCounter == 0) {
@@ -121,7 +121,7 @@ public class IGWOPathPlanningStaticStationaryMethod {
                             } else {
                                 distance = findEuclideanDistance(positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter - 1), stations.get(fourthCounter)) + findEuclideanDistance(destinationStation, stations.get(fourthCounter));
                             }
-                            if (distance < x && distance > 0) {
+                            if (distance < X && distance > 0) {
                                 distances.add(distance);
                                 indexes.add(fourthCounter);
                             }

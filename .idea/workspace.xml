@@ -2,21 +2,28 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6ce80e1a-4e66-4642-9a81-b99625a69087" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/thealiyev/AdaptedRRTExperimentResults.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/thealiyev/JustAdoptedRRTTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/thealiyev/JustStationaryTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/3DPathPlanningForUAVs/com/thealiyev/ExGWOPathPlanningDynamicStationaryMethod.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/3DPathPlanningForUAVs/com/thealiyev/ExGWOPathPlanningDynamicStationaryMethod.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/3DPathPlanningForUAVs/com/thealiyev/ExGWOPathPlanningStaticStationaryMethod.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/3DPathPlanningForUAVs/com/thealiyev/ExGWOPathPlanningStaticStationaryMethod.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/3DPathPlanningForUAVs/com/thealiyev/GWOPathPlanningDynamicStationaryMethod.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/3DPathPlanningForUAVs/com/thealiyev/GWOPathPlanningDynamicStationaryMethod.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/3DPathPlanningForUAVs/com/thealiyev/GWOPathPlanningStaticStationaryMethod.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/3DPathPlanningForUAVs/com/thealiyev/GWOPathPlanningStaticStationaryMethod.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/3DPathPlanningForUAVs/com/thealiyev/IGWOPathPlanningDynamicStationaryMethod.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/3DPathPlanningForUAVs/com/thealiyev/IGWOPathPlanningDynamicStationaryMethod.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/3DPathPlanningForUAVs/com/thealiyev/IGWOPathPlanningStaticStationaryMethod.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/3DPathPlanningForUAVs/com/thealiyev/IGWOPathPlanningStaticStationaryMethod.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/thealiyev/AdaptedRRTResults.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/3DPathPlanningForUAVs/com/thealiyev/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/3DPathPlanningForUAVs/com/thealiyev/ObstacleAvoider.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/3DPathPlanningForUAVs/com/thealiyev/ObstacleAvoider.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/3DPathPlanningForUAVs/com/thealiyev/Obstacles.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/3DPathPlanningForUAVs/com/thealiyev/Obstacles.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/thealiyev/AdaptedRRTExperimentResults.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/thealiyev/AdaptedRRTExperimentResults.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/thealiyev/ExGWOPathPlanningDynamicStationaryMethod.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/thealiyev/ExGWOPathPlanningDynamicStationaryMethod.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/thealiyev/ExGWOPathPlanningStaticStationaryMethod.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/thealiyev/ExGWOPathPlanningStaticStationaryMethod.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/thealiyev/GWOPathPlanningDynamicStationaryMethod.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/thealiyev/GWOPathPlanningDynamicStationaryMethod.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/thealiyev/GWOPathPlanningStaticStationaryMethod.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/thealiyev/GWOPathPlanningStaticStationaryMethod.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/thealiyev/IGWOPathPlanningDynamicStationaryMethod.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/thealiyev/IGWOPathPlanningDynamicStationaryMethod.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/thealiyev/IGWOPathPlanningStaticStationaryMethod.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/thealiyev/IGWOPathPlanningStaticStationaryMethod.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/thealiyev/StationaryResults.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/thealiyev/StationaryExperimentResults.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/thealiyev/ObstacleAvoider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/thealiyev/ObstacleAvoider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/thealiyev/Obstacles.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/thealiyev/Obstacles.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/thealiyev/StationaryExperimentResults.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/thealiyev/StationaryExperimentResults.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,19 +129,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.AdaptedRRTExperimentResults" />
-      <item itemvalue="Application.GWOPathPlanningStaticStationaryMethod" />
       <item itemvalue="Application.ExGWOPathPlanningStaticStationaryMethod" />
+      <item itemvalue="Application.GWOPathPlanningStaticStationaryMethod" />
       <item itemvalue="Application.IGWOPathPlanningStaticStationaryMethod" />
       <item itemvalue="Application.StationaryExperimentResults" />
+      <item itemvalue="Application.AdaptedRRTExperimentResults" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.StationaryExperimentResults" />
         <item itemvalue="Application.AdaptedRRTExperimentResults" />
         <item itemvalue="Application.IGWOPathPlanningStaticStationaryMethod" />
-        <item itemvalue="Application.ExGWOPathPlanningStaticStationaryMethod" />
         <item itemvalue="Application.GWOPathPlanningStaticStationaryMethod" />
+        <item itemvalue="Application.ExGWOPathPlanningStaticStationaryMethod" />
       </list>
     </recent_temporary>
   </component>
@@ -171,7 +178,8 @@
       <workItem from="1588967148491" duration="38000" />
       <workItem from="1588996178198" duration="168000" />
       <workItem from="1589032648367" duration="13512000" />
-      <workItem from="1589133450260" duration="5178000" />
+      <workItem from="1589133450260" duration="9226000" />
+      <workItem from="1589181513740" duration="5526000" />
     </task>
     <servers />
   </component>
@@ -187,22 +195,26 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="533" y="158" key="#com.intellij.ide.util.MemberChooser/0.0.1440.900@0.0.1440.900" timestamp="1587670916463" />
-    <state width="1440" height="497" key="GridCell.Tab.0.bottom" timestamp="1589151993744">
+    <state x="0" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1589188225852">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1440" height="497" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1589151993744" />
-    <state width="1440" height="497" key="GridCell.Tab.0.center" timestamp="1589151993743">
+    <state x="0" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1440.900@0.0.1440.900" timestamp="1589188225852" />
+    <state width="1440" height="497" key="GridCell.Tab.0.bottom" timestamp="1589188168830">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1440" height="497" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1589151993743" />
-    <state width="1440" height="497" key="GridCell.Tab.0.left" timestamp="1589151993742">
+    <state width="1440" height="497" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1589188168830" />
+    <state width="1440" height="497" key="GridCell.Tab.0.center" timestamp="1589188168828">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1440" height="497" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1589151993742" />
-    <state width="1440" height="497" key="GridCell.Tab.0.right" timestamp="1589151993744">
+    <state width="1440" height="497" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1589188168828" />
+    <state width="1440" height="497" key="GridCell.Tab.0.left" timestamp="1589188168827">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1440" height="497" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1589151993744" />
+    <state width="1440" height="497" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1589188168827" />
+    <state width="1440" height="497" key="GridCell.Tab.0.right" timestamp="1589188168829">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1440" height="497" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1589188168829" />
     <state width="1440" height="312" key="GridCell.Tab.1.bottom" timestamp="1587910751886">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
@@ -223,10 +235,10 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="229" y="89" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1587633200926" />
-    <state x="413" y="282" key="com.intellij.ide.util.TipDialog" timestamp="1589133453950">
+    <state x="413" y="282" key="com.intellij.ide.util.TipDialog" timestamp="1589182409581">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="413" y="282" key="com.intellij.ide.util.TipDialog/0.0.1440.900@0.0.1440.900" timestamp="1589133453950" />
+    <state x="413" y="282" key="com.intellij.ide.util.TipDialog/0.0.1440.900@0.0.1440.900" timestamp="1589182409581" />
     <state x="375" y="72" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1587698244044">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
