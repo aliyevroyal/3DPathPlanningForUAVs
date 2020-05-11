@@ -11,13 +11,13 @@ public class StationaryExperimentResults {
         ArrayList<Double> xBoundaries = new ArrayList<>(), yBoundaries = new ArrayList<>(), zBoundaries = new ArrayList<>();
         //X boundaries
         xBoundaries.add(0.0);
-        xBoundaries.add(50.0);
+        xBoundaries.add(100.0);
         //Y boundaries
         yBoundaries.add(0.0);
-        yBoundaries.add(50.0);
+        yBoundaries.add(100.0);
         //Z boundaries
         zBoundaries.add(0.0);
-        zBoundaries.add(50.0);
+        zBoundaries.add(100.0);
         StationaryExperimentResults stationaryExperimentResults = new StationaryExperimentResults();
         int theNumberOfStations = 1000;
         int population = 100, dimension = 5;
@@ -204,13 +204,13 @@ class StationaryGWOExperimentResults {
         ArrayList<Double> xBoundaries = new ArrayList<>(), yBoundaries = new ArrayList<>(), zBoundaries = new ArrayList<>();
         //X boundaries
         xBoundaries.add(0.0);
-        xBoundaries.add(50.0);
+        xBoundaries.add(100.0);
         //Y boundaries
         yBoundaries.add(0.0);
-        yBoundaries.add(50.0);
+        yBoundaries.add(100.0);
         //Z boundaries
         zBoundaries.add(0.0);
-        zBoundaries.add(50.0);
+        zBoundaries.add(100.0);
         //Source station coordinates
         ArrayList<Double> sourceStation = new ArrayList<>();
         sourceStation.add(1.0);
@@ -218,9 +218,9 @@ class StationaryGWOExperimentResults {
         sourceStation.add(1.0);
         //Destination station coordinates
         ArrayList<Double> destinationStation = new ArrayList<>();
-        destinationStation.add(49.0);
-        destinationStation.add(49.0);
-        destinationStation.add(49.0);
+        destinationStation.add(99.0);
+        destinationStation.add(99.0);
+        destinationStation.add(99.0);
         //Gray Wolf Optimization initialization starts here...
         double a;
         double r1, r2;
@@ -248,6 +248,10 @@ class StationaryGWOExperimentResults {
         obstacles.setObstacle2();
         obstacles.setObstacle3();
         obstacles.setObstacle4();
+        obstacles.setObstacle5();
+        obstacles.setObstacle6();
+        obstacles.setObstacle7();
+        obstacles.setObstacle8();
         boolean isPointInsideOfObstacle;
         boolean didPointCollideWithObstacle;
         ArrayList<Double> nearestCornerToCurrentStation;
@@ -424,13 +428,13 @@ class StationaryIGWOExperimentResults {
         ArrayList<Double> xBoundaries = new ArrayList<>(), yBoundaries = new ArrayList<>(), zBoundaries = new ArrayList<>();
         //X boundaries
         xBoundaries.add(0.0);
-        xBoundaries.add(50.0);
+        xBoundaries.add(100.0);
         //Y boundaries
         yBoundaries.add(0.0);
-        yBoundaries.add(50.0);
+        yBoundaries.add(100.0);
         //Z boundaries
         zBoundaries.add(0.0);
-        zBoundaries.add(50.0);
+        zBoundaries.add(100.0);
         //Source station coordinates
         ArrayList<Double> sourceStation = new ArrayList<>();
         sourceStation.add(1.0);
@@ -438,9 +442,9 @@ class StationaryIGWOExperimentResults {
         sourceStation.add(1.0);
         //Destination station coordinates
         ArrayList<Double> destinationStation = new ArrayList<>();
-        destinationStation.add(49.0);
-        destinationStation.add(49.0);
-        destinationStation.add(49.0);
+        destinationStation.add(99.0);
+        destinationStation.add(99.0);
+        destinationStation.add(99.0);
         //Gray Wolf Optimization initialization starts here...
         double a;
         double r1, r2;
@@ -468,6 +472,10 @@ class StationaryIGWOExperimentResults {
         obstacles.setObstacle2();
         obstacles.setObstacle3();
         obstacles.setObstacle4();
+        obstacles.setObstacle5();
+        obstacles.setObstacle6();
+        obstacles.setObstacle7();
+        obstacles.setObstacle8();
         boolean isPointInsideOfObstacle;
         boolean didPointCollideWithObstacle;
         ArrayList<Double> nearestCornerToCurrentStation;
@@ -644,13 +652,13 @@ class StationaryExGWOExperimentResults {
         ArrayList<Double> xBoundaries = new ArrayList<>(), yBoundaries = new ArrayList<>(), zBoundaries = new ArrayList<>();
         //X boundaries
         xBoundaries.add(0.0);
-        xBoundaries.add(50.0);
+        xBoundaries.add(100.0);
         //Y boundaries
         yBoundaries.add(0.0);
-        yBoundaries.add(50.0);
+        yBoundaries.add(100.0);
         //Z boundaries
         zBoundaries.add(0.0);
-        zBoundaries.add(50.0);
+        zBoundaries.add(100.0);
         //Source station coordinates
         ArrayList<Double> sourceStation = new ArrayList<>();
         sourceStation.add(1.0);
@@ -658,9 +666,9 @@ class StationaryExGWOExperimentResults {
         sourceStation.add(1.0);
         //Destination station coordinates
         ArrayList<Double> destinationStation = new ArrayList<>();
-        destinationStation.add(49.0);
-        destinationStation.add(49.0);
-        destinationStation.add(49.0);
+        destinationStation.add(99.0);
+        destinationStation.add(99.0);
+        destinationStation.add(99.0);
         //Gray Wolf Optimization initialization starts here...
         double a;
         double r1, r2;
@@ -688,6 +696,10 @@ class StationaryExGWOExperimentResults {
         obstacles.setObstacle2();
         obstacles.setObstacle3();
         obstacles.setObstacle4();
+        obstacles.setObstacle5();
+        obstacles.setObstacle6();
+        obstacles.setObstacle7();
+        obstacles.setObstacle8();
         boolean isPointInsideOfObstacle;
         boolean didPointCollideWithObstacle;
         ArrayList<Double> nearestCornerToCurrentStation;

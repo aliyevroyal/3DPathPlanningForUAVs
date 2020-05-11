@@ -2,22 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6ce80e1a-4e66-4642-9a81-b99625a69087" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/3DPathPlanningForUAVs/com/thealiyev/AdaptedRRTExGWOExperimentResults.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/3DPathPlanningForUAVs/com/thealiyev/AdaptedRRTExGWOExperimentResults.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/3DPathPlanningForUAVs/com/thealiyev/AdaptedRRTExperimentResults.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/3DPathPlanningForUAVs/com/thealiyev/AdaptedRRTExperimentResults.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/3DPathPlanningForUAVs/com/thealiyev/AdaptedRRTGWOExperimentResults.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/3DPathPlanningForUAVs/com/thealiyev/AdaptedRRTGWOExperimentResults.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/3DPathPlanningForUAVs/com/thealiyev/AdaptedRRTIGWOExperimentResults.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/3DPathPlanningForUAVs/com/thealiyev/AdaptedRRTIGWOExperimentResults.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/3DPathPlanningForUAVs/com/thealiyev/ExGWOPathPlanningStaticStationaryMethod.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/3DPathPlanningForUAVs/com/thealiyev/ExGWOPathPlanningStaticStationaryMethod.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/3DPathPlanningForUAVs/com/thealiyev/JustAdoptedRRTTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/3DPathPlanningForUAVs/com/thealiyev/JustStationaryTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/3DPathPlanningForUAVs/com/thealiyev/Obstacles.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/3DPathPlanningForUAVs/com/thealiyev/Obstacles.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/3DPathPlanningForUAVs/com/thealiyev/StationaryExGWOExperimentResults.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/3DPathPlanningForUAVs/com/thealiyev/StationaryExGWOExperimentResults.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/3DPathPlanningForUAVs/com/thealiyev/StationaryGWOExperimentResults.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/3DPathPlanningForUAVs/com/thealiyev/StationaryGWOExperimentResults.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/3DPathPlanningForUAVs/com/thealiyev/StationaryIGWOExperimentResults.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/3DPathPlanningForUAVs/com/thealiyev/StationaryIGWOExperimentResults.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/thealiyev/AdaptedRRTExperimentResults.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/thealiyev/AdaptedRRTExperimentResults.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/thealiyev/ExGWOPathPlanningStaticStationaryMethod.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/thealiyev/ExGWOPathPlanningStaticStationaryMethod.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/thealiyev/JustAAdoptedRRTTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/thealiyev/JustAAdoptedRRTTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/thealiyev/Obstacles.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/thealiyev/Obstacles.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/thealiyev/StationaryExperimentResults.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/thealiyev/StationaryExperimentResults.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -57,7 +41,7 @@
       <recent name="com.thealiyev" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ExGWOPathPlanningStaticStationaryMethod">
+  <component name="RunManager" selected="Application.StationaryExperimentResults">
     <configuration name="AdaptedRRTExperimentResults" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.thealiyev.AdaptedRRTExperimentResults" />
       <module name="3DPathPlanningForUAVs" />
@@ -132,8 +116,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ExGWOPathPlanningStaticStationaryMethod" />
         <item itemvalue="Application.StationaryExperimentResults" />
+        <item itemvalue="Application.ExGWOPathPlanningStaticStationaryMethod" />
         <item itemvalue="Application.JustAAdoptedRRTTest" />
         <item itemvalue="Application.AdaptedRRTExperimentResults" />
         <item itemvalue="Application.GWOPathPlanningDynamicStationaryMethod" />
@@ -176,7 +160,7 @@
       <workItem from="1589133450260" duration="9226000" />
       <workItem from="1589181513740" duration="5643000" />
       <workItem from="1589190082903" duration="3282000" />
-      <workItem from="1589220264101" duration="729000" />
+      <workItem from="1589220264101" duration="1245000" />
     </task>
     <servers />
   </component>
@@ -196,22 +180,22 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="0" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1440.900@0.0.1440.900" timestamp="1589188225852" />
-    <state width="1398" height="484" key="GridCell.Tab.0.bottom" timestamp="1589221186691">
+    <state width="1398" height="484" key="GridCell.Tab.0.bottom" timestamp="1589222171512">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="484" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1589221186691" />
-    <state width="1398" height="484" key="GridCell.Tab.0.center" timestamp="1589221186688">
+    <state width="1398" height="484" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1589222171512" />
+    <state width="1398" height="484" key="GridCell.Tab.0.center" timestamp="1589222171510">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="484" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1589221186688" />
-    <state width="1398" height="484" key="GridCell.Tab.0.left" timestamp="1589221186686">
+    <state width="1398" height="484" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1589222171510" />
+    <state width="1398" height="484" key="GridCell.Tab.0.left" timestamp="1589222171509">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="484" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1589221186686" />
-    <state width="1398" height="484" key="GridCell.Tab.0.right" timestamp="1589221186690">
+    <state width="1398" height="484" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1589222171509" />
+    <state width="1398" height="484" key="GridCell.Tab.0.right" timestamp="1589222171511">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="484" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1589221186690" />
+    <state width="1398" height="484" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1589222171511" />
     <state width="1440" height="312" key="GridCell.Tab.1.bottom" timestamp="1587910751886">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
