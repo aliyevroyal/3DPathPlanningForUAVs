@@ -13,6 +13,22 @@ public class Obstacles {
     private ArrayList<ArrayList<Double>> obstacle7 = null;
     private ArrayList<ArrayList<Double>> obstacle8 = null;
     private ArrayList<ArrayList<Double>> obstacle9 = null;
+    private ArrayList<ArrayList<Double>> obstacle10 = null;
+    private ArrayList<ArrayList<Double>> obstacle11 = null;
+    private ArrayList<ArrayList<Double>> obstacle12 = null;
+    private ArrayList<ArrayList<Double>> obstacle13 = null;
+    private ArrayList<ArrayList<Double>> obstacle14 = null;
+    private ArrayList<ArrayList<Double>> obstacle15 = null;
+    private ArrayList<ArrayList<Double>> obstacle16 = null;
+
+    private ArrayList<ArrayList<Double>> obstacle17 = null;
+    private ArrayList<ArrayList<Double>> obstacle18 = null;
+    private ArrayList<ArrayList<Double>> obstacle19 = null;
+    private ArrayList<ArrayList<Double>> obstacle20 = null;
+    private ArrayList<ArrayList<Double>> obstacle21 = null;
+    private ArrayList<ArrayList<Double>> obstacle22 = null;
+    private ArrayList<ArrayList<Double>> obstacle23 = null;
+    private ArrayList<ArrayList<Double>> obstacle24 = null;
 
     public Obstacles() {
     }
@@ -147,34 +163,153 @@ public class Obstacles {
         this.obstacle8 = new ArrayList<>();
         ArrayList<Double> startCoordinate = new ArrayList<>();
         ArrayList<Double> endCoordinate = new ArrayList<>();
-        startCoordinate.add(10.0);
-        startCoordinate.add(10.0);
+        startCoordinate.add(60.0);
+        startCoordinate.add(15.0);
         startCoordinate.add(0.0);
         obstacle8.add(startCoordinate);
 
-        endCoordinate.add(20.0);
-        endCoordinate.add(20.0);
+        endCoordinate.add(75.0);
+        endCoordinate.add(40.0);
         endCoordinate.add(100.0);
         obstacle8.add(endCoordinate);
 
         obstacles.add(obstacle8);
     }
 
-    public void setObstacle9() {
-        this.obstacle9 = new ArrayList<>();
+    public void setObstacle17() {
+        this.obstacle17 = new ArrayList<>();
         ArrayList<Double> startCoordinate = new ArrayList<>();
         ArrayList<Double> endCoordinate = new ArrayList<>();
-        startCoordinate.add(20.0);
-        startCoordinate.add(20.0);
         startCoordinate.add(0.0);
-        obstacle9.add(startCoordinate);
+        startCoordinate.add(2.0);
+        startCoordinate.add(0.0);
+        obstacle17.add(startCoordinate);
 
-        endCoordinate.add(30.0);
-        endCoordinate.add(30.0);
-        endCoordinate.add(100.0);
-        obstacle9.add(endCoordinate);
+        endCoordinate.add(10.0);
+        endCoordinate.add(2.5);
+        endCoordinate.add(1.5);
+        obstacle17.add(endCoordinate);
 
-        obstacles.add(obstacle9);
+        obstacles.add(obstacle17);
+    }
+
+    public void setObstacle18() {
+        this.obstacle18 = new ArrayList<>();
+        ArrayList<Double> startCoordinate = new ArrayList<>();
+        ArrayList<Double> endCoordinate = new ArrayList<>();
+        startCoordinate.add(0.0);
+        startCoordinate.add(2.0);
+        startCoordinate.add(4.5);
+        obstacle18.add(startCoordinate);
+
+        endCoordinate.add(10.0);
+        endCoordinate.add(2.5);
+        endCoordinate.add(6.0);
+        obstacle18.add(endCoordinate);
+
+        obstacles.add(obstacle18);
+    }
+
+    public void setObstacle19() {
+        this.obstacle19 = new ArrayList<>();
+        ArrayList<Double> startCoordinate = new ArrayList<>();
+        ArrayList<Double> endCoordinate = new ArrayList<>();
+        startCoordinate.add(0.0);
+        startCoordinate.add(2.0);
+        startCoordinate.add(1.5);
+        obstacle19.add(startCoordinate);
+
+        endCoordinate.add(3.0);
+        endCoordinate.add(2.5);
+        endCoordinate.add(4.5);
+        obstacle19.add(endCoordinate);
+
+        obstacles.add(obstacle19);
+    }
+
+    public void setObstacle20() {
+        this.obstacle20 = new ArrayList<>();
+        ArrayList<Double> startCoordinate = new ArrayList<>();
+        ArrayList<Double> endCoordinate = new ArrayList<>();
+        startCoordinate.add(7.0);
+        startCoordinate.add(2.0);
+        startCoordinate.add(1.5);
+        obstacle20.add(startCoordinate);
+
+        endCoordinate.add(10.0);
+        endCoordinate.add(2.5);
+        endCoordinate.add(4.5);
+        obstacle20.add(endCoordinate);
+
+        obstacles.add(obstacle20);
+    }
+
+    public void setObstacle21() {
+        this.obstacle21 = new ArrayList<>();
+        ArrayList<Double> startCoordinate = new ArrayList<>();
+        ArrayList<Double> endCoordinate = new ArrayList<>();
+        startCoordinate.add(3.0);
+        startCoordinate.add(0.0);
+        startCoordinate.add(2.4);
+        obstacle21.add(startCoordinate);
+
+        endCoordinate.add(7.0);
+        endCoordinate.add(0.5);
+        endCoordinate.add(4.5);
+        obstacle21.add(endCoordinate);
+
+        obstacles.add(obstacle21);
+    }
+
+    public void setObstacle22() {
+        this.obstacle22 = new ArrayList<>();
+        ArrayList<Double> startCoordinate = new ArrayList<>();
+        ArrayList<Double> endCoordinate = new ArrayList<>();
+        startCoordinate.add(0.0);
+        startCoordinate.add(15.0);
+        startCoordinate.add(0.0);
+        obstacle22.add(startCoordinate);
+
+        endCoordinate.add(10.0);
+        endCoordinate.add(20.0);
+        endCoordinate.add(1.0);
+        obstacle22.add(endCoordinate);
+
+        obstacles.add(obstacle22);
+    }
+
+    public void setObstacle23() {
+        this.obstacle23 = new ArrayList<>();
+        ArrayList<Double> startCoordinate = new ArrayList<>();
+        ArrayList<Double> endCoordinate = new ArrayList<>();
+        startCoordinate.add(0.0);
+        startCoordinate.add(15.0);
+        startCoordinate.add(1.0);
+        obstacle23.add(startCoordinate);
+
+        endCoordinate.add(10.0);
+        endCoordinate.add(16.0);
+        endCoordinate.add(3.5);
+        obstacle23.add(endCoordinate);
+
+        obstacles.add(obstacle23);
+    }
+
+    public void setObstacle24() {
+        this.obstacle24 = new ArrayList<>();
+        ArrayList<Double> startCoordinate = new ArrayList<>();
+        ArrayList<Double> endCoordinate = new ArrayList<>();
+        startCoordinate.add(0.0);
+        startCoordinate.add(18.0);
+        startCoordinate.add(4.5);
+        obstacle24.add(startCoordinate);
+
+        endCoordinate.add(10.0);
+        endCoordinate.add(19.0);
+        endCoordinate.add(6.0);
+        obstacle24.add(endCoordinate);
+
+        obstacles.add(obstacle24);
     }
 
     public ArrayList<ArrayList<ArrayList<Double>>> getObstacles() {

@@ -18,23 +18,23 @@ public class JustAAdoptedRRTTest {
         ArrayList<Double> Xboundaries = new ArrayList<>(), Yboundaries = new ArrayList<>(), Zboundaries = new ArrayList<>();
         //X boundaries
         Xboundaries.add(0.0);
-        Xboundaries.add(50.0);
+        Xboundaries.add(10.0);
         //Y boundaries
-        Yboundaries.add(0.0);
-        Yboundaries.add(50.0);
+        Yboundaries.add(-5.0);
+        Yboundaries.add(20.0);
         //Z boundaries
         Zboundaries.add(0.0);
-        Zboundaries.add(50.0);
+        Zboundaries.add(6.0);
         //Source station coordinates
         ArrayList<Double> sourceStation = new ArrayList<>();
-        sourceStation.add(1.0);
-        sourceStation.add(1.0);
-        sourceStation.add(1.0);
+        sourceStation.add(2.0);
+        sourceStation.add(10.0);
+        sourceStation.add(2.0);
         //Destination station coordinates
         ArrayList<Double> destinationStation = new ArrayList<>();
-        destinationStation.add(49.0);
-        destinationStation.add(49.0);
-        destinationStation.add(49.0);
+        destinationStation.add(1.0);
+        destinationStation.add(-4.0);
+        destinationStation.add(1.0);
         //Gray Wolf Optimization initialization starts here...
         double a;
         double r1, r2;
@@ -62,10 +62,14 @@ public class JustAAdoptedRRTTest {
         ArrayList<Double> ObstacleAvoidanceCurrentStation;
         ArrayList<Double> ObstacleAvoidanceNextStation;
         Obstacles obstacles = new Obstacles();
-        obstacles.setObstacle1();
-        obstacles.setObstacle2();
-        obstacles.setObstacle3();
-        obstacles.setObstacle4();
+        obstacles.setObstacle17();
+        obstacles.setObstacle18();
+        obstacles.setObstacle19();
+        obstacles.setObstacle20();
+        obstacles.setObstacle21();
+        obstacles.setObstacle22();
+        obstacles.setObstacle23();
+        obstacles.setObstacle24();
         boolean isPointInsideOfObstacle;
         boolean didPointCollideWithObstacle;
         ArrayList<Double> nearestCornerToCurrentStation;

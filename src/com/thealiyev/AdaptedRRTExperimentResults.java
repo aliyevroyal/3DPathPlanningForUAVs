@@ -11,13 +11,13 @@ public class AdaptedRRTExperimentResults {
         ArrayList<Double> Xboundaries = new ArrayList<>(), Yboundaries = new ArrayList<>(), Zboundaries = new ArrayList<>();
         //X boundaries
         Xboundaries.add(0.0);
-        Xboundaries.add(50.0);
+        Xboundaries.add(100.0);
         //Y boundaries
         Yboundaries.add(0.0);
-        Yboundaries.add(50.0);
+        Yboundaries.add(100.0);
         //Z boundaries
         Zboundaries.add(0.0);
-        Zboundaries.add(50.0);
+        Zboundaries.add(100.0);
         //Initialization starts here...
         int population = 100, dimension = 5;
         //Source station coordinates
@@ -27,9 +27,9 @@ public class AdaptedRRTExperimentResults {
         sourceStation.add(1.0);
         //Destination station coordinates
         ArrayList<Double> destinationStation = new ArrayList<>();
-        destinationStation.add(49.0);
-        destinationStation.add(49.0);
-        destinationStation.add(49.0);
+        destinationStation.add(99.0);
+        destinationStation.add(99.0);
+        destinationStation.add(99.0);
         AdaptedRRTExperimentResults adaptedRRTExperimentResults = new AdaptedRRTExperimentResults();
         ArrayList<ArrayList<ArrayList<Double>>> positionsMatrixWithoutCollisions = adaptedRRTExperimentResults.createRandomPositionsMatrix(population, dimension, Xboundaries, Yboundaries, Zboundaries);
         ArrayList<ArrayList<ArrayList<Double>>> GWOPositionsMatrixWithoutCollisions = new ArrayList<>();
@@ -208,13 +208,13 @@ class AdaptedRRTGWOExperimentResults {
         ArrayList<Double> Xboundaries = new ArrayList<>(), Yboundaries = new ArrayList<>(), Zboundaries = new ArrayList<>();
         //X boundaries
         Xboundaries.add(0.0);
-        Xboundaries.add(50.0);
+        Xboundaries.add(100.0);
         //Y boundaries
         Yboundaries.add(0.0);
-        Yboundaries.add(50.0);
+        Yboundaries.add(100.0);
         //Z boundaries
         Zboundaries.add(0.0);
-        Zboundaries.add(50.0);
+        Zboundaries.add(100.0);
         //Source station coordinates
         ArrayList<Double> sourceStation = new ArrayList<>();
         sourceStation.add(1.0);
@@ -222,9 +222,9 @@ class AdaptedRRTGWOExperimentResults {
         sourceStation.add(1.0);
         //Destination station coordinates
         ArrayList<Double> destinationStation = new ArrayList<>();
-        destinationStation.add(49.0);
-        destinationStation.add(49.0);
-        destinationStation.add(49.0);
+        destinationStation.add(99.0);
+        destinationStation.add(99.0);
+        destinationStation.add(99.0);
         //Gray Wolf Optimization initialization starts here...
         double a;
         double r1, r2;
@@ -255,6 +255,10 @@ class AdaptedRRTGWOExperimentResults {
         obstacles.setObstacle2();
         obstacles.setObstacle3();
         obstacles.setObstacle4();
+        obstacles.setObstacle5();
+        obstacles.setObstacle6();
+        obstacles.setObstacle7();
+        obstacles.setObstacle8();
         boolean isPointInsideOfObstacle;
         boolean didPointCollideWithObstacle;
         ArrayList<Double> nearestCornerToCurrentStation;
@@ -474,13 +478,13 @@ class AdaptedRRTIGWOExperimentResults {
         ArrayList<Double> Xboundaries = new ArrayList<>(), Yboundaries = new ArrayList<>(), Zboundaries = new ArrayList<>();
         //X boundaries
         Xboundaries.add(0.0);
-        Xboundaries.add(50.0);
+        Xboundaries.add(100.0);
         //Y boundaries
         Yboundaries.add(0.0);
-        Yboundaries.add(50.0);
+        Yboundaries.add(100.0);
         //Z boundaries
         Zboundaries.add(0.0);
-        Zboundaries.add(50.0);
+        Zboundaries.add(100.0);
         //Source station coordinates
         ArrayList<Double> sourceStation = new ArrayList<>();
         sourceStation.add(1.0);
@@ -488,9 +492,9 @@ class AdaptedRRTIGWOExperimentResults {
         sourceStation.add(1.0);
         //Destination station coordinates
         ArrayList<Double> destinationStation = new ArrayList<>();
-        destinationStation.add(49.0);
-        destinationStation.add(49.0);
-        destinationStation.add(49.0);
+        destinationStation.add(99.0);
+        destinationStation.add(99.0);
+        destinationStation.add(99.0);
         //Gray Wolf Optimization initialization starts here...
         double a;
         double r1, r2;
@@ -521,6 +525,10 @@ class AdaptedRRTIGWOExperimentResults {
         obstacles.setObstacle2();
         obstacles.setObstacle3();
         obstacles.setObstacle4();
+        obstacles.setObstacle5();
+        obstacles.setObstacle6();
+        obstacles.setObstacle7();
+        obstacles.setObstacle8();
         boolean isPointInsideOfObstacle;
         boolean didPointCollideWithObstacle;
         ArrayList<Double> nearestCornerToCurrentStation;
@@ -739,13 +747,13 @@ class AdaptedRRTExGWOExperimentResults {
         ArrayList<Double> Xboundaries = new ArrayList<>(), Yboundaries = new ArrayList<>(), Zboundaries = new ArrayList<>();
         //X boundaries
         Xboundaries.add(0.0);
-        Xboundaries.add(50.0);
+        Xboundaries.add(100.0);
         //Y boundaries
         Yboundaries.add(0.0);
-        Yboundaries.add(50.0);
+        Yboundaries.add(100.0);
         //Z boundaries
         Zboundaries.add(0.0);
-        Zboundaries.add(50.0);
+        Zboundaries.add(100.0);
         //Source station coordinates
         ArrayList<Double> sourceStation = new ArrayList<>();
         sourceStation.add(1.0);
@@ -753,9 +761,9 @@ class AdaptedRRTExGWOExperimentResults {
         sourceStation.add(1.0);
         //Destination station coordinates
         ArrayList<Double> destinationStation = new ArrayList<>();
-        destinationStation.add(49.0);
-        destinationStation.add(49.0);
-        destinationStation.add(49.0);
+        destinationStation.add(99.0);
+        destinationStation.add(99.0);
+        destinationStation.add(99.0);
         //Gray Wolf Optimization initialization starts here...
         double a;
         double r1, r2;
@@ -786,6 +794,10 @@ class AdaptedRRTExGWOExperimentResults {
         obstacles.setObstacle2();
         obstacles.setObstacle3();
         obstacles.setObstacle4();
+        obstacles.setObstacle5();
+        obstacles.setObstacle6();
+        obstacles.setObstacle7();
+        obstacles.setObstacle8();
         boolean isPointInsideOfObstacle;
         boolean didPointCollideWithObstacle;
         ArrayList<Double> nearestCornerToCurrentStation;
