@@ -13,6 +13,7 @@ public class ExGWOPathPlanningStaticStationaryMethod {
 
     private void ExGWO() {
         random = new Random();
+        //Gray Wolf Optimization and Path Planning start here...
         //Boundaries of map
         ArrayList<Double> xBoundaries = new ArrayList<>(), yBoundaries = new ArrayList<>(), zBoundaries = new ArrayList<>();
         //X boundaries

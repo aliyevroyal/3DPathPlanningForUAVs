@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6ce80e1a-4e66-4642-9a81-b99625a69087" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/com/thealiyev/StationaryExperimentResults.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/thealiyev/StationaryExperimentResults.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/thealiyev/ExGWOPathPlanningStaticStationaryMethod.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/thealiyev/ExGWOPathPlanningStaticStationaryMethod.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/thealiyev/GWOPathPlanningStaticStationaryMethod.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/thealiyev/GWOPathPlanningStaticStationaryMethod.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/thealiyev/IGWOPathPlanningStaticStationaryMethod.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/thealiyev/IGWOPathPlanningStaticStationaryMethod.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/thealiyev/Obstacles.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/thealiyev/Obstacles.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,9 +45,9 @@
       <recent name="com.thealiyev" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.StationaryExperimentResults">
-    <configuration name="AdaptedRRTExperimentResults" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.thealiyev.AdaptedRRTExperimentResults" />
+  <component name="RunManager">
+    <configuration name="IGWOPathPlanningStaticStationaryMethod" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.thealiyev.IGWOPathPlanningStaticStationaryMethod" />
       <module name="3DPathPlanningForUAVs" />
       <extension name="coverage">
         <pattern>
@@ -55,72 +59,9 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ExGWOPathPlanningStaticStationaryMethod" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.thealiyev.ExGWOPathPlanningStaticStationaryMethod" />
-      <module name="3DPathPlanningForUAVs" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.thealiyev.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="GWOPathPlanningDynamicStationaryMethod" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.thealiyev.GWOPathPlanningDynamicStationaryMethod" />
-      <module name="3DPathPlanningForUAVs" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.thealiyev.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="JustAAdoptedRRTTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.thealiyev.JustAAdoptedRRTTest" />
-      <module name="3DPathPlanningForUAVs" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.thealiyev.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="StationaryExperimentResults" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.thealiyev.StationaryExperimentResults" />
-      <module name="3DPathPlanningForUAVs" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.thealiyev.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <list>
-      <item itemvalue="Application.StationaryExperimentResults" />
-      <item itemvalue="Application.AdaptedRRTExperimentResults" />
-      <item itemvalue="Application.GWOPathPlanningDynamicStationaryMethod" />
-      <item itemvalue="Application.JustAAdoptedRRTTest" />
-      <item itemvalue="Application.ExGWOPathPlanningStaticStationaryMethod" />
-    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.StationaryExperimentResults" />
-        <item itemvalue="Application.ExGWOPathPlanningStaticStationaryMethod" />
-        <item itemvalue="Application.JustAAdoptedRRTTest" />
-        <item itemvalue="Application.AdaptedRRTExperimentResults" />
-        <item itemvalue="Application.GWOPathPlanningDynamicStationaryMethod" />
+        <item itemvalue="Application.IGWOPathPlanningStaticStationaryMethod" />
       </list>
     </recent_temporary>
   </component>
@@ -161,6 +102,7 @@
       <workItem from="1589181513740" duration="5643000" />
       <workItem from="1589190082903" duration="3282000" />
       <workItem from="1589220264101" duration="1245000" />
+      <workItem from="1592843621098" duration="686000" />
     </task>
     <servers />
   </component>
@@ -180,22 +122,22 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="0" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1440.900@0.0.1440.900" timestamp="1589188225852" />
-    <state width="1398" height="484" key="GridCell.Tab.0.bottom" timestamp="1589222171512">
+    <state width="1398" height="605" key="GridCell.Tab.0.bottom" timestamp="1592844962804">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="484" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1589222171512" />
-    <state width="1398" height="484" key="GridCell.Tab.0.center" timestamp="1589222171510">
+    <state width="1398" height="605" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1592844962804" />
+    <state width="1398" height="605" key="GridCell.Tab.0.center" timestamp="1592844962801">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="484" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1589222171510" />
-    <state width="1398" height="484" key="GridCell.Tab.0.left" timestamp="1589222171509">
+    <state width="1398" height="605" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1592844962801" />
+    <state width="1398" height="605" key="GridCell.Tab.0.left" timestamp="1592844962799">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="484" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1589222171509" />
-    <state width="1398" height="484" key="GridCell.Tab.0.right" timestamp="1589222171511">
+    <state width="1398" height="605" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1592844962799" />
+    <state width="1398" height="605" key="GridCell.Tab.0.right" timestamp="1592844962802">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="484" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1589222171511" />
+    <state width="1398" height="605" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1592844962802" />
     <state width="1440" height="312" key="GridCell.Tab.1.bottom" timestamp="1587910751886">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
