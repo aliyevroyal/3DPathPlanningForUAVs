@@ -25,12 +25,12 @@ public class Obstacles {
         ArrayList<Double> endCoordinate = new ArrayList<>();
         startCoordinate.add(5.0);
         startCoordinate.add(7.5);
-        startCoordinate.add(0.0);
+        startCoordinate.add(4.0);
         obstacle1.add(startCoordinate);
 
         endCoordinate.add(10.0);
         endCoordinate.add(20.0);
-        endCoordinate.add(100.0);
+        endCoordinate.add(15.0);
         obstacle1.add(endCoordinate);
 
         obstacles.add(obstacle1);
@@ -42,12 +42,12 @@ public class Obstacles {
         ArrayList<Double> endCoordinate = new ArrayList<>();
         startCoordinate.add(20.0);
         startCoordinate.add(5.0);
-        startCoordinate.add(0.0);
+        startCoordinate.add(10.0);
         obstacle2.add(startCoordinate);
 
         endCoordinate.add(44.0);
         endCoordinate.add(44.0);
-        endCoordinate.add(100.0);
+        endCoordinate.add(36.0);
         obstacle2.add(endCoordinate);
 
         obstacles.add(obstacle2);
@@ -59,12 +59,12 @@ public class Obstacles {
         ArrayList<Double> endCoordinate = new ArrayList<>();
         startCoordinate.add(8.0);
         startCoordinate.add(30.0);
-        startCoordinate.add(0.0);
+        startCoordinate.add(4.0);
         obstacle3.add(startCoordinate);
 
         endCoordinate.add(10.0);
         endCoordinate.add(34.0);
-        endCoordinate.add(100.0);
+        endCoordinate.add(28.0);
         obstacle3.add(endCoordinate);
 
         obstacles.add(obstacle3);
@@ -76,12 +76,12 @@ public class Obstacles {
         ArrayList<Double> endCoordinate = new ArrayList<>();
         startCoordinate.add(17.0);
         startCoordinate.add(14.0);
-        startCoordinate.add(0.0);
+        startCoordinate.add(17.0);
         obstacle4.add(startCoordinate);
 
         endCoordinate.add(19.0);
         endCoordinate.add(16.0);
-        endCoordinate.add(100.0);
+        endCoordinate.add(21.0);
         obstacle4.add(endCoordinate);
 
         obstacles.add(obstacle4);

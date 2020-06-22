@@ -2,10 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6ce80e1a-4e66-4642-9a81-b99625a69087" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/thealiyev/ExGWOPathPlanningStaticStationaryMethod.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/thealiyev/ExGWOPathPlanningStaticStationaryMethod.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/thealiyev/GWOPathPlanningStaticStationaryMethod.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/thealiyev/GWOPathPlanningStaticStationaryMethod.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/thealiyev/IGWOPathPlanningStaticStationaryMethod.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/thealiyev/IGWOPathPlanningStaticStationaryMethod.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/thealiyev/Obstacles.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/thealiyev/Obstacles.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -102,7 +98,7 @@
       <workItem from="1589181513740" duration="5643000" />
       <workItem from="1589190082903" duration="3282000" />
       <workItem from="1589220264101" duration="1245000" />
-      <workItem from="1592843621098" duration="686000" />
+      <workItem from="1592843621098" duration="994000" />
     </task>
     <servers />
   </component>
