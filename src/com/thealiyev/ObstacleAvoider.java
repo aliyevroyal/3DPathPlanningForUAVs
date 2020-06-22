@@ -140,8 +140,9 @@ public class ObstacleAvoider {
         Obstacles obstacles = new Obstacles();
         ArrayList<Double> nearestPoint;
         double d = findEuclidean2DDistance(p, obstacles.create3DObstacle(obstacle).get(0));
-        int index = 0;
+        int index;
 
+        index = 0;
         for (int counter = 0; counter < obstacles.create3DObstacle(obstacle).size() - 1; counter = counter + 1) {
             if (findEuclidean2DDistance(p, obstacles.create3DObstacle(obstacle).get(counter)) < d) {
                 d = findEuclidean2DDistance(p, obstacles.create3DObstacle(obstacle).get(counter));
@@ -156,9 +157,9 @@ public class ObstacleAvoider {
     public ArrayList<Double> findPathToOppositeSide(ArrayList<Double> firstPoint, ArrayList<Double> secondPoint, ArrayList<ArrayList<Double>> obstacle) {
         Obstacles obstacles = new Obstacles();
         ArrayList<Double> nearestCornerToP1 = findNearestCorner(firstPoint, obstacle);
+        ArrayList<Double> newCornerForP2 = new ArrayList<>();
         int nearestCornersIndexToP1 = obstacles.create3DObstacle(obstacle).indexOf(nearestCornerToP1);
         double d1, d2;
-        ArrayList<Double> newCornerForP2 = new ArrayList<>();
 
         if (nearestCornersIndexToP1 == 0 || nearestCornersIndexToP1 == 2) {
             d1 = findEuclidean2DDistance(secondPoint, obstacles.create3DObstacle(obstacle).get(1));

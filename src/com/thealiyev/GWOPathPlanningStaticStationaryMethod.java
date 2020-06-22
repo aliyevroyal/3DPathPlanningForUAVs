@@ -15,16 +15,16 @@ public class GWOPathPlanningStaticStationaryMethod {
         random = new Random();
         //Gray Wolf Optimization and Path Planning start here...
         //Boundaries of map
-        ArrayList<Double> xBoundaries = new ArrayList<>(), yBoundaries = new ArrayList<>(), zBoundaries = new ArrayList<>();
+        ArrayList<Double> Xboundaries = new ArrayList<>(), Yboundaries = new ArrayList<>(), Zboundaries = new ArrayList<>();
         //X boundaries
-        xBoundaries.add(0.0);
-        xBoundaries.add(50.0);
+        Xboundaries.add(0.0);
+        Xboundaries.add(50.0);
         //Y boundaries
-        yBoundaries.add(0.0);
-        yBoundaries.add(50.0);
+        Yboundaries.add(0.0);
+        Yboundaries.add(50.0);
         //Z boundaries
-        zBoundaries.add(0.0);
-        zBoundaries.add(50.0);
+        Zboundaries.add(0.0);
+        Zboundaries.add(50.0);
         //Source station coordinates
         ArrayList<Double> sourceStation = new ArrayList<>();
         sourceStation.add(1.0);
@@ -46,7 +46,7 @@ public class GWOPathPlanningStaticStationaryMethod {
         int theNumberOfStations = 1000;
         int population = 100, dimension = 5;
         int iteration = 100;
-        ArrayList<ArrayList<Double>> stations = createRandomStations(theNumberOfStations, xBoundaries, yBoundaries, zBoundaries);
+        ArrayList<ArrayList<Double>> stations = createRandomStations(theNumberOfStations, Xboundaries, Yboundaries, Zboundaries);
         ArrayList<ArrayList<Double>> visitingStations;
         ArrayList<ArrayList<ArrayList<Double>>> positionsMatrixWithoutCollisions = createRandomVisitedStations(population, dimension, stations);
         ArrayList<ArrayList<Double>> optimizationMatrix = createOptimizationMatrix(positionsMatrixWithoutCollisions, sourceStation);
@@ -229,18 +229,18 @@ public class GWOPathPlanningStaticStationaryMethod {
         }
     }
 
-    private ArrayList<ArrayList<Double>> createRandomStations(int theNumberOfStations, ArrayList<Double> xBoundaries,
-                                                              ArrayList<Double> yBoundaries,
-                                                              ArrayList<Double> zBoundaries) {
+    private ArrayList<ArrayList<Double>> createRandomStations(int theNumberOfStations, ArrayList<Double> Xboundaries,
+                                                              ArrayList<Double> Yboundaries,
+                                                              ArrayList<Double> Zboundaries) {
         random = new Random();
         ArrayList<ArrayList<Double>> stations = new ArrayList<>();
         ArrayList<Double> vector = new ArrayList<>();
         double x, y, z;
 
         for (int stCounter = 0; stCounter < theNumberOfStations; stCounter = stCounter + 1) {
-            x = xBoundaries.get(0) + (xBoundaries.get(1) - xBoundaries.get(0)) * random.nextDouble();
-            y = yBoundaries.get(0) + (yBoundaries.get(1) - yBoundaries.get(0)) * random.nextDouble();
-            z = zBoundaries.get(0) + (zBoundaries.get(1) - zBoundaries.get(0)) * random.nextDouble();
+            x = Xboundaries.get(0) + (Xboundaries.get(1) - Xboundaries.get(0)) * random.nextDouble();
+            y = Yboundaries.get(0) + (Yboundaries.get(1) - Yboundaries.get(0)) * random.nextDouble();
+            z = Zboundaries.get(0) + (Zboundaries.get(1) - Zboundaries.get(0)) * random.nextDouble();
             vector.add(x);
             vector.add(y);
             vector.add(z);
