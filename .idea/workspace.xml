@@ -3,13 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="6ce80e1a-4e66-4642-9a81-b99625a69087" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/3DPathPlanningForUAVs/com/thealiyev/GWOPathPlanningStaticStationaryMethod.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/3DPathPlanningForUAVs/com/thealiyev/GWOPathPlanningStaticStationaryMethod.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/3DPathPlanningForUAVs/com/thealiyev/IGWOPathPlanningStaticStationaryMethod.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/3DPathPlanningForUAVs/com/thealiyev/IGWOPathPlanningStaticStationaryMethod.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/3DPathPlanningForUAVs/com/thealiyev/ReinforcementLearningStaticStationaryMethod.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/thealiyev/ExGWOPathPlanningDynamicStationaryMethod.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/thealiyev/ExGWOPathPlanningDynamicStationaryMethod.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/thealiyev/ExGWOPathPlanningStaticStationaryMethod.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/thealiyev/ExGWOPathPlanningStaticStationaryMethod.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/thealiyev/GWOPathPlanningDynamicStationaryMethod.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/thealiyev/GWOPathPlanningDynamicStationaryMethod.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/thealiyev/IGWOPathPlanningDynamicStationaryMethod.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/thealiyev/IGWOPathPlanningDynamicStationaryMethod.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -170,7 +163,7 @@
       <workItem from="1589220264101" duration="1245000" />
       <workItem from="1592843621098" duration="2129000" />
       <workItem from="1599337009277" duration="718000" />
-      <workItem from="1599581280830" duration="5521000" />
+      <workItem from="1599581280830" duration="5837000" />
     </task>
     <servers />
   </component>
