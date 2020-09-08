@@ -25,10 +25,10 @@
   <component name="ProjectId" id="1aowO95L1w1OKzWgw0ocUgPo74S" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -41,7 +41,7 @@
       <recent name="com.thealiyev" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.GWOPathPlanningStaticStationaryMethod">
+  <component name="RunManager" selected="Application.ObstacleAvoider">
     <configuration name="ExGWOPathPlanningStaticStationaryMethod" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.thealiyev.ExGWOPathPlanningStaticStationaryMethod" />
       <module name="3DPathPlanningForUAVs" />
@@ -81,8 +81,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="IGWOPathPlanningDynamicStationaryMethod" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.thealiyev.IGWOPathPlanningDynamicStationaryMethod" />
+    <configuration name="IGWOPathPlanningStaticStationaryMethod" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.thealiyev.IGWOPathPlanningStaticStationaryMethod" />
       <module name="3DPathPlanningForUAVs" />
       <extension name="coverage">
         <pattern>
@@ -94,8 +94,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="IGWOPathPlanningStaticStationaryMethod" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.thealiyev.IGWOPathPlanningStaticStationaryMethod" />
+    <configuration name="ObstacleAvoider" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.thealiyev.ObstacleAvoider" />
       <module name="3DPathPlanningForUAVs" />
       <extension name="coverage">
         <pattern>
@@ -110,20 +110,21 @@
     <list>
       <item itemvalue="Application.ExGWOPathPlanningStaticStationaryMethod" />
       <item itemvalue="Application.GWOPathPlanningDynamicStationaryMethod" />
-      <item itemvalue="Application.IGWOPathPlanningDynamicStationaryMethod" />
       <item itemvalue="Application.IGWOPathPlanningStaticStationaryMethod" />
       <item itemvalue="Application.GWOPathPlanningStaticStationaryMethod" />
+      <item itemvalue="Application.ObstacleAvoider" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ObstacleAvoider" />
         <item itemvalue="Application.GWOPathPlanningStaticStationaryMethod" />
         <item itemvalue="Application.IGWOPathPlanningStaticStationaryMethod" />
         <item itemvalue="Application.ExGWOPathPlanningStaticStationaryMethod" />
         <item itemvalue="Application.GWOPathPlanningDynamicStationaryMethod" />
-        <item itemvalue="Application.IGWOPathPlanningDynamicStationaryMethod" />
       </list>
     </recent_temporary>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -163,33 +164,37 @@
       <workItem from="1589220264101" duration="1245000" />
       <workItem from="1592843621098" duration="2129000" />
       <workItem from="1599337009277" duration="718000" />
-      <workItem from="1599581280830" duration="5837000" />
+      <workItem from="1599581280830" duration="6124000" />
+      <workItem from="1599604529757" duration="493000" />
+      <workItem from="1599605065945" duration="9000" />
+      <workItem from="1599605355854" duration="170000" />
+      <workItem from="1599605575919" duration="27000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1398" height="279" key="GridCell.Tab.0.bottom" timestamp="1599587748568">
+    <state width="1398" height="279" key="GridCell.Tab.0.bottom" timestamp="1599605527288">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="279" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1599587748568" />
-    <state width="1398" height="279" key="GridCell.Tab.0.center" timestamp="1599587748565">
+    <state width="1398" height="279" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1599605527288" />
+    <state width="1398" height="279" key="GridCell.Tab.0.center" timestamp="1599605527287">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="279" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1599587748565" />
-    <state width="1398" height="279" key="GridCell.Tab.0.left" timestamp="1599587748564">
+    <state width="1398" height="279" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1599605527287" />
+    <state width="1398" height="279" key="GridCell.Tab.0.left" timestamp="1599605527286">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="279" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1599587748564" />
-    <state width="1398" height="279" key="GridCell.Tab.0.right" timestamp="1599587748567">
+    <state width="1398" height="279" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1599605527286" />
+    <state width="1398" height="279" key="GridCell.Tab.0.right" timestamp="1599605527288">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="279" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1599587748567" />
-    <state x="413" y="282" key="com.intellij.ide.util.TipDialog" timestamp="1599581284696">
+    <state width="1398" height="279" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1599605527288" />
+    <state x="413" y="282" key="com.intellij.ide.util.TipDialog" timestamp="1599605069066">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="413" y="282" key="com.intellij.ide.util.TipDialog/0.0.1440.900@0.0.1440.900" timestamp="1599581284696" />
+    <state x="413" y="282" key="com.intellij.ide.util.TipDialog/0.0.1440.900@0.0.1440.900" timestamp="1599605069066" />
   </component>
 </project>
