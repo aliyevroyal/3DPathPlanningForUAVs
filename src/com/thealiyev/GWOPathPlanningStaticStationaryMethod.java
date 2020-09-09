@@ -40,7 +40,7 @@ public class GWOPathPlanningStaticStationaryMethod {
         double r1, r2;
         double A1, A2, A3;
         double C1, C2, C3;
-        double X, X1, X2, X3;
+        double x, X1, X2, X3;
         double Dalpha, Dbeta, Ddelta;
         double Xalpha, Xbeta, Xdelta;
         int theNumberOfStations = 1000;
@@ -54,7 +54,7 @@ public class GWOPathPlanningStaticStationaryMethod {
         ArrayList<Double> sortedFitnessValues = sortFitnessValues(fitnessValues);
         ArrayList<Double> distances = new ArrayList<>();
         ArrayList<Integer> indexes = new ArrayList<>();
-        double distance = 0;
+        double distance;
         //Obstacle detection, checking and avoidance components initialization starts here...
         ObstacleAvoider obstacleAvoider = new ObstacleAvoider();
         ArrayList<Double> ObstacleAvoidanceCurrentStation;
@@ -71,7 +71,6 @@ public class GWOPathPlanningStaticStationaryMethod {
         ArrayList<ArrayList<ArrayList<Double>>> positionsMatrixWithCollisions = new ArrayList<>();
         ArrayList<ArrayList<Double>> pathWithCollisiions = new ArrayList<>();
         ArrayList<ArrayList<ArrayList<Double>>> sortedObstacles;
-        double hMin, hMax, z;
         //Gray Wolf Optimization iterations start here...
         System.out.println("Initialization, alpha's fitness value: " + sortedFitnessValues.get(0));
         for (int stCounter = 0; stCounter < iteration; stCounter = stCounter + 1) {
@@ -80,14 +79,14 @@ public class GWOPathPlanningStaticStationaryMethod {
             for (int ndCounter = 0; ndCounter < optimizationMatrix.size(); ndCounter = ndCounter + 1) {
                 visitingStations = new ArrayList<>();
                 for (int rdCounter = 0; rdCounter < optimizationMatrix.get(ndCounter).size(); rdCounter = rdCounter + 1) {
-                    X = optimizationMatrix.get(ndCounter).get(rdCounter);
+                    x = optimizationMatrix.get(ndCounter).get(rdCounter);
 
                     r1 = random.nextDouble();
                     r2 = random.nextDouble();
                     A1 = 2 * a * r1 - a;
                     C1 = 2 * r2;
                     Xalpha = optimizationMatrix.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).get(rdCounter);
-                    Dalpha = C1 * Xalpha - X;
+                    Dalpha = C1 * Xalpha - x;
                     if (Dalpha < 0) {
                         Dalpha = Dalpha * -1;
                     }
@@ -98,7 +97,7 @@ public class GWOPathPlanningStaticStationaryMethod {
                     A2 = 2 * a * r1 - a;
                     C2 = 2 * r2;
                     Xbeta = optimizationMatrix.get(fitnessValues.indexOf(sortedFitnessValues.get(1))).get(rdCounter);
-                    Dbeta = C2 * Xbeta - X;
+                    Dbeta = C2 * Xbeta - x;
                     if (Dbeta < 0) {
                         Dbeta = Dbeta * -1;
                     }
@@ -109,13 +108,13 @@ public class GWOPathPlanningStaticStationaryMethod {
                     A3 = 2 * a * r1 - a;
                     C3 = 2 * r2;
                     Xdelta = optimizationMatrix.get(fitnessValues.indexOf(sortedFitnessValues.get(2))).get(rdCounter);
-                    Ddelta = C3 * Xdelta - X;
+                    Ddelta = C3 * Xdelta - x;
                     if (Ddelta < 0) {
                         Ddelta = Ddelta * -1;
                     }
                     X3 = Xdelta - A3 * Ddelta;
 
-                    X = (X1 + X2 + X3) / 3;
+                    x = (X1 + X2 + X3) / 3;
                     for (int fourthCounter = 0; fourthCounter < stations.size(); fourthCounter = fourthCounter + 1) {
                         if (!visitingStations.contains(stations.get(fourthCounter))) {
                             if (rdCounter == 0) {
@@ -123,7 +122,7 @@ public class GWOPathPlanningStaticStationaryMethod {
                             } else {
                                 distance = findEuclideanDistance(positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter - 1), stations.get(fourthCounter)) + findEuclideanDistance(destinationStation, stations.get(fourthCounter));
                             }
-                            if (distance < X && distance > 0) {
+                            if (distance < x && distance > 0) {
                                 distances.add(distance);
                                 indexes.add(fourthCounter);
                             }
@@ -135,18 +134,13 @@ public class GWOPathPlanningStaticStationaryMethod {
                     }
                     //Obstacle avoidance
                     ObstacleAvoidanceCurrentStation = positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter);
-                    z = ObstacleAvoidanceCurrentStation.get(2);
                     sortedObstacles = new ArrayList<>(obstacles.getSortedObstacles(ObstacleAvoidanceCurrentStation));
                     for (int fourthCounter = 0; fourthCounter < sortedObstacles.size(); fourthCounter = fourthCounter + 1) {
-                        hMin = sortedObstacles.get(fourthCounter).get(0).get(2);
-                        hMax = sortedObstacles.get(fourthCounter).get(1).get(2);
-                        if (z >= hMin && z <= hMax) {
-                            isPointInsideOfObstacle = obstacleAvoider.isPointInsideOfObstacle(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
-                            if (isPointInsideOfObstacle) {
-                                ObstacleAvoidanceCurrentStation = obstacleAvoider.findNearestCorner(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
-                                positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter).set(0, ObstacleAvoidanceCurrentStation.get(0));
-                                positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter).set(1, ObstacleAvoidanceCurrentStation.get(1));
-                            }
+                        isPointInsideOfObstacle = obstacleAvoider.isPointInsideOfObstacle(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
+                        if (isPointInsideOfObstacle) {
+                            ObstacleAvoidanceCurrentStation = obstacleAvoider.findNearestCorner(ObstacleAvoidanceCurrentStation, sortedObstacles.get(fourthCounter));
+                            positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter).set(0, ObstacleAvoidanceCurrentStation.get(0));
+                            positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter).set(1, ObstacleAvoidanceCurrentStation.get(1));
                         }
                     }
                     visitingStations.add(positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter));
