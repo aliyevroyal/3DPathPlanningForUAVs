@@ -54,7 +54,7 @@ public class IGWOPathPlanningStaticStationaryMethod {
         ArrayList<Double> sortedFitnessValues = sortFitnessValues(fitnessValues);
         ArrayList<Double> distances = new ArrayList<>();
         ArrayList<Integer> indexes = new ArrayList<>();
-        double distance = 0;
+        double distance;
         //Obstacle detection, checking and avoidance components initialization starts here...
         ObstacleAvoider obstacleAvoider = new ObstacleAvoider();
         ArrayList<Double> ObstacleAvoidanceCurrentStation;

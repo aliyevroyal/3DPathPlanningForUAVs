@@ -39,14 +39,12 @@ public class WOAPathPlanningStaticStationaryMethod {
         boolean p;
         int randIndividual;
         double Xalpha, Dalpha, Xrand, Drand;
-        ArrayList<Double> P;
         double D;
         double b = 1, l;
         double x;
         int theNumberOfStations = 1000;
         int population = 100, dimension = 5;
         int iteration = 100;
-        double sigma1 = 0.6;
         ArrayList<ArrayList<Double>> stations = createRandomStations(theNumberOfStations, Xboundaries, Yboundaries, Zboundaries);
         ArrayList<ArrayList<Double>> visitingStations;
         ArrayList<ArrayList<ArrayList<Double>>> positionsMatrixWithoutCollisions = createRandomVisitedStations(population, dimension, stations);
