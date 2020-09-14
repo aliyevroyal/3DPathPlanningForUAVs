@@ -74,15 +74,23 @@ public class DynamicStationaryExperiments {
         }
 
         //Meta Heuristic Optimization Algorithms
+        System.out.println("GWO");
         dynamicStationaryExperiments.GWO(positionsMatricesWithoutCollisions.get(0));
+        System.out.println("IGWO");
         dynamicStationaryExperiments.IGWO(positionsMatricesWithoutCollisions.get(1));
+        System.out.println("ExGWO");
         dynamicStationaryExperiments.ExGWO(positionsMatricesWithoutCollisions.get(2));
+        System.out.println("WOA");
         dynamicStationaryExperiments.WOA(positionsMatricesWithoutCollisions.get(3));
 
         //Reinforcement Learning based Meta Heuristic Optimization Algorithms
+        System.out.println("RLGWO");
         dynamicStationaryExperiments.RLGWO(positionsMatricesWithoutCollisions.get(4));
+        System.out.println("RLIGWO");
         dynamicStationaryExperiments.RLIGWO(positionsMatricesWithoutCollisions.get(5));
+        System.out.println("RLExGWO");
         dynamicStationaryExperiments.RLExGWO(positionsMatricesWithoutCollisions.get(6));
+        System.out.println("RLWOA");
         dynamicStationaryExperiments.RLWOA(positionsMatricesWithoutCollisions.get(7));
     }
 
@@ -300,8 +308,8 @@ public class DynamicStationaryExperiments {
             }
             fitnessValues = calculateFitnessValues(positionsMatrixWithCollisions, sourceStation, destinationStation);
             sortedFitnessValues = sortFitnessValues(fitnessValues);
-            System.out.println(stCounter + " iteration, alpha's fitness value: " + sortedFitnessValues.get(0));
         }
+        System.out.println("Alpha's fitness value after iterations: " + sortedFitnessValues.get(0));
         System.out.println("Alpha path without collisions");
         for (int ndCounter = 0; ndCounter < positionsMatrixWithoutCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).size(); ndCounter = ndCounter + 1) {
             System.out.println(ndCounter + " " + positionsMatrixWithoutCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).get(ndCounter));
@@ -532,8 +540,8 @@ public class DynamicStationaryExperiments {
             }
             fitnessValues = calculateFitnessValues(positionsMatrixWithCollisions, sourceStation, destinationStation);
             sortedFitnessValues = sortFitnessValues(fitnessValues);
-            System.out.println(stCounter + " iteration, alpha's fitness value: " + sortedFitnessValues.get(0));
         }
+        System.out.println("Alpha's fitness value after iterations: " + sortedFitnessValues.get(0));
         System.out.println("Alpha path without collisions");
         for (int ndCounter = 0; ndCounter < positionsMatrixWithoutCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).size(); ndCounter = ndCounter + 1) {
             System.out.println(ndCounter + " " + positionsMatrixWithoutCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).get(ndCounter));
@@ -784,8 +792,8 @@ public class DynamicStationaryExperiments {
             }
             fitnessValues = calculateFitnessValues(positionsMatrixWithCollisions, sourceStation, destinationStation);
             sortedFitnessValues = sortFitnessValues(fitnessValues);
-            System.out.println(stCounter + " iteration, alpha's fitness value: " + sortedFitnessValues.get(0));
         }
+        System.out.println("Alpha's fitness value after iterations: " + sortedFitnessValues.get(0));
         System.out.println("Alpha path without collisions");
         for (int ndCounter = 0; ndCounter < positionsMatrixWithoutCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).size(); ndCounter = ndCounter + 1) {
             System.out.println(ndCounter + " " + positionsMatrixWithoutCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).get(ndCounter));
@@ -1016,8 +1024,8 @@ public class DynamicStationaryExperiments {
             }
             fitnessValues = calculateFitnessValues(positionsMatrixWithCollisions, sourceStation, destinationStation);
             sortedFitnessValues = sortFitnessValues(fitnessValues);
-            System.out.println(stCounter + " iteration, alpha's fitness value: " + sortedFitnessValues.get(0));
         }
+        System.out.println("Alpha's fitness value after iterations: " + sortedFitnessValues.get(0));
         System.out.println("Alpha path without collisions");
         for (int ndCounter = 0; ndCounter < positionsMatrixWithoutCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).size(); ndCounter = ndCounter + 1) {
             System.out.println(ndCounter + " " + positionsMatrixWithoutCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).get(ndCounter));
@@ -1346,8 +1354,8 @@ public class DynamicStationaryExperiments {
             }
             fitnessValues = calculateFitnessValues(positionsMatrixWithCollisions, sourceStation, destinationStation);
             sortedFitnessValues = sortFitnessValues(fitnessValues);
-            System.out.println(stCounter + " iteration, alpha's fitness value: " + sortedFitnessValues.get(0));
         }
+        System.out.println("Alpha's fitness value after iterations: " + sortedFitnessValues.get(0));
         System.out.println("Alpha path without collisions");
         for (int ndCounter = 0; ndCounter < positionsMatrixWithoutCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).size(); ndCounter = ndCounter + 1) {
             System.out.println(ndCounter + " " + positionsMatrixWithoutCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).get(ndCounter));
@@ -1698,8 +1706,8 @@ public class DynamicStationaryExperiments {
             }
             fitnessValues = calculateFitnessValues(positionsMatrixWithCollisions, sourceStation, destinationStation);
             sortedFitnessValues = sortFitnessValues(fitnessValues);
-            System.out.println(stCounter + " iteration, alpha's fitness value: " + sortedFitnessValues.get(0));
         }
+        System.out.println("Alpha's fitness value after iterations: " + sortedFitnessValues.get(0));
         System.out.println("Alpha path without collisions");
         for (int ndCounter = 0; ndCounter < positionsMatrixWithoutCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).size(); ndCounter = ndCounter + 1) {
             System.out.println(ndCounter + " " + positionsMatrixWithoutCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).get(ndCounter));
@@ -2070,8 +2078,8 @@ public class DynamicStationaryExperiments {
             }
             fitnessValues = calculateFitnessValues(positionsMatrixWithCollisions, sourceStation, destinationStation);
             sortedFitnessValues = sortFitnessValues(fitnessValues);
-            System.out.println(stCounter + " iteration, alpha's fitness value: " + sortedFitnessValues.get(0));
         }
+        System.out.println("Alpha's fitness value after iterations: " + sortedFitnessValues.get(0));
         System.out.println("Alpha path without collisions");
         for (int ndCounter = 0; ndCounter < positionsMatrixWithoutCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).size(); ndCounter = ndCounter + 1) {
             System.out.println(ndCounter + " " + positionsMatrixWithoutCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).get(ndCounter));
@@ -2469,8 +2477,8 @@ public class DynamicStationaryExperiments {
             }
             fitnessValues = calculateFitnessValues(positionsMatrixWithCollisions, sourceStation, destinationStation);
             sortedFitnessValues = sortFitnessValues(fitnessValues);
-            System.out.println(stCounter + " iteration, alpha's fitness value: " + sortedFitnessValues.get(0));
         }
+        System.out.println("Alpha's fitness value after iterations: " + sortedFitnessValues.get(0));
         System.out.println("Alpha path without collisions");
         for (int ndCounter = 0; ndCounter < positionsMatrixWithoutCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).size(); ndCounter = ndCounter + 1) {
             System.out.println(ndCounter + " " + positionsMatrixWithoutCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).get(ndCounter));
