@@ -7,13 +7,12 @@ public class WOAPathPlanningStaticStationaryMethod {
     private static Random random = null;
 
     public static void main(String[] args) {
-        WOAPathPlanningStaticStationaryMethod gwoPathPlanningStaticStationaryMethod = new WOAPathPlanningStaticStationaryMethod();
-        gwoPathPlanningStaticStationaryMethod.GWO();
+        WOAPathPlanningStaticStationaryMethod woaPathPlanningStaticStationaryMethod = new WOAPathPlanningStaticStationaryMethod();
+        woaPathPlanningStaticStationaryMethod.WOA();
     }
 
-    private void GWO() {
+    private void WOA() {
         random = new Random();
-        //Gray Wolf Optimization and Path Planning start here...
         //Boundaries of map
         ArrayList<Double> Xboundaries = new ArrayList<>(), Yboundaries = new ArrayList<>(), Zboundaries = new ArrayList<>();
         //X boundaries
@@ -35,17 +34,19 @@ public class WOAPathPlanningStaticStationaryMethod {
         destinationStation.add(49.0);
         destinationStation.add(49.0);
         destinationStation.add(49.0);
-        //Gray Wolf Optimization initialization starts here...
-        double a;
-        double r1, r2;
-        double A1, A2, A3;
-        double C1, C2, C3;
-        double x, X1, X2, X3;
-        double Dalpha, Dbeta, Ddelta;
-        double Xalpha, Xbeta, Xdelta;
+        //Whale Optimization Algorithm initialization starts here...
+        double a1, a2, r1, r2, A, C;
+        boolean p;
+        int randIndividual;
+        double Xalpha, Dalpha, Xrand, Drand;
+        ArrayList<Double> P;
+        double D;
+        double b = 1, l;
+        double x;
         int theNumberOfStations = 1000;
         int population = 100, dimension = 5;
         int iteration = 100;
+        double sigma1 = 0.6;
         ArrayList<ArrayList<Double>> stations = createRandomStations(theNumberOfStations, Xboundaries, Yboundaries, Zboundaries);
         ArrayList<ArrayList<Double>> visitingStations;
         ArrayList<ArrayList<ArrayList<Double>>> positionsMatrixWithoutCollisions = createRandomVisitedStations(population, dimension, stations);
@@ -71,50 +72,49 @@ public class WOAPathPlanningStaticStationaryMethod {
         ArrayList<ArrayList<ArrayList<Double>>> positionsMatrixWithCollisions = new ArrayList<>();
         ArrayList<ArrayList<Double>> pathWithCollisiions = new ArrayList<>();
         ArrayList<ArrayList<ArrayList<Double>>> sortedObstacles;
-        //Gray Wolf Optimization iterations start here...
+        //Whale Optimization Algorithm iterations start here...
         System.out.println("Initialization, alpha's fitness value: " + sortedFitnessValues.get(0));
         for (int stCounter = 0; stCounter < iteration; stCounter = stCounter + 1) {
             positionsMatrixWithCollisions = new ArrayList<>();
-            a = 2.0 - 2.0 * stCounter / iteration;
+            a1 = 2.0 - 2.0 * stCounter / iteration;
             for (int ndCounter = 0; ndCounter < optimizationMatrix.size(); ndCounter = ndCounter + 1) {
                 visitingStations = new ArrayList<>();
                 for (int rdCounter = 0; rdCounter < optimizationMatrix.get(ndCounter).size(); rdCounter = rdCounter + 1) {
                     x = optimizationMatrix.get(ndCounter).get(rdCounter);
 
-                    r1 = random.nextDouble();
-                    r2 = random.nextDouble();
-                    A1 = 2 * a * r1 - a;
-                    C1 = 2 * r2;
-                    Xalpha = optimizationMatrix.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).get(rdCounter);
-                    Dalpha = C1 * Xalpha - x;
-                    if (Dalpha < 0) {
-                        Dalpha = Dalpha * -1;
+                    p = random.nextBoolean();
+                    if (p) {
+                        r1 = random.nextDouble();
+                        A = 2 * a1 * r1 - a1;
+                        r2 = random.nextDouble();
+                        C = 2 * r2;
+                        if (Math.abs(A) < 1) {
+                            Xalpha = optimizationMatrix.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).get(rdCounter);
+                            Dalpha = C * Xalpha - x;
+                            if (Dalpha < 0) {
+                                Dalpha = Dalpha * -1;
+                            }
+                            x = Xalpha - A * Dalpha;
+                        } else if (Math.abs(A) >= 1) {
+                            randIndividual = random.nextInt(sortedFitnessValues.size());
+                            Xrand = optimizationMatrix.get(randIndividual).get(rdCounter);
+                            Drand = C * Xrand - x;
+                            if (Drand < 0) {
+                                Drand = Drand * -1;
+                            }
+                            x = Xrand - A * Drand;
+                        }
+                    } else {
+                        Xalpha = optimizationMatrix.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).get(rdCounter);
+                        D = Xalpha - x;
+                        if (D < 0) {
+                            D = D * -1;
+                        }
+                        a2 = -1.0 + stCounter * ((-1.0) / iteration);
+                        l = (a2 - 1.0) * random.nextDouble() + 1.0;
+                        x = D * Math.pow(Math.E, (b * l)) * Math.cos(2 * Math.PI * l) + Xalpha;
                     }
-                    X1 = Xalpha - A1 * Dalpha;
 
-                    r1 = random.nextDouble();
-                    r2 = random.nextDouble();
-                    A2 = 2 * a * r1 - a;
-                    C2 = 2 * r2;
-                    Xbeta = optimizationMatrix.get(fitnessValues.indexOf(sortedFitnessValues.get(1))).get(rdCounter);
-                    Dbeta = C2 * Xbeta - x;
-                    if (Dbeta < 0) {
-                        Dbeta = Dbeta * -1;
-                    }
-                    X2 = Xbeta - A2 * Dbeta;
-
-                    r1 = random.nextDouble();
-                    r2 = random.nextDouble();
-                    A3 = 2 * a * r1 - a;
-                    C3 = 2 * r2;
-                    Xdelta = optimizationMatrix.get(fitnessValues.indexOf(sortedFitnessValues.get(2))).get(rdCounter);
-                    Ddelta = C3 * Xdelta - x;
-                    if (Ddelta < 0) {
-                        Ddelta = Ddelta * -1;
-                    }
-                    X3 = Xdelta - A3 * Ddelta;
-
-                    x = (X1 + X2 + X3) / 3;
                     for (int fourthCounter = 0; fourthCounter < stations.size(); fourthCounter = fourthCounter + 1) {
                         if (!visitingStations.contains(stations.get(fourthCounter))) {
                             if (rdCounter == 0) {

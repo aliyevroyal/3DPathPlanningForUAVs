@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6ce80e1a-4e66-4642-9a81-b99625a69087" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/thealiyev/DynamicStationaryExperiments.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/thealiyev/StaticStationaryExperiments.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/thealiyev/WOAPathPlanningDynamicStationaryMethod.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/thealiyev/WOAPathPlanningStaticStationaryMethod.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/thealiyev/WOAPathPlanningDynamicStationaryMethod.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/thealiyev/WOAPathPlanningDynamicStationaryMethod.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/thealiyev/WOAPathPlanningStaticStationaryMethod.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/thealiyev/WOAPathPlanningStaticStationaryMethod.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,7 +40,7 @@
       <recent name="com.thealiyev" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.DynamicStationaryExperiments">
+  <component name="RunManager" selected="Application.WOAPathPlanningStaticStationaryMethod">
     <configuration name="DynamicStationaryExperiments" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.thealiyev.DynamicStationaryExperiments" />
       <module name="3DPathPlanningForUAVs" />
@@ -69,34 +67,34 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RLIGWOPathPlanningStaticStationaryMethod" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.thealiyev.RLIGWOPathPlanningStaticStationaryMethod" />
-      <module name="3DPathPlanningForUAVs" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.thealiyev.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="RLWOAPathPlanningDynamicStationaryMethod" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.thealiyev.RLWOAPathPlanningDynamicStationaryMethod" />
-      <module name="3DPathPlanningForUAVs" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.thealiyev.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="RLWOAPathPlanningStaticStationaryMethod" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.thealiyev.RLWOAPathPlanningStaticStationaryMethod" />
+      <module name="3DPathPlanningForUAVs" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.thealiyev.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="WOAPathPlanningDynamicStationaryMethod" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.thealiyev.WOAPathPlanningDynamicStationaryMethod" />
+      <module name="3DPathPlanningForUAVs" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.thealiyev.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="WOAPathPlanningStaticStationaryMethod" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.thealiyev.WOAPathPlanningStaticStationaryMethod" />
       <module name="3DPathPlanningForUAVs" />
       <extension name="coverage">
         <pattern>
@@ -122,19 +120,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.RLIGWOPathPlanningStaticStationaryMethod" />
-      <item itemvalue="Application.RLWOAPathPlanningDynamicStationaryMethod" />
       <item itemvalue="Application.RLWOAPathPlanningStaticStationaryMethod" />
       <item itemvalue="Application.RLExGWOPathPlanningDynamicStationaryMethod" />
       <item itemvalue="Application.DynamicStationaryExperiments" />
+      <item itemvalue="Application.WOAPathPlanningDynamicStationaryMethod" />
+      <item itemvalue="Application.WOAPathPlanningStaticStationaryMethod" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.WOAPathPlanningStaticStationaryMethod" />
+        <item itemvalue="Application.WOAPathPlanningDynamicStationaryMethod" />
         <item itemvalue="Application.DynamicStationaryExperiments" />
         <item itemvalue="Application.RLWOAPathPlanningStaticStationaryMethod" />
         <item itemvalue="Application.RLExGWOPathPlanningDynamicStationaryMethod" />
-        <item itemvalue="Application.RLWOAPathPlanningDynamicStationaryMethod" />
-        <item itemvalue="Application.RLIGWOPathPlanningStaticStationaryMethod" />
       </list>
     </recent_temporary>
   </component>
@@ -184,7 +182,7 @@
       <workItem from="1599605355854" duration="170000" />
       <workItem from="1599605575919" duration="27000" />
       <workItem from="1599605719277" duration="11340000" />
-      <workItem from="1600067974417" duration="1451000" />
+      <workItem from="1600067974417" duration="2412000" />
     </task>
     <servers />
   </component>
@@ -192,22 +190,22 @@
     <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1398" height="279" key="GridCell.Tab.0.bottom" timestamp="1600069419282">
+    <state width="1398" height="279" key="GridCell.Tab.0.bottom" timestamp="1600071483926">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="279" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1600069419282" />
-    <state width="1398" height="279" key="GridCell.Tab.0.center" timestamp="1600069419279">
+    <state width="1398" height="279" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1600071483926" />
+    <state width="1398" height="279" key="GridCell.Tab.0.center" timestamp="1600071483924">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="279" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1600069419279" />
-    <state width="1398" height="279" key="GridCell.Tab.0.left" timestamp="1600069419277">
+    <state width="1398" height="279" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1600071483924" />
+    <state width="1398" height="279" key="GridCell.Tab.0.left" timestamp="1600071483922">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="279" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1600069419277" />
-    <state width="1398" height="279" key="GridCell.Tab.0.right" timestamp="1600069419281">
+    <state width="1398" height="279" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1600071483922" />
+    <state width="1398" height="279" key="GridCell.Tab.0.right" timestamp="1600071483925">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="279" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1600069419281" />
+    <state width="1398" height="279" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1600071483925" />
     <state x="413" y="282" key="com.intellij.ide.util.TipDialog" timestamp="1599605069066">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
