@@ -51,18 +51,42 @@ public class DynamicStationaryExperiments {
         dimension = 5;
         iteration = 100;
 
-        //dynamicStationaryExperiments.GWO();
-        //dynamicStationaryExperiments.IGWO();
-        //dynamicStationaryExperiments.ExGWO();
-        //dynamicStationaryExperiments.WOA();
+        ArrayList<ArrayList<ArrayList<Double>>> positionsMatrixWithoutCollisions = dynamicStationaryExperiments.createRandomPositionsMatrix(population, dimension, Xboundaries, Yboundaries, Zboundaries);
+        ArrayList<ArrayList<ArrayList<ArrayList<Double>>>> positionsMatricesWithoutCollisions = new ArrayList<>();
+        ArrayList<ArrayList<ArrayList<Double>>> matrices = new ArrayList<>();
+        ArrayList<ArrayList<Double>> matrix = new ArrayList<>();
+        ArrayList<Double> vector = new ArrayList();
 
-        //dynamicStationaryExperiments.RLGWO();
-        //dynamicStationaryExperiments.RLIGWO();
-        //dynamicStationaryExperiments.RLExGWO();
-        //dynamicStationaryExperiments.RLWOA();
+        for (int counter = 0; counter < 8; counter = counter + 1) {
+            for (int stCounter = 0; stCounter < positionsMatrixWithoutCollisions.size(); stCounter = stCounter + 1) {
+                for (int ndCounter = 0; ndCounter < positionsMatrixWithoutCollisions.get(stCounter).size(); ndCounter = ndCounter + 1) {
+                    for (int rdCounter = 0; rdCounter < positionsMatrixWithoutCollisions.get(stCounter).get(ndCounter).size(); rdCounter = rdCounter + 1) {
+                        vector.add(positionsMatrixWithoutCollisions.get(stCounter).get(ndCounter).get(rdCounter));
+                    }
+                    matrix.add(vector);
+                    vector = new ArrayList<>();
+                }
+                matrices.add(matrix);
+                matrix = new ArrayList<>();
+            }
+            positionsMatricesWithoutCollisions.add(matrices);
+            matrices = new ArrayList<>();
+        }
+
+        //Meta Heuristic Optimization Algorithms
+        dynamicStationaryExperiments.GWO(positionsMatricesWithoutCollisions.get(0));
+        dynamicStationaryExperiments.IGWO(positionsMatricesWithoutCollisions.get(1));
+        dynamicStationaryExperiments.ExGWO(positionsMatricesWithoutCollisions.get(2));
+        dynamicStationaryExperiments.WOA(positionsMatricesWithoutCollisions.get(3));
+
+        //Reinforcement Learning based Meta Heuristic Optimization Algorithms
+        dynamicStationaryExperiments.RLGWO(positionsMatricesWithoutCollisions.get(4));
+        dynamicStationaryExperiments.RLIGWO(positionsMatricesWithoutCollisions.get(5));
+        dynamicStationaryExperiments.RLExGWO(positionsMatricesWithoutCollisions.get(6));
+        dynamicStationaryExperiments.RLWOA(positionsMatricesWithoutCollisions.get(7));
     }
 
-    private void GWO() {
+    private void GWO(ArrayList<ArrayList<ArrayList<Double>>> positionsMatrixWithoutCollisions) {
         random = new Random();
         //Gray Wolf Optimization initialization starts here...
         double a;
@@ -73,7 +97,6 @@ public class DynamicStationaryExperiments {
         ArrayList<Double> P;
         double Dalpha, Dbeta, Ddelta;
         double Xalpha, Xbeta, Xdelta;
-        ArrayList<ArrayList<ArrayList<Double>>> positionsMatrixWithoutCollisions = createRandomPositionsMatrix(population, dimension, Xboundaries, Yboundaries, Zboundaries);
         ArrayList<ArrayList<Double>> optimizationMatrix = createOptimizationMatrix(positionsMatrixWithoutCollisions, sourceStation);
         ArrayList<Double> fitnessValues = calculateFitnessValues(positionsMatrixWithoutCollisions, sourceStation, destinationStation);
         ArrayList<Double> sortedFitnessValues = sortFitnessValues(fitnessValues);
@@ -296,7 +319,7 @@ public class DynamicStationaryExperiments {
     }
 
 
-    private void IGWO() {
+    private void IGWO(ArrayList<ArrayList<ArrayList<Double>>> positionsMatrixWithoutCollisions) {
         random = new Random();
         //Iterative Gray Wolf Optimization initialization starts here...
         double a;
@@ -307,7 +330,6 @@ public class DynamicStationaryExperiments {
         ArrayList<Double> X;
         double x;
         ArrayList<Double> P;
-        ArrayList<ArrayList<ArrayList<Double>>> positionsMatrixWithoutCollisions = createRandomPositionsMatrix(population, dimension, Xboundaries, Yboundaries, Zboundaries);
         ArrayList<ArrayList<Double>> optimizationMatrix = createOptimizationMatrix(positionsMatrixWithoutCollisions, sourceStation);
         ArrayList<Double> fitnessValues = calculateFitnessValues(positionsMatrixWithoutCollisions, sourceStation, destinationStation);
         ArrayList<Double> sortedFitnessValues = sortFitnessValues(fitnessValues);
@@ -529,7 +551,7 @@ public class DynamicStationaryExperiments {
     }
 
 
-    private void ExGWO() {
+    private void ExGWO(ArrayList<ArrayList<ArrayList<Double>>> positionsMatrixWithoutCollisions) {
         random = new Random();
         //Expanded Gray Wolf Optimization initialization starts here...
         double a;
@@ -540,7 +562,6 @@ public class DynamicStationaryExperiments {
         ArrayList<Double> X;
         double x;
         ArrayList<Double> P;
-        ArrayList<ArrayList<ArrayList<Double>>> positionsMatrixWithoutCollisions = createRandomPositionsMatrix(population, dimension, Xboundaries, Yboundaries, Zboundaries);
         ArrayList<ArrayList<Double>> optimizationMatrix = createOptimizationMatrix(positionsMatrixWithoutCollisions, sourceStation);
         ArrayList<Double> fitnessValues = calculateFitnessValues(positionsMatrixWithoutCollisions, sourceStation, destinationStation);
         ArrayList<Double> sortedFitnessValues = sortFitnessValues(fitnessValues);
@@ -782,7 +803,7 @@ public class DynamicStationaryExperiments {
     }
 
 
-    private void WOA() {
+    private void WOA(ArrayList<ArrayList<ArrayList<Double>>> positionsMatrixWithoutCollisions) {
         random = new Random();
         //Whale Optimization Algorithm initialization starts here...
         double a1, a2, r1, r2, A, C;
@@ -793,7 +814,6 @@ public class DynamicStationaryExperiments {
         double D;
         double b = 1, l;
         double x;
-        ArrayList<ArrayList<ArrayList<Double>>> positionsMatrixWithoutCollisions = createRandomPositionsMatrix(population, dimension, Xboundaries, Yboundaries, Zboundaries);
         ArrayList<ArrayList<Double>> optimizationMatrix = createOptimizationMatrix(positionsMatrixWithoutCollisions, sourceStation);
         ArrayList<Double> fitnessValues = calculateFitnessValues(positionsMatrixWithoutCollisions, sourceStation, destinationStation);
         ArrayList<Double> sortedFitnessValues = sortFitnessValues(fitnessValues);
@@ -1015,7 +1035,7 @@ public class DynamicStationaryExperiments {
     }
 
 
-    private void RLGWO() {
+    private void RLGWO(ArrayList<ArrayList<ArrayList<Double>>> positionsMatrixWithoutCollisions) {
         random = new Random();
         //Reinforcement Learning based Gray Wolf Optimization and Path Planning start here...
         //Reinforcement Learning Initialization Starts...
@@ -1043,7 +1063,6 @@ public class DynamicStationaryExperiments {
         double Dalpha, Dbeta, Ddelta;
         double Xalpha, Xbeta, Xdelta;
         double sigma1 = 0.1, sigma2 = 0.5, sigma3 = 0.9;
-        ArrayList<ArrayList<ArrayList<Double>>> positionsMatrixWithoutCollisions = createRandomPositionsMatrix(population, dimension, Xboundaries, Yboundaries, Zboundaries);
         ArrayList<ArrayList<Double>> optimizationMatrix = createOptimizationMatrix(positionsMatrixWithoutCollisions, sourceStation);
         ArrayList<Double> fitnessValues = calculateFitnessValues(positionsMatrixWithoutCollisions, sourceStation, destinationStation);
         ArrayList<Double> sortedFitnessValues = sortFitnessValues(fitnessValues);
@@ -1345,7 +1364,7 @@ public class DynamicStationaryExperiments {
         }
     }
 
-    private void RLIGWO() {
+    private void RLIGWO(ArrayList<ArrayList<ArrayList<Double>>> positionsMatrixWithoutCollisions) {
         random = new Random();
         //Reinforcement Learning based Iterative Gray Wolf Optimization and Path Planning start here...
         //Reinforcement Learning Initialization Starts...
@@ -1374,7 +1393,6 @@ public class DynamicStationaryExperiments {
         ArrayList<Double> X;
         double x;
         ArrayList<Double> P;
-        ArrayList<ArrayList<ArrayList<Double>>> positionsMatrixWithoutCollisions = createRandomPositionsMatrix(population, dimension, Xboundaries, Yboundaries, Zboundaries);
         ArrayList<ArrayList<Double>> optimizationMatrix = createOptimizationMatrix(positionsMatrixWithoutCollisions, sourceStation);
         ArrayList<Double> fitnessValues = calculateFitnessValues(positionsMatrixWithoutCollisions, sourceStation, destinationStation);
         ArrayList<Double> sortedFitnessValues = sortFitnessValues(fitnessValues);
@@ -1698,7 +1716,7 @@ public class DynamicStationaryExperiments {
         }
     }
 
-    private void RLExGWO() {
+    private void RLExGWO(ArrayList<ArrayList<ArrayList<Double>>> positionsMatrixWithoutCollisions) {
         random = new Random();
         //Reinforcement Learning based Expanded Gray Wolf Optimization and Path Planning start here...
         //Reinforcement Learning Initialization Starts...
@@ -1727,7 +1745,6 @@ public class DynamicStationaryExperiments {
         ArrayList<Double> X;
         double x;
         ArrayList<Double> P;
-        ArrayList<ArrayList<ArrayList<Double>>> positionsMatrixWithoutCollisions = createRandomPositionsMatrix(population, dimension, Xboundaries, Yboundaries, Zboundaries);
         ArrayList<ArrayList<Double>> optimizationMatrix = createOptimizationMatrix(positionsMatrixWithoutCollisions, sourceStation);
         ArrayList<Double> fitnessValues = calculateFitnessValues(positionsMatrixWithoutCollisions, sourceStation, destinationStation);
         ArrayList<Double> sortedFitnessValues = sortFitnessValues(fitnessValues);
@@ -2072,7 +2089,7 @@ public class DynamicStationaryExperiments {
     }
 
 
-    private void RLWOA() {
+    private void RLWOA(ArrayList<ArrayList<ArrayList<Double>>> positionsMatrixWithoutCollisions) {
         random = new Random();
         //Reinforcement Learning based Whale Optimization Algorithm and Path Planning start here...
         //Reinforcement Learning Initialization Starts...
@@ -2100,7 +2117,6 @@ public class DynamicStationaryExperiments {
         double b = 1, l;
         double x;
         double sigma1 = 0.6;
-        ArrayList<ArrayList<ArrayList<Double>>> positionsMatrixWithoutCollisions = createRandomPositionsMatrix(population, dimension, Xboundaries, Yboundaries, Zboundaries);
         ArrayList<ArrayList<Double>> optimizationMatrix = createOptimizationMatrix(positionsMatrixWithoutCollisions, sourceStation);
         ArrayList<Double> fitnessValues = calculateFitnessValues(positionsMatrixWithoutCollisions, sourceStation, destinationStation);
         ArrayList<Double> sortedFitnessValues = sortFitnessValues(fitnessValues);
