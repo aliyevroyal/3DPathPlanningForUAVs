@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6ce80e1a-4e66-4642-9a81-b99625a69087" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/com/thealiyev/DynamicStationaryExperiments.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/thealiyev/DynamicStationaryExperiments.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/thealiyev/StaticStationaryExperiments.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/thealiyev/StaticStationaryExperiments.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +39,7 @@
       <recent name="com.thealiyev" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.DynamicStationaryExperiments">
+  <component name="RunManager" selected="Application.StaticStationaryExperiments">
     <configuration name="DynamicStationaryExperiments" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.thealiyev.DynamicStationaryExperiments" />
       <module name="3DPathPlanningForUAVs" />
@@ -52,8 +53,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RLExGWOPathPlanningDynamicStationaryMethod" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.thealiyev.RLExGWOPathPlanningDynamicStationaryMethod" />
+    <configuration name="RLWOAPathPlanningStaticStationaryMethod" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.thealiyev.RLWOAPathPlanningStaticStationaryMethod" />
       <module name="3DPathPlanningForUAVs" />
       <extension name="coverage">
         <pattern>
@@ -65,8 +66,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RLWOAPathPlanningStaticStationaryMethod" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.thealiyev.RLWOAPathPlanningStaticStationaryMethod" />
+    <configuration name="StaticStationaryExperiments" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.thealiyev.StaticStationaryExperiments" />
       <module name="3DPathPlanningForUAVs" />
       <extension name="coverage">
         <pattern>
@@ -119,18 +120,18 @@
     </configuration>
     <list>
       <item itemvalue="Application.RLWOAPathPlanningStaticStationaryMethod" />
-      <item itemvalue="Application.RLExGWOPathPlanningDynamicStationaryMethod" />
       <item itemvalue="Application.DynamicStationaryExperiments" />
       <item itemvalue="Application.WOAPathPlanningDynamicStationaryMethod" />
       <item itemvalue="Application.WOAPathPlanningStaticStationaryMethod" />
+      <item itemvalue="Application.StaticStationaryExperiments" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.StaticStationaryExperiments" />
         <item itemvalue="Application.DynamicStationaryExperiments" />
         <item itemvalue="Application.WOAPathPlanningStaticStationaryMethod" />
         <item itemvalue="Application.WOAPathPlanningDynamicStationaryMethod" />
         <item itemvalue="Application.RLWOAPathPlanningStaticStationaryMethod" />
-        <item itemvalue="Application.RLExGWOPathPlanningDynamicStationaryMethod" />
       </list>
     </recent_temporary>
   </component>
@@ -180,7 +181,7 @@
       <workItem from="1599605355854" duration="170000" />
       <workItem from="1599605575919" duration="27000" />
       <workItem from="1599605719277" duration="11340000" />
-      <workItem from="1600067974417" duration="6165000" />
+      <workItem from="1600067974417" duration="7126000" />
     </task>
     <servers />
   </component>
@@ -188,22 +189,22 @@
     <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1398" height="279" key="GridCell.Tab.0.bottom" timestamp="1600075599074">
+    <state width="1398" height="279" key="GridCell.Tab.0.bottom" timestamp="1600076452313">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="279" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1600075599074" />
-    <state width="1398" height="279" key="GridCell.Tab.0.center" timestamp="1600075599073">
+    <state width="1398" height="279" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1600076452313" />
+    <state width="1398" height="279" key="GridCell.Tab.0.center" timestamp="1600076452311">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="279" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1600075599073" />
-    <state width="1398" height="279" key="GridCell.Tab.0.left" timestamp="1600075599072">
+    <state width="1398" height="279" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1600076452311" />
+    <state width="1398" height="279" key="GridCell.Tab.0.left" timestamp="1600076452308">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="279" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1600075599072" />
-    <state width="1398" height="279" key="GridCell.Tab.0.right" timestamp="1600075599074">
+    <state width="1398" height="279" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1600076452308" />
+    <state width="1398" height="279" key="GridCell.Tab.0.right" timestamp="1600076452312">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="279" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1600075599074" />
+    <state width="1398" height="279" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1600076452312" />
     <state x="413" y="282" key="com.intellij.ide.util.TipDialog" timestamp="1599605069066">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
