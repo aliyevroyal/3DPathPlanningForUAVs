@@ -58,71 +58,75 @@ public class DynamicStationaryExperiments {
         ArrayList<ArrayList<Double>> matrix;
         ArrayList<Double> vector;
         long startTime, endTime, executionTime;
+        ArrayList<Long> executionTimes = new ArrayList<>();
 
-        positionsMatrixWithoutCollisions = dynamicStationaryExperiments.createRandomPositionsMatrix(population, dimension, Xboundaries, Yboundaries, Zboundaries);
-        positionsMatricesWithoutCollisions = new ArrayList<>();
-        matrices = new ArrayList<>();
-        matrix = new ArrayList<>();
-        vector = new ArrayList();
-        for (int stCounter = 0; stCounter < 8; stCounter = stCounter + 1) {
-            for (int ndCounter = 0; ndCounter < positionsMatrixWithoutCollisions.size(); ndCounter = ndCounter + 1) {
-                for (int rdCounter = 0; rdCounter < positionsMatrixWithoutCollisions.get(ndCounter).size(); rdCounter = rdCounter + 1) {
-                    for (int fourthCounter = 0; fourthCounter < positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter).size(); fourthCounter = fourthCounter + 1) {
-                        vector.add(positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter).get(fourthCounter));
-                    }
-                    matrix.add(vector);
-                    vector = new ArrayList<>();
-                }
-                matrices.add(matrix);
-                matrix = new ArrayList<>();
-            }
-            positionsMatricesWithoutCollisions.add(matrices);
+        for (int counter = 0; counter < repeat; counter = counter + 1) {
+            System.out.println("Experimental Repeat No: " + counter);
+            positionsMatrixWithoutCollisions = dynamicStationaryExperiments.createRandomPositionsMatrix(population, dimension, Xboundaries, Yboundaries, Zboundaries);
+            positionsMatricesWithoutCollisions = new ArrayList<>();
             matrices = new ArrayList<>();
+            matrix = new ArrayList<>();
+            vector = new ArrayList();
+            for (int stCounter = 0; stCounter < 8; stCounter = stCounter + 1) {
+                for (int ndCounter = 0; ndCounter < positionsMatrixWithoutCollisions.size(); ndCounter = ndCounter + 1) {
+                    for (int rdCounter = 0; rdCounter < positionsMatrixWithoutCollisions.get(ndCounter).size(); rdCounter = rdCounter + 1) {
+                        for (int fourthCounter = 0; fourthCounter < positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter).size(); fourthCounter = fourthCounter + 1) {
+                            vector.add(positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter).get(fourthCounter));
+                        }
+                        matrix.add(vector);
+                        vector = new ArrayList<>();
+                    }
+                    matrices.add(matrix);
+                    matrix = new ArrayList<>();
+                }
+                positionsMatricesWithoutCollisions.add(matrices);
+                matrices = new ArrayList<>();
+            }
+
+            //Meta Heuristic Optimization Algorithms
+            System.out.println("GWO");
+            startTime = System.currentTimeMillis();
+            dynamicStationaryExperiments.GWO(positionsMatricesWithoutCollisions.get(0));
+            endTime = System.currentTimeMillis();
+            executionTime = (endTime - startTime);
+            System.out.println("IGWO");
+            startTime = System.currentTimeMillis();
+            dynamicStationaryExperiments.IGWO(positionsMatricesWithoutCollisions.get(1));
+            endTime = System.currentTimeMillis();
+            executionTime = (endTime - startTime);
+            System.out.println("ExGWO");
+            startTime = System.currentTimeMillis();
+            dynamicStationaryExperiments.ExGWO(positionsMatricesWithoutCollisions.get(2));
+            endTime = System.currentTimeMillis();
+            executionTime = (endTime - startTime);
+            System.out.println("WOA");
+            startTime = System.currentTimeMillis();
+            dynamicStationaryExperiments.WOA(positionsMatricesWithoutCollisions.get(3));
+            endTime = System.currentTimeMillis();
+            executionTime = (endTime - startTime);
+
+            //Reinforcement Learning based Meta Heuristic Optimization Algorithms
+            System.out.println("RLGWO");
+            startTime = System.currentTimeMillis();
+            dynamicStationaryExperiments.RLGWO(positionsMatricesWithoutCollisions.get(4));
+            endTime = System.currentTimeMillis();
+            executionTime = (endTime - startTime);
+            System.out.println("RLIGWO");
+            startTime = System.currentTimeMillis();
+            dynamicStationaryExperiments.RLIGWO(positionsMatricesWithoutCollisions.get(5));
+            endTime = System.currentTimeMillis();
+            executionTime = (endTime - startTime);
+            System.out.println("RLExGWO");
+            startTime = System.currentTimeMillis();
+            dynamicStationaryExperiments.RLExGWO(positionsMatricesWithoutCollisions.get(6));
+            endTime = System.currentTimeMillis();
+            executionTime = (endTime - startTime);
+            System.out.println("RLWOA");
+            startTime = System.currentTimeMillis();
+            dynamicStationaryExperiments.RLWOA(positionsMatricesWithoutCollisions.get(7));
+            endTime = System.currentTimeMillis();
+            executionTime = (endTime - startTime);
         }
-
-        //Meta Heuristic Optimization Algorithms
-        System.out.println("GWO");
-        startTime = System.currentTimeMillis();
-        dynamicStationaryExperiments.GWO(positionsMatricesWithoutCollisions.get(0));
-        endTime = System.currentTimeMillis();
-        executionTime = (endTime - startTime);
-        System.out.println("IGWO");
-        startTime = System.currentTimeMillis();
-        dynamicStationaryExperiments.IGWO(positionsMatricesWithoutCollisions.get(1));
-        endTime = System.currentTimeMillis();
-        executionTime = (endTime - startTime);
-        System.out.println("ExGWO");
-        startTime = System.currentTimeMillis();
-        dynamicStationaryExperiments.ExGWO(positionsMatricesWithoutCollisions.get(2));
-        endTime = System.currentTimeMillis();
-        executionTime = (endTime - startTime);
-        System.out.println("WOA");
-        startTime = System.currentTimeMillis();
-        dynamicStationaryExperiments.WOA(positionsMatricesWithoutCollisions.get(3));
-        endTime = System.currentTimeMillis();
-        executionTime = (endTime - startTime);
-
-        //Reinforcement Learning based Meta Heuristic Optimization Algorithms
-        System.out.println("RLGWO");
-        startTime = System.currentTimeMillis();
-        dynamicStationaryExperiments.RLGWO(positionsMatricesWithoutCollisions.get(4));
-        endTime = System.currentTimeMillis();
-        executionTime = (endTime - startTime);
-        System.out.println("RLIGWO");
-        startTime = System.currentTimeMillis();
-        dynamicStationaryExperiments.RLIGWO(positionsMatricesWithoutCollisions.get(5));
-        endTime = System.currentTimeMillis();
-        executionTime = (endTime - startTime);
-        System.out.println("RLExGWO");
-        startTime = System.currentTimeMillis();
-        dynamicStationaryExperiments.RLExGWO(positionsMatricesWithoutCollisions.get(6));
-        endTime = System.currentTimeMillis();
-        executionTime = (endTime - startTime);
-        System.out.println("RLWOA");
-        startTime = System.currentTimeMillis();
-        dynamicStationaryExperiments.RLWOA(positionsMatricesWithoutCollisions.get(7));
-        endTime = System.currentTimeMillis();
-        executionTime = (endTime - startTime);
     }
 
     private double GWO(ArrayList<ArrayList<ArrayList<Double>>> positionsMatrixWithoutCollisions) {
