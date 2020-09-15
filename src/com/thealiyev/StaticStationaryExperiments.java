@@ -61,6 +61,10 @@ public class StaticStationaryExperiments {
         ArrayList<ArrayList<Double>> matrix;
         ArrayList<Double> vector;
         long startTime, endTime, executionTime;
+        ArrayList<Long> runtimesVector;
+        ArrayList<ArrayList<Long>> runtimesMatrix = new ArrayList<>();
+        ArrayList<Double> alphaValuesVector;
+        ArrayList<ArrayList<Double>> alphalphaValuesMatrix = new ArrayList<>();
 
         for (int counter = 0; counter < repeat; counter = counter + 1) {
             System.out.println("Experimental Repeat No: " + counter);
@@ -70,6 +74,8 @@ public class StaticStationaryExperiments {
             matrices = new ArrayList<>();
             matrix = new ArrayList<>();
             vector = new ArrayList();
+            runtimesVector = new ArrayList<>();
+            alphaValuesVector = new ArrayList<>();
             for (int stCounter = 0; stCounter < 8; stCounter = stCounter + 1) {
                 for (int ndCounter = 0; ndCounter < positionsMatrixWithoutCollisions.size(); ndCounter = ndCounter + 1) {
                     for (int rdCounter = 0; rdCounter < positionsMatrixWithoutCollisions.get(ndCounter).size(); rdCounter = rdCounter + 1) {
@@ -89,46 +95,92 @@ public class StaticStationaryExperiments {
             //Meta Heuristic Optimization Algorithms
             System.out.println("GWO");
             startTime = System.currentTimeMillis();
-            staticStationaryExperiments.GWO(stations, positionsMatricesWithoutCollisions.get(0));
+            alphaValuesVector.add(staticStationaryExperiments.GWO(stations, positionsMatricesWithoutCollisions.get(0)));
             endTime = System.currentTimeMillis();
             executionTime = (endTime - startTime);
+            runtimesVector.add(executionTime);
             System.out.println("IGWO");
             startTime = System.currentTimeMillis();
-            staticStationaryExperiments.IGWO(stations, positionsMatricesWithoutCollisions.get(1));
+            alphaValuesVector.add(staticStationaryExperiments.IGWO(stations, positionsMatricesWithoutCollisions.get(1)));
             endTime = System.currentTimeMillis();
             executionTime = (endTime - startTime);
+            runtimesVector.add(executionTime);
             System.out.println("ExGWO");
             startTime = System.currentTimeMillis();
-            staticStationaryExperiments.ExGWO(stations, positionsMatricesWithoutCollisions.get(2));
+            alphaValuesVector.add(staticStationaryExperiments.ExGWO(stations, positionsMatricesWithoutCollisions.get(2)));
             endTime = System.currentTimeMillis();
             executionTime = (endTime - startTime);
+            runtimesVector.add(executionTime);
             System.out.println("WOA");
             startTime = System.currentTimeMillis();
-            staticStationaryExperiments.WOA(stations, positionsMatricesWithoutCollisions.get(3));
+            alphaValuesVector.add(staticStationaryExperiments.WOA(stations, positionsMatricesWithoutCollisions.get(3)));
             endTime = System.currentTimeMillis();
             executionTime = (endTime - startTime);
+            runtimesVector.add(executionTime);
             //Reinforcement Learning based Meta Heuristic Optimization Algorithms
             System.out.println("RLGWO");
             startTime = System.currentTimeMillis();
-            staticStationaryExperiments.RLGWO(stations, positionsMatricesWithoutCollisions.get(4));
+            alphaValuesVector.add(staticStationaryExperiments.RLGWO(stations, positionsMatricesWithoutCollisions.get(4)));
             endTime = System.currentTimeMillis();
             executionTime = (endTime - startTime);
+            runtimesVector.add(executionTime);
             System.out.println("RLIGWO");
             startTime = System.currentTimeMillis();
-            staticStationaryExperiments.RLIGWO(stations, positionsMatricesWithoutCollisions.get(5));
+            alphaValuesVector.add(staticStationaryExperiments.RLIGWO(stations, positionsMatricesWithoutCollisions.get(5)));
             endTime = System.currentTimeMillis();
             executionTime = (endTime - startTime);
+            runtimesVector.add(executionTime);
             System.out.println("RLExGWO");
             startTime = System.currentTimeMillis();
-            staticStationaryExperiments.RLExGWO(stations, positionsMatricesWithoutCollisions.get(6));
+            alphaValuesVector.add(staticStationaryExperiments.RLExGWO(stations, positionsMatricesWithoutCollisions.get(6)));
             endTime = System.currentTimeMillis();
             executionTime = (endTime - startTime);
+            runtimesVector.add(executionTime);
             System.out.println("RLWOA");
             startTime = System.currentTimeMillis();
-            staticStationaryExperiments.RLWOA(stations, positionsMatricesWithoutCollisions.get(7));
+            alphaValuesVector.add(staticStationaryExperiments.RLWOA(stations, positionsMatricesWithoutCollisions.get(7)));
             endTime = System.currentTimeMillis();
             executionTime = (endTime - startTime);
+            runtimesVector.add(executionTime);
+
+            runtimesMatrix.add(runtimesVector);
+            alphalphaValuesMatrix.add(alphaValuesVector);
         }
+        double average;
+        ArrayList<Double> runtimeAverages = new ArrayList<>();
+        for (int stCounter = 0; stCounter < runtimesMatrix.get(0).size(); stCounter = stCounter + 1) {
+            average = 0;
+            for (int ndCounter = 0; ndCounter < runtimesMatrix.size(); ndCounter = ndCounter + 1) {
+                average = average + runtimesMatrix.get(ndCounter).get(stCounter);
+            }
+            average = average / runtimesMatrix.size();
+            runtimeAverages.add(average);
+        }
+        System.out.println("Averages of runtimes: " + runtimeAverages);
+
+        double min, max;
+        ArrayList<Double> mins = new ArrayList<>(), maxs = new ArrayList<>();
+        ArrayList<Double> alphalphaValuesAverages = new ArrayList<>();
+        for (int stCounter = 0; stCounter < alphalphaValuesMatrix.get(0).size(); stCounter = stCounter + 1) {
+            average = 0;
+            min = alphalphaValuesMatrix.get(0).get(stCounter);
+            max = alphalphaValuesMatrix.get(0).get(stCounter);
+            for (int ndCounter = 0; ndCounter < alphalphaValuesMatrix.size(); ndCounter = ndCounter + 1) {
+                if (alphalphaValuesMatrix.get(ndCounter).get(stCounter) < min)
+                    min = alphalphaValuesMatrix.get(ndCounter).get(stCounter);
+                if (alphalphaValuesMatrix.get(ndCounter).get(stCounter) > max)
+                    max = alphalphaValuesMatrix.get(ndCounter).get(stCounter);
+                average = average + alphalphaValuesMatrix.get(ndCounter).get(stCounter);
+            }
+            mins.add(min);
+            maxs.add(max);
+            average = average / alphalphaValuesMatrix.size();
+            alphalphaValuesAverages.add(average);
+        }
+        System.out.println(alphalphaValuesMatrix);
+        System.out.println("Minimums: " + mins);
+        System.out.println("Maximums: " + maxs);
+        System.out.println("Averages of alpha values: " + alphalphaValuesAverages);
     }
 
 
