@@ -52,19 +52,27 @@ public class StaticStationaryExperiments {
         dimension = 5;
         iteration = 100;
         theNumberOfStations = 1000;
+        //Variables for results of experiments
+        int repeat = 10;
+        ArrayList<ArrayList<Double>> stations;
+        ArrayList<ArrayList<ArrayList<Double>>> positionsMatrixWithoutCollisions;
+        ArrayList<ArrayList<ArrayList<ArrayList<Double>>>> positionsMatricesWithoutCollisions;
+        ArrayList<ArrayList<ArrayList<Double>>> matrices;
+        ArrayList<ArrayList<Double>> matrix;
+        ArrayList<Double> vector;
+        long startTime, endTime, executionTime;
 
-        ArrayList<ArrayList<Double>> stations = staticStationaryExperiments.createRandomStations(theNumberOfStations, Xboundaries, Yboundaries, Zboundaries);
-        ArrayList<ArrayList<ArrayList<Double>>> positionsMatrixWithoutCollisions = staticStationaryExperiments.createRandomVisitedStations(population, dimension, stations);
-        ArrayList<ArrayList<ArrayList<ArrayList<Double>>>> positionsMatricesWithoutCollisions = new ArrayList<>();
-        ArrayList<ArrayList<ArrayList<Double>>> matrices = new ArrayList<>();
-        ArrayList<ArrayList<Double>> matrix = new ArrayList<>();
-        ArrayList<Double> vector = new ArrayList();
-
-        for (int counter = 0; counter < 8; counter = counter + 1) {
-            for (int stCounter = 0; stCounter < positionsMatrixWithoutCollisions.size(); stCounter = stCounter + 1) {
-                for (int ndCounter = 0; ndCounter < positionsMatrixWithoutCollisions.get(stCounter).size(); ndCounter = ndCounter + 1) {
-                    for (int rdCounter = 0; rdCounter < positionsMatrixWithoutCollisions.get(stCounter).get(ndCounter).size(); rdCounter = rdCounter + 1) {
-                        vector.add(positionsMatrixWithoutCollisions.get(stCounter).get(ndCounter).get(rdCounter));
+        stations = staticStationaryExperiments.createRandomStations(theNumberOfStations, Xboundaries, Yboundaries, Zboundaries);
+        positionsMatrixWithoutCollisions = staticStationaryExperiments.createRandomVisitedStations(population, dimension, stations);
+        positionsMatricesWithoutCollisions = new ArrayList<>();
+        matrices = new ArrayList<>();
+        matrix = new ArrayList<>();
+        vector = new ArrayList();
+        for (int stCounter = 0; stCounter < 8; stCounter = stCounter + 1) {
+            for (int ndCounter = 0; ndCounter < positionsMatrixWithoutCollisions.size(); ndCounter = ndCounter + 1) {
+                for (int rdCounter = 0; rdCounter < positionsMatrixWithoutCollisions.get(ndCounter).size(); rdCounter = rdCounter + 1) {
+                    for (int fourthCounter = 0; fourthCounter < positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter).size(); fourthCounter = fourthCounter + 1) {
+                        vector.add(positionsMatrixWithoutCollisions.get(ndCounter).get(rdCounter).get(fourthCounter));
                     }
                     matrix.add(vector);
                     vector = new ArrayList<>();
@@ -78,26 +86,50 @@ public class StaticStationaryExperiments {
 
         //Meta Heuristic Optimization Algorithms
         System.out.println("GWO");
+        startTime = System.currentTimeMillis();
         staticStationaryExperiments.GWO(stations, positionsMatricesWithoutCollisions.get(0));
+        endTime = System.currentTimeMillis();
+        executionTime = (endTime - startTime);
         System.out.println("IGWO");
+        startTime = System.currentTimeMillis();
         staticStationaryExperiments.IGWO(stations, positionsMatricesWithoutCollisions.get(1));
+        endTime = System.currentTimeMillis();
+        executionTime = (endTime - startTime);
         System.out.println("ExGWO");
+        startTime = System.currentTimeMillis();
         staticStationaryExperiments.ExGWO(stations, positionsMatricesWithoutCollisions.get(2));
+        endTime = System.currentTimeMillis();
+        executionTime = (endTime - startTime);
         System.out.println("WOA");
+        startTime = System.currentTimeMillis();
         staticStationaryExperiments.WOA(stations, positionsMatricesWithoutCollisions.get(3));
+        endTime = System.currentTimeMillis();
+        executionTime = (endTime - startTime);
         //Reinforcement Learning based Meta Heuristic Optimization Algorithms
         System.out.println("RLGWO");
+        startTime = System.currentTimeMillis();
         staticStationaryExperiments.RLGWO(stations, positionsMatricesWithoutCollisions.get(4));
+        endTime = System.currentTimeMillis();
+        executionTime = (endTime - startTime);
         System.out.println("RLIGWO");
+        startTime = System.currentTimeMillis();
         staticStationaryExperiments.RLIGWO(stations, positionsMatricesWithoutCollisions.get(5));
+        endTime = System.currentTimeMillis();
+        executionTime = (endTime - startTime);
         System.out.println("RLExGWO");
+        startTime = System.currentTimeMillis();
         staticStationaryExperiments.RLExGWO(stations, positionsMatricesWithoutCollisions.get(6));
+        endTime = System.currentTimeMillis();
+        executionTime = (endTime - startTime);
         System.out.println("RLWOA");
+        startTime = System.currentTimeMillis();
         staticStationaryExperiments.RLWOA(stations, positionsMatricesWithoutCollisions.get(7));
+        endTime = System.currentTimeMillis();
+        executionTime = (endTime - startTime);
     }
 
 
-    private void GWO(ArrayList<ArrayList<Double>> stations, ArrayList<ArrayList<ArrayList<Double>>> positionsMatrixWithoutCollisions) {
+    private double GWO(ArrayList<ArrayList<Double>> stations, ArrayList<ArrayList<ArrayList<Double>>> positionsMatrixWithoutCollisions) {
         random = new Random();
         //Gray Wolf Optimization initialization starts here...
         double a;
@@ -276,10 +308,12 @@ public class StaticStationaryExperiments {
         for (int ndCounter = 0; ndCounter < positionsMatrixWithCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).size(); ndCounter = ndCounter + 1) {
             System.out.println(ndCounter + " " + positionsMatrixWithCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).get(ndCounter));
         }
+
+        return sortedFitnessValues.get(0);
     }
 
 
-    private void IGWO(ArrayList<ArrayList<Double>> stations, ArrayList<ArrayList<ArrayList<Double>>> positionsMatrixWithoutCollisions) {
+    private double IGWO(ArrayList<ArrayList<Double>> stations, ArrayList<ArrayList<ArrayList<Double>>> positionsMatrixWithoutCollisions) {
         random = new Random();
         //Iterative Gray Wolf Optimization initialization starts here...
         double a;
@@ -458,10 +492,12 @@ public class StaticStationaryExperiments {
         for (int ndCounter = 0; ndCounter < positionsMatrixWithCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).size(); ndCounter = ndCounter + 1) {
             System.out.println(ndCounter + " " + positionsMatrixWithCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).get(ndCounter));
         }
+
+        return sortedFitnessValues.get(0);
     }
 
 
-    private void ExGWO(ArrayList<ArrayList<Double>> stations, ArrayList<ArrayList<ArrayList<Double>>> positionsMatrixWithoutCollisions) {
+    private double ExGWO(ArrayList<ArrayList<Double>> stations, ArrayList<ArrayList<ArrayList<Double>>> positionsMatrixWithoutCollisions) {
         random = new Random();
         //Expanded Gray Wolf Optimization initialization starts here...
         double a;
@@ -660,10 +696,12 @@ public class StaticStationaryExperiments {
         for (int ndCounter = 0; ndCounter < positionsMatrixWithCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).size(); ndCounter = ndCounter + 1) {
             System.out.println(ndCounter + " " + positionsMatrixWithCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).get(ndCounter));
         }
+
+        return sortedFitnessValues.get(0);
     }
 
 
-    private void WOA(ArrayList<ArrayList<Double>> stations, ArrayList<ArrayList<ArrayList<Double>>> positionsMatrixWithoutCollisions) {
+    private double WOA(ArrayList<ArrayList<Double>> stations, ArrayList<ArrayList<ArrayList<Double>>> positionsMatrixWithoutCollisions) {
         random = new Random();
         //Whale Optimization Algorithm initialization starts here...
         double a1, a2, r1, r2, A, C;
@@ -841,10 +879,12 @@ public class StaticStationaryExperiments {
         for (int ndCounter = 0; ndCounter < positionsMatrixWithCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).size(); ndCounter = ndCounter + 1) {
             System.out.println(ndCounter + " " + positionsMatrixWithCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).get(ndCounter));
         }
+
+        return sortedFitnessValues.get(0);
     }
 
 
-    private void RLGWO(ArrayList<ArrayList<Double>> stations, ArrayList<ArrayList<ArrayList<Double>>> positionsMatrixWithoutCollisions) {
+    private double RLGWO(ArrayList<ArrayList<Double>> stations, ArrayList<ArrayList<ArrayList<Double>>> positionsMatrixWithoutCollisions) {
         random = new Random();
         //Reinforcement Learning based Gray Wolf Optimization and Path Planning start here...
         //Reinforcement Learning Initialization Starts...
@@ -1120,10 +1160,12 @@ public class StaticStationaryExperiments {
         for (int ndCounter = 0; ndCounter < positionsMatrixWithCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).size(); ndCounter = ndCounter + 1) {
             System.out.println(ndCounter + " " + positionsMatrixWithCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).get(ndCounter));
         }
+
+        return sortedFitnessValues.get(0);
     }
 
 
-    private void RLIGWO(ArrayList<ArrayList<Double>> stations, ArrayList<ArrayList<ArrayList<Double>>> positionsMatrixWithoutCollisions) {
+    private double RLIGWO(ArrayList<ArrayList<Double>> stations, ArrayList<ArrayList<ArrayList<Double>>> positionsMatrixWithoutCollisions) {
         random = new Random();
         //Reinforcement Learning based Iterative Gray Wolf Optimization and Path Planning start here...
         //Reinforcement Learning Initialization Starts...
@@ -1422,9 +1464,11 @@ public class StaticStationaryExperiments {
         for (int ndCounter = 0; ndCounter < positionsMatrixWithCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).size(); ndCounter = ndCounter + 1) {
             System.out.println(ndCounter + " " + positionsMatrixWithCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).get(ndCounter));
         }
+
+        return sortedFitnessValues.get(0);
     }
 
-    private void RLExGWO(ArrayList<ArrayList<Double>> stations, ArrayList<ArrayList<ArrayList<Double>>> positionsMatrixWithoutCollisions) {
+    private double RLExGWO(ArrayList<ArrayList<Double>> stations, ArrayList<ArrayList<ArrayList<Double>>> positionsMatrixWithoutCollisions) {
         random = new Random();
         //Reinforcement Learning based Expanded Gray Wolf Optimization and Path Planning start here...
         //Reinforcement Learning Initialization Starts...
@@ -1743,10 +1787,12 @@ public class StaticStationaryExperiments {
         for (int ndCounter = 0; ndCounter < positionsMatrixWithCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).size(); ndCounter = ndCounter + 1) {
             System.out.println(ndCounter + " " + positionsMatrixWithCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).get(ndCounter));
         }
+
+        return sortedFitnessValues.get(0);
     }
 
 
-    private void RLWOA(ArrayList<ArrayList<Double>> stations, ArrayList<ArrayList<ArrayList<Double>>> positionsMatrixWithoutCollisions) {
+    private double RLWOA(ArrayList<ArrayList<Double>> stations, ArrayList<ArrayList<ArrayList<Double>>> positionsMatrixWithoutCollisions) {
         random = new Random();
         //Reinforcement Learning based Whale Optimization Algorithm and Path Planning start here...
         //Reinforcement Learning Initialization Starts...
@@ -2092,6 +2138,8 @@ public class StaticStationaryExperiments {
         for (int ndCounter = 0; ndCounter < positionsMatrixWithCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).size(); ndCounter = ndCounter + 1) {
             System.out.println(ndCounter + " " + positionsMatrixWithCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).get(ndCounter));
         }
+
+        return sortedFitnessValues.get(0);
     }
 
 
