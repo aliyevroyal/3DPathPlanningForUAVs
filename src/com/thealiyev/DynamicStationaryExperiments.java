@@ -50,6 +50,7 @@ public class DynamicStationaryExperiments {
         population = 100;
         dimension = 5;
         iteration = 100;
+        long startTime, endTime, executionTime;
 
         ArrayList<ArrayList<ArrayList<Double>>> positionsMatrixWithoutCollisions = dynamicStationaryExperiments.createRandomPositionsMatrix(population, dimension, Xboundaries, Yboundaries, Zboundaries);
         ArrayList<ArrayList<ArrayList<ArrayList<Double>>>> positionsMatricesWithoutCollisions = new ArrayList<>();
@@ -75,23 +76,47 @@ public class DynamicStationaryExperiments {
 
         //Meta Heuristic Optimization Algorithms
         System.out.println("GWO");
+        startTime = System.currentTimeMillis();
         dynamicStationaryExperiments.GWO(positionsMatricesWithoutCollisions.get(0));
+        endTime = System.currentTimeMillis();
+        executionTime = (endTime - startTime);
         System.out.println("IGWO");
+        startTime = System.currentTimeMillis();
         dynamicStationaryExperiments.IGWO(positionsMatricesWithoutCollisions.get(1));
+        endTime = System.currentTimeMillis();
+        executionTime = (endTime - startTime);
         System.out.println("ExGWO");
+        startTime = System.currentTimeMillis();
         dynamicStationaryExperiments.ExGWO(positionsMatricesWithoutCollisions.get(2));
+        endTime = System.currentTimeMillis();
+        executionTime = (endTime - startTime);
         System.out.println("WOA");
+        startTime = System.currentTimeMillis();
         dynamicStationaryExperiments.WOA(positionsMatricesWithoutCollisions.get(3));
+        endTime = System.currentTimeMillis();
+        executionTime = (endTime - startTime);
 
         //Reinforcement Learning based Meta Heuristic Optimization Algorithms
         System.out.println("RLGWO");
+        startTime = System.currentTimeMillis();
         dynamicStationaryExperiments.RLGWO(positionsMatricesWithoutCollisions.get(4));
+        endTime = System.currentTimeMillis();
+        executionTime = (endTime - startTime);
         System.out.println("RLIGWO");
+        startTime = System.currentTimeMillis();
         dynamicStationaryExperiments.RLIGWO(positionsMatricesWithoutCollisions.get(5));
+        endTime = System.currentTimeMillis();
+        executionTime = (endTime - startTime);
         System.out.println("RLExGWO");
+        startTime = System.currentTimeMillis();
         dynamicStationaryExperiments.RLExGWO(positionsMatricesWithoutCollisions.get(6));
+        endTime = System.currentTimeMillis();
+        executionTime = (endTime - startTime);
         System.out.println("RLWOA");
+        startTime = System.currentTimeMillis();
         dynamicStationaryExperiments.RLWOA(positionsMatricesWithoutCollisions.get(7));
+        endTime = System.currentTimeMillis();
+        executionTime = (endTime - startTime);
     }
 
     private void GWO(ArrayList<ArrayList<ArrayList<Double>>> positionsMatrixWithoutCollisions) {
@@ -127,7 +152,7 @@ public class DynamicStationaryExperiments {
         ArrayList<ArrayList<Double>> pathWithCollisiions = new ArrayList<>();
         ArrayList<ArrayList<ArrayList<Double>>> sortedObstacles;
         //Gray Wolf Optimization iterations start here...
-        System.out.println("Initialization, alpha's fitness value: " + sortedFitnessValues.get(0));
+        System.out.println(sortedFitnessValues.get(0));
         for (int stCounter = 0; stCounter < iteration; stCounter = stCounter + 1) {
             positionsMatrixWithCollisions = new ArrayList<>();
             a = 2.0 - 2.0 * stCounter / iteration;
@@ -308,11 +333,7 @@ public class DynamicStationaryExperiments {
             }
             fitnessValues = calculateFitnessValues(positionsMatrixWithCollisions, sourceStation, destinationStation);
             sortedFitnessValues = sortFitnessValues(fitnessValues);
-        }
-        System.out.println("Alpha's fitness value after iterations: " + sortedFitnessValues.get(0));
-        System.out.println("Alpha path without collisions");
-        for (int ndCounter = 0; ndCounter < positionsMatrixWithoutCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).size(); ndCounter = ndCounter + 1) {
-            System.out.println(ndCounter + " " + positionsMatrixWithoutCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).get(ndCounter));
+            System.out.println(sortedFitnessValues.get(0));
         }
         for (int counter = 0; counter < positionsMatrixWithCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).size() - 1; counter = counter + 1) {
             if (positionsMatrixWithCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).get(counter).equals(positionsMatrixWithCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).get(counter + 1))) {
@@ -360,7 +381,7 @@ public class DynamicStationaryExperiments {
         ArrayList<ArrayList<Double>> pathWithCollisiions = new ArrayList<>();
         ArrayList<ArrayList<ArrayList<Double>>> sortedObstacles;
         //Iterative Gray Wolf Optimization iterations start here...
-        System.out.println("Initialization, alpha's fitness value: " + sortedFitnessValues.get(0));
+        System.out.println(sortedFitnessValues.get(0));
         for (int stCounter = 0; stCounter < iteration; stCounter = stCounter + 1) {
             positionsMatrixWithCollisions = new ArrayList<>();
             a = 2.0 - 2.0 * stCounter / iteration;
@@ -540,11 +561,7 @@ public class DynamicStationaryExperiments {
             }
             fitnessValues = calculateFitnessValues(positionsMatrixWithCollisions, sourceStation, destinationStation);
             sortedFitnessValues = sortFitnessValues(fitnessValues);
-        }
-        System.out.println("Alpha's fitness value after iterations: " + sortedFitnessValues.get(0));
-        System.out.println("Alpha path without collisions");
-        for (int ndCounter = 0; ndCounter < positionsMatrixWithoutCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).size(); ndCounter = ndCounter + 1) {
-            System.out.println(ndCounter + " " + positionsMatrixWithoutCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).get(ndCounter));
+            System.out.println(sortedFitnessValues.get(0));
         }
         for (int counter = 0; counter < positionsMatrixWithCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).size() - 1; counter = counter + 1) {
             if (positionsMatrixWithCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).get(counter).equals(positionsMatrixWithCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).get(counter + 1))) {
@@ -592,7 +609,7 @@ public class DynamicStationaryExperiments {
         ArrayList<ArrayList<Double>> pathWithCollisiions = new ArrayList<>();
         ArrayList<ArrayList<ArrayList<Double>>> sortedObstacles;
         //Expanded Gray Wolf Optimization iterations start here...
-        System.out.println("Initialization, alpha's fitness value: " + sortedFitnessValues.get(0));
+        System.out.println(sortedFitnessValues.get(0));
         for (int stCounter = 0; stCounter < iteration; stCounter = stCounter + 1) {
             positionsMatrixWithCollisions = new ArrayList<>();
             a = 2.0 - 2.0 * Math.pow(stCounter, 2) / Math.pow(iteration, 2);
@@ -792,11 +809,7 @@ public class DynamicStationaryExperiments {
             }
             fitnessValues = calculateFitnessValues(positionsMatrixWithCollisions, sourceStation, destinationStation);
             sortedFitnessValues = sortFitnessValues(fitnessValues);
-        }
-        System.out.println("Alpha's fitness value after iterations: " + sortedFitnessValues.get(0));
-        System.out.println("Alpha path without collisions");
-        for (int ndCounter = 0; ndCounter < positionsMatrixWithoutCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).size(); ndCounter = ndCounter + 1) {
-            System.out.println(ndCounter + " " + positionsMatrixWithoutCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).get(ndCounter));
+            System.out.println(sortedFitnessValues.get(0));
         }
         for (int counter = 0; counter < positionsMatrixWithCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).size() - 1; counter = counter + 1) {
             if (positionsMatrixWithCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).get(counter).equals(positionsMatrixWithCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).get(counter + 1))) {
@@ -844,7 +857,7 @@ public class DynamicStationaryExperiments {
         ArrayList<ArrayList<Double>> pathWithCollisiions = new ArrayList<>();
         ArrayList<ArrayList<ArrayList<Double>>> sortedObstacles;
         //Whale Optimization Algorithm iterations start here...
-        System.out.println("Initialization, alpha's fitness value: " + sortedFitnessValues.get(0));
+        System.out.println(sortedFitnessValues.get(0));
         for (int stCounter = 0; stCounter < iteration; stCounter = stCounter + 1) {
             positionsMatrixWithCollisions = new ArrayList<>();
             a1 = 2.0 - 2.0 * stCounter / iteration;
@@ -1024,11 +1037,7 @@ public class DynamicStationaryExperiments {
             }
             fitnessValues = calculateFitnessValues(positionsMatrixWithCollisions, sourceStation, destinationStation);
             sortedFitnessValues = sortFitnessValues(fitnessValues);
-        }
-        System.out.println("Alpha's fitness value after iterations: " + sortedFitnessValues.get(0));
-        System.out.println("Alpha path without collisions");
-        for (int ndCounter = 0; ndCounter < positionsMatrixWithoutCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).size(); ndCounter = ndCounter + 1) {
-            System.out.println(ndCounter + " " + positionsMatrixWithoutCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).get(ndCounter));
+            System.out.println(sortedFitnessValues.get(0));
         }
         for (int counter = 0; counter < positionsMatrixWithCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).size() - 1; counter = counter + 1) {
             if (positionsMatrixWithCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).get(counter).equals(positionsMatrixWithCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).get(counter + 1))) {
@@ -1093,7 +1102,7 @@ public class DynamicStationaryExperiments {
         ArrayList<ArrayList<Double>> pathWithCollisiions = new ArrayList<>();
         ArrayList<ArrayList<ArrayList<Double>>> sortedObstacles;
         //Gray Wolf Optimization iterations start here...
-        System.out.println("Initialization, alpha's fitness value: " + sortedFitnessValues.get(0));
+        System.out.println(sortedFitnessValues.get(0));
         for (int stCounter = 0; stCounter < iteration; stCounter = stCounter + 1) {
             positionsMatrixWithCollisions = new ArrayList<>();
             a = 2.0 - 2.0 * stCounter / iteration;
@@ -1354,11 +1363,7 @@ public class DynamicStationaryExperiments {
             }
             fitnessValues = calculateFitnessValues(positionsMatrixWithCollisions, sourceStation, destinationStation);
             sortedFitnessValues = sortFitnessValues(fitnessValues);
-        }
-        System.out.println("Alpha's fitness value after iterations: " + sortedFitnessValues.get(0));
-        System.out.println("Alpha path without collisions");
-        for (int ndCounter = 0; ndCounter < positionsMatrixWithoutCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).size(); ndCounter = ndCounter + 1) {
-            System.out.println(ndCounter + " " + positionsMatrixWithoutCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).get(ndCounter));
+            System.out.println(sortedFitnessValues.get(0));
         }
         for (int counter = 0; counter < positionsMatrixWithCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).size() - 1; counter = counter + 1) {
             if (positionsMatrixWithCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).get(counter).equals(positionsMatrixWithCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).get(counter + 1))) {
@@ -1423,7 +1428,7 @@ public class DynamicStationaryExperiments {
         ArrayList<ArrayList<Double>> pathWithCollisiions = new ArrayList<>();
         ArrayList<ArrayList<ArrayList<Double>>> sortedObstacles;
         //Iterative Gray Wolf Optimization iterations start here...
-        System.out.println("Initialization, alpha's fitness value: " + sortedFitnessValues.get(0));
+        System.out.println(sortedFitnessValues.get(0));
         for (int stCounter = 0; stCounter < iteration; stCounter = stCounter + 1) {
             positionsMatrixWithCollisions = new ArrayList<>();
             a = 2.0 - 2.0 * stCounter / iteration;
@@ -1706,11 +1711,7 @@ public class DynamicStationaryExperiments {
             }
             fitnessValues = calculateFitnessValues(positionsMatrixWithCollisions, sourceStation, destinationStation);
             sortedFitnessValues = sortFitnessValues(fitnessValues);
-        }
-        System.out.println("Alpha's fitness value after iterations: " + sortedFitnessValues.get(0));
-        System.out.println("Alpha path without collisions");
-        for (int ndCounter = 0; ndCounter < positionsMatrixWithoutCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).size(); ndCounter = ndCounter + 1) {
-            System.out.println(ndCounter + " " + positionsMatrixWithoutCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).get(ndCounter));
+            System.out.println(sortedFitnessValues.get(0));
         }
         for (int counter = 0; counter < positionsMatrixWithCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).size() - 1; counter = counter + 1) {
             if (positionsMatrixWithCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).get(counter).equals(positionsMatrixWithCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).get(counter + 1))) {
@@ -1775,7 +1776,7 @@ public class DynamicStationaryExperiments {
         ArrayList<ArrayList<Double>> pathWithCollisiions = new ArrayList<>();
         ArrayList<ArrayList<ArrayList<Double>>> sortedObstacles;
         //Reinforcement Learning based Expanded Gray Wolf Optimization iterations start here...
-        System.out.println("Initialization, alpha's fitness value: " + sortedFitnessValues.get(0));
+        System.out.println(sortedFitnessValues.get(0));
         for (int stCounter = 0; stCounter < iteration; stCounter = stCounter + 1) {
             positionsMatrixWithCollisions = new ArrayList<>();
             a = 2.0 - 2.0 * Math.pow(stCounter, 2) / Math.pow(iteration, 2);
@@ -2078,11 +2079,7 @@ public class DynamicStationaryExperiments {
             }
             fitnessValues = calculateFitnessValues(positionsMatrixWithCollisions, sourceStation, destinationStation);
             sortedFitnessValues = sortFitnessValues(fitnessValues);
-        }
-        System.out.println("Alpha's fitness value after iterations: " + sortedFitnessValues.get(0));
-        System.out.println("Alpha path without collisions");
-        for (int ndCounter = 0; ndCounter < positionsMatrixWithoutCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).size(); ndCounter = ndCounter + 1) {
-            System.out.println(ndCounter + " " + positionsMatrixWithoutCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).get(ndCounter));
+            System.out.println(sortedFitnessValues.get(0));
         }
         for (int counter = 0; counter < positionsMatrixWithCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).size() - 1; counter = counter + 1) {
             if (positionsMatrixWithCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).get(counter).equals(positionsMatrixWithCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).get(counter + 1))) {
@@ -2147,7 +2144,7 @@ public class DynamicStationaryExperiments {
         ArrayList<ArrayList<Double>> pathWithCollisiions = new ArrayList<>();
         ArrayList<ArrayList<ArrayList<Double>>> sortedObstacles;
         //Whale Optimization Algorithm iterations start here...
-        System.out.println("Initialization, alpha's fitness value: " + sortedFitnessValues.get(0));
+        System.out.println(sortedFitnessValues.get(0));
         for (int stCounter = 0; stCounter < iteration; stCounter = stCounter + 1) {
             positionsMatrixWithCollisions = new ArrayList<>();
             a1 = 2.0 - 2.0 * stCounter / iteration;
@@ -2477,11 +2474,7 @@ public class DynamicStationaryExperiments {
             }
             fitnessValues = calculateFitnessValues(positionsMatrixWithCollisions, sourceStation, destinationStation);
             sortedFitnessValues = sortFitnessValues(fitnessValues);
-        }
-        System.out.println("Alpha's fitness value after iterations: " + sortedFitnessValues.get(0));
-        System.out.println("Alpha path without collisions");
-        for (int ndCounter = 0; ndCounter < positionsMatrixWithoutCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).size(); ndCounter = ndCounter + 1) {
-            System.out.println(ndCounter + " " + positionsMatrixWithoutCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).get(ndCounter));
+            System.out.println(sortedFitnessValues.get(0));
         }
         for (int counter = 0; counter < positionsMatrixWithCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).size() - 1; counter = counter + 1) {
             if (positionsMatrixWithCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).get(counter).equals(positionsMatrixWithCollisions.get(fitnessValues.indexOf(sortedFitnessValues.get(0))).get(counter + 1))) {

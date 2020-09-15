@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="6ce80e1a-4e66-4642-9a81-b99625a69087" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/thealiyev/DynamicStationaryExperiments.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/thealiyev/DynamicStationaryExperiments.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/thealiyev/StaticStationaryExperiments.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/thealiyev/StaticStationaryExperiments.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,6 +106,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.RLWOAPathPlanningStaticStationaryMethod" />
       <item itemvalue="Application.DynamicStationaryExperiments" />
@@ -114,8 +127,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.StaticStationaryExperiments" />
-        <item itemvalue="Application.WOAPathPlanningStaticStationaryMethod" />
         <item itemvalue="Application.DynamicStationaryExperiments" />
+        <item itemvalue="Application.WOAPathPlanningStaticStationaryMethod" />
         <item itemvalue="Application.WOAPathPlanningDynamicStationaryMethod" />
         <item itemvalue="Application.RLWOAPathPlanningStaticStationaryMethod" />
       </list>
@@ -169,6 +182,7 @@
       <workItem from="1599605719277" duration="11340000" />
       <workItem from="1600067974417" duration="9850000" />
       <workItem from="1600087609906" duration="70000" />
+      <workItem from="1600141464640" duration="965000" />
     </task>
     <servers />
   </component>
@@ -176,22 +190,22 @@
     <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1398" height="279" key="GridCell.Tab.0.bottom" timestamp="1600087179996">
+    <state width="1398" height="386" key="GridCell.Tab.0.bottom" timestamp="1600142472540">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="279" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1600087179996" />
-    <state width="1398" height="279" key="GridCell.Tab.0.center" timestamp="1600087179991">
+    <state width="1398" height="386" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1600142472540" />
+    <state width="1398" height="386" key="GridCell.Tab.0.center" timestamp="1600142472537">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="279" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1600087179991" />
-    <state width="1398" height="279" key="GridCell.Tab.0.left" timestamp="1600087179990">
+    <state width="1398" height="386" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1600142472537" />
+    <state width="1398" height="386" key="GridCell.Tab.0.left" timestamp="1600142472536">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="279" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1600087179990" />
-    <state width="1398" height="279" key="GridCell.Tab.0.right" timestamp="1600087179994">
+    <state width="1398" height="386" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1600142472536" />
+    <state width="1398" height="386" key="GridCell.Tab.0.right" timestamp="1600142472538">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state width="1398" height="279" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1600087179994" />
+    <state width="1398" height="386" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1600142472538" />
     <state x="413" y="282" key="com.intellij.ide.util.TipDialog" timestamp="1599605069066">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
